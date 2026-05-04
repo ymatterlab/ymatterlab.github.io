@@ -1119,9 +1119,14 @@ a {
   color: var(--accent);
 }
 
-.news-filter.is-active,
-.people-filter.is-active {
+.news-filter.is-active {
   background: #eaf5f2;
+}
+
+.people-filter.is-active {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #ffffff;
 }
 
 .person-card[hidden] {

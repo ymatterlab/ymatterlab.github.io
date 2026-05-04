@@ -7,15 +7,19 @@
 {{ if eq .Section "people" }}
 {{ $filters := slice
   (dict "key" "pi" "label" "PI")
-  (dict "key" "postdoc" "label" "Postdoc")
+  (dict "key" "postdoc" "label" "Postdocs")
   (dict "key" "students" "label" "Students")
-  (dict "key" "visiting-student" "label" "Visiting Student")
-  (dict "key" "visiting-scholar" "label" "Visiting Scholar")
+  (dict "key" "visiting-scholar" "label" "Visiting Scholars")
+  (dict "key" "visiting-student" "label" "Visiting Students")
   (dict "key" "alumni" "label" "Alumni")
 }}
 
+<section class="publication-overview people-overview">
+  <p>To meet the team! Some members are still a part of Errea Lab currently.</p>
+</section>
+
 <section class="people-tools" aria-label="People filters">
-  <button class="people-filter is-active" type="button" data-people-filter="all">All</button>
+  <button class="people-filter is-active" type="button" data-people-filter="current">Current members</button>
   {{ range $filters }}
   <button class="people-filter" type="button" data-people-filter="{{ .key }}">{{ .label }}</button>
   {{ end }}
@@ -45,7 +49,7 @@
       {{ $personGroup = "students" }}
     {{ end }}
   {{ end }}
-  <article class="card person-card" data-person-card data-person-group="{{ $personGroup }}">
+  <article class="card person-card" data-person-card data-person-group="{{ $personGroup }}"{{ if eq $personGroup "alumni" }} hidden{{ end }}>
     <div class="person-card-header">
       {{ with .photo }}
       <img class="person-photo" src="{{ . | relURL }}" alt="{{ $personName }}">
@@ -96,7 +100,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     cards.forEach(function (card) {
-      card.hidden = filter !== "all" && card.dataset.personGroup !== filter;
+      card.hidden = filter === "current"
+        ? card.dataset.personGroup === "alumni"
+        : card.dataset.personGroup !== filter;
     });
   }
 

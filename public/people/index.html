@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>People | Y-Matter Lab</title>
   
-  <link rel="stylesheet" href="/css/style.min.3a519bce84bcfa460dc6ce028acf57ef84fa60e4f2c97d985760f8f23edea018.css">
+  <link rel="stylesheet" href="/css/style.min.f1aa553ffdea9de7284c4d9bb6554e0547d45e30ee4a21bb006343f810fcea0e.css">
 </head>
 <body>
   <header class="site-header">
@@ -43,18 +43,22 @@
 
 
 
+<section class="publication-overview people-overview">
+  <p>To meet the team! Some members are still a part of Errea Lab currently.</p>
+</section>
+
 <section class="people-tools" aria-label="People filters">
-  <button class="people-filter is-active" type="button" data-people-filter="all">All</button>
+  <button class="people-filter is-active" type="button" data-people-filter="current">Current members</button>
   
   <button class="people-filter" type="button" data-people-filter="pi">PI</button>
   
-  <button class="people-filter" type="button" data-people-filter="postdoc">Postdoc</button>
+  <button class="people-filter" type="button" data-people-filter="postdoc">Postdocs</button>
   
   <button class="people-filter" type="button" data-people-filter="students">Students</button>
   
-  <button class="people-filter" type="button" data-people-filter="visiting-student">Visiting Student</button>
+  <button class="people-filter" type="button" data-people-filter="visiting-scholar">Visiting Scholars</button>
   
-  <button class="people-filter" type="button" data-people-filter="visiting-scholar">Visiting Scholar</button>
+  <button class="people-filter" type="button" data-people-filter="visiting-student">Visiting Students</button>
   
   <button class="people-filter" type="button" data-people-filter="alumni">Alumni</button>
   
@@ -254,7 +258,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     cards.forEach(function (card) {
-      card.hidden = filter !== "all" && card.dataset.personGroup !== filter;
+      card.hidden = filter === "current"
+        ? card.dataset.personGroup === "alumni"
+        : card.dataset.personGroup !== filter;
     });
   }
 
