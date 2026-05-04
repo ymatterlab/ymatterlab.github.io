@@ -580,6 +580,76 @@ a {
   color: var(--accent);
 }
 
+.research-sponsors {
+  display: grid;
+  justify-items: center;
+  gap: 0.85rem;
+  margin: 1.5rem 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  padding: clamp(1.4rem, 3.5vw, 2.2rem);
+  text-align: center;
+}
+
+.research-sponsors h2 {
+  margin: 0;
+  color: var(--brand-navy);
+  font-size: clamp(1.55rem, 3vw, 2.35rem);
+  line-height: 1.15;
+}
+
+.research-sponsors p {
+  max-width: 680px;
+  margin: 0;
+  color: var(--muted);
+}
+
+.sponsor-logo-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1rem, 3.5vw, 2rem);
+  width: 100%;
+  margin-top: 0.45rem;
+}
+
+.sponsor-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(8rem, 18vw, 10.5rem);
+  min-height: 6.25rem;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 0.85rem;
+  background: #ffffff;
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.sponsor-logo-wide {
+  width: clamp(12rem, 32vw, 18rem);
+}
+
+.sponsor-logo:hover,
+.sponsor-logo:focus-visible {
+  border-color: var(--accent);
+  box-shadow: 0 12px 26px rgba(15, 118, 110, 0.1);
+  transform: translateY(-2px);
+}
+
+.sponsor-logo img {
+  display: block;
+  max-width: 100%;
+  max-height: 4.65rem;
+  object-fit: contain;
+}
+
+.sponsor-logo-wide img {
+  max-height: 3.4rem;
+}
+
 .section-heading {
   display: flex;
   align-items: baseline;
