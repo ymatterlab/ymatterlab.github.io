@@ -1,55 +1,44 @@
-# Hugo Lab Website Starter
-
-This is a minimal Hugo starter for my research group website with pages for:
-
-- Home
-- News
-- Research
-- People
-- Publications
-- Contact
 
 ## License
 
-This repository contains both source code and website content.
+This repository contains both **source code** and **website content**.
 
-- Source code is licensed under the MIT License (see LICENSE file) as the [template](https://github.com/ymatterlab/hugo-academic-lab-template) 
+- Source code is licensed under the MIT License (see LICENSE file) as the [hugo-academic-lab-template](https://github.com/ymatterlab/hugo-academic-lab-template). If you like this website design, we suggest you clone the original template [hugo-academic-lab-template](https://github.com/orgs/ymatterlab/repositories)
 - Website content (text, images, figures) is licensed under:
   Creative Commons Attribution-NonCommercial 4.0 (CC BY-NC 4.0),
   unless otherwise stated
 
 Third-party materials may be subject to separate copyrights.
 
+## Contributing
 
-## Run locally
+We welcome contributions to this website, but please note the following policy:
 
-```bash
-hugo server
-```
+### 👥 Eligibility
+In principle, contributions are limited to **current and former members of Y-Matter Lab**.  
+This ensures consistency with the lab’s research activities, communication style, and scientific direction.
 
-Then open the local address Hugo prints in the terminal.
+If you are not a member but believe you have a relevant contribution, feel free to open an issue to discuss it first.
 
-## Build static files
+---
 
-```bash
-hugo
-```
+### 🔧 How to Contribute
 
-The generated site will appear in `public/`.
+1. **Fork the repository**
+   - Click the “Fork” button on GitHub and clone your fork locally.
 
-## Customize
+2. **Create a branch**
+   ```bash
+   git checkout -b feature/your-feature-name
 
-- Edit `config.yaml` for lab name, tagline, affiliation, email, and menu.
-- Edit `data/people.yaml` for group members.
-- Edit `news/` markdown files for each news.
-- Edit `data/publications.yaml` for selected publications.
-- Edit `content/` markdown files for each page.
-- Edit `assets/css/style.css` to change appearance.
+3. **Make your changes**
+   - Keep changes focused and minimal.
+   - Follow the existing structure and style of the site.
 
-## Suggested next improvements
+4. **Test locally**
+   - Ensure the site builds and renders correctly. Follow README.md [hugo-academic-lab-template](https://github.com/ymatterlab/hugo-academic-lab-template) about running locally.
+   - Check links, formatting, and responsiveness if applicable.
 
-- Add a `positions/` page
-- Import publications automatically from BibTeX or CSL JSON
-- Add profile photos under `static/images/`
-- Deploy with GitHub Pages or Netlify
-
+5. **Submit a Pull Request (PR)**
+   - Provide a clear description of what you changed and why.
+   - Reference any related issues if applicable.
