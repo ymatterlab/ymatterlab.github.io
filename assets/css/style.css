@@ -878,6 +878,12 @@ a {
   margin-bottom: 0.2rem;
 }
 
+.person-details {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
 .person-time {
   margin: 0.25rem 0;
   color: var(--muted);
@@ -895,12 +901,72 @@ a {
   text-decoration: none;
 }
 
+.person-profile-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.45rem;
+}
+
+.person-icon-link {
+  display: inline-grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fbfcfd;
+  color: var(--link);
+}
+
+.person-icon-link:hover,
+.person-icon-link:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.orcid-link {
+  color: #a6ce39;
+}
+
+.profile-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.orcid-icon {
+  width: 1.35rem;
+  height: 1.35rem;
+  fill: currentColor;
+  stroke: #ffffff;
+  stroke-width: 1.6;
+}
+
 .person-card-header {
   display: grid;
   grid-template-columns: 8rem minmax(0, 1fr);
   gap: 1rem;
   align-items: center;
-  margin-bottom: 0.85rem;
+  padding: 1.25rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.person-card-header::-webkit-details-marker {
+  display: none;
+}
+
+.person-card-header::marker {
+  content: "";
+}
+
+.person-details[open] .person-card-header {
+  border-bottom: 1px solid var(--border);
 }
 
 .person-photo {
@@ -921,6 +987,15 @@ a {
   color: var(--accent);
   font-size: 2.3rem;
   font-weight: 700;
+}
+
+.person-bio {
+  padding: 0 1.25rem 1.25rem;
+  color: var(--muted);
+}
+
+.person-bio p {
+  margin-bottom: 0;
 }
 
 .muted {
