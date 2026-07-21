@@ -6,6 +6,7 @@
 
 {{ $news := sort .RegularPages "File.BaseFileName" "desc" }}
 {{ $filters := slice
+  (dict "key" "announcements" "label" "Announcements")
   (dict "key" "honors" "label" "Honors")
   (dict "key" "output" "label" "Output")
   (dict "key" "life" "label" "Life")
