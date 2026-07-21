@@ -1083,9 +1083,9 @@ a {
   padding: 0.9rem;
 }
 
-.weather-now.is-rainy {
-  border-color: rgba(11, 29, 87, 0.32);
-  background: rgba(242, 245, 247, 0.92);
+.weather-now.is-sunny {
+  border-color: rgba(217, 119, 6, 0.32);
+  background: rgba(255, 251, 235, 0.92);
 }
 
 .weather-status {
@@ -1100,8 +1100,8 @@ a {
   text-align: center;
 }
 
-.weather-now.is-rainy .weather-status {
-  background: var(--deep-navy);
+.weather-now.is-sunny .weather-status {
+  background: #d97706;
 }
 
 .weather-now strong {
@@ -1130,9 +1130,9 @@ a {
   padding: 0.85rem;
 }
 
-.weather-day.is-rainy {
-  border-color: rgba(11, 29, 87, 0.24);
-  background: #f2f5f7;
+.weather-day.is-sunny {
+  border-color: rgba(217, 119, 6, 0.24);
+  background: #fffbeb;
 }
 
 .weather-day h3 {

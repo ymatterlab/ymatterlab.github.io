@@ -6,9 +6,9 @@ params:
   lab_name: "Y-Matter Lab"
   tagline: "Computational Materials Science and Condensed Matter Physics"
   pi_name: "Yue-Wen Fang"
-  affiliation: "Centro de Física de Materiales (CFM-MPC) | Spanish National Research Council"
+  affiliation: "Instituto de Nanociencia y Materiales de Aragón (INMA) | Spanish National Research Council"
   email: "yuewen.fang@csic.es"
-  address: "Paseo de Manuel Lardizabal, 5, 20018 Donostia-San Sebastian, Gipuzkoa, Spain"
+  address: "C/ Pedro Cerbuna, 12, 50009, Zaragoza"
   hero_text: "Understanding why matter behaves the way it does and designing the materials we need."
   hero_subtext: "We combine first-principles calculations, molecular dynamics, and machine learning to discover and understand functional materials."
   research_groups:
