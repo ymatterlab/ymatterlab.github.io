@@ -3,7 +3,7 @@
 # Re-run the BibTeX import/enrichment if the source bibliography changes.
 - key: "dangic_superconductivity_2026"
   type: "article"
-  title: "Superconductivity in RbH$_{12}$ at low pressures: An ab initio study"
+  title: "Superconductivity in RbH12 at low pressures: An ab initio study"
   authors: "Đorđe Dangić, Manex Alkorta, Yue-Wen Fang, Ion Errea"
   journal: "SciPost Physics"
   year: "2026"
