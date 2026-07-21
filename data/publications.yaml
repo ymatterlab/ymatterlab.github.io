@@ -1,6 +1,41 @@
 # Generated from /home/yuewen/Downloads/my-pub78-2026May1.bib
 # Enriched with free full-text links on 2026-05-01; Altmetric badges render from DOI.
 # Re-run the BibTeX import/enrichment if the source bibliography changes.
+- key: "dangic_superconductivity_2026"
+  type: "article"
+  title: "Superconductivity in RbH$_{12}$ at low pressures: An ab initio study"
+  authors: "Đorđe Dangić, Manex Alkorta, Yue-Wen Fang, Ion Errea"
+  journal: "SciPost Physics"
+  year: "2026"
+  sort_year: 2026
+  sort_month: 6
+  sort_date: 202606
+  month: "jun"
+  volume: "20"
+  number: "6"
+  pages: "170"
+  doi: "10.21468/SciPostPhys.20.6.170"
+  doi_url: "https://doi.org/10.21468/SciPostPhys.20.6.170"
+  link: "https://www.scipost.org/SciPostPhys.20.6.170"
+  free_full_text_url: "https://www.scipost.org/SciPostPhys.20.6.170/pdf"
+  free_full_text_source: "SciPost"
+
+- key: "qin_reply_2026"
+  type: "article"
+  title: "Reply to comments on “Integrating abnormal thermal expansion and ultralow thermal conductivity into (Cd,Ni)2Re2O7 via synergy of local structure distortion and soft acoustic phonons”"
+  authors: "Feiyu Qin, Ruihao Tan, Xiaoya Bai, Yue-Wen Fang, Lei Hu"
+  journal: "Scripta Materialia"
+  year: "2026"
+  sort_year: 2026
+  sort_month: 9
+  sort_date: 202609
+  month: "sep"
+  volume: "282"
+  pages: "117396"
+  doi: "10.1016/j.scriptamat.2026.117396"
+  doi_url: "https://doi.org/10.1016/j.scriptamat.2026.117396"
+  link: "https://doi.org/10.1016/j.scriptamat.2026.117396"
+
 - key: "gao_iterative_2026"
   type: "article"
   title: "Iterative learning scheme for crystal structure prediction with anharmonic lattice dynamics"
