@@ -62,7 +62,7 @@
           <h2>{{ $personName }}</h2>
 
           {{ with .role }}
-          <p class="muted">{{ . }}</p>
+          <p class="muted">{{ . | markdownify }}</p>
           {{ end }}
 
           {{ with .time }}
