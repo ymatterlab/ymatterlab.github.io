@@ -1264,6 +1264,17 @@ a {
   color: var(--muted);
 }
 
+.news-story a {
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 0.08em;
+}
+
+.news-story a:hover {
+  color: var(--accent);
+}
+
 .news-story p:last-child {
   margin-bottom: 0;
 }
