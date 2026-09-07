@@ -615,6 +615,12 @@ a {
   margin-top: 0.45rem;
 }
 
+.sponsor-note {
+  font-size: 0.75rem;
+  color: var(--muted, #6b7280);
+  text-align: center;
+  margin-top: 1rem;
+}
 .sponsor-logo {
   display: inline-flex;
   align-items: center;
