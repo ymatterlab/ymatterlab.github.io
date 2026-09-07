@@ -1,0 +1,28 @@
+# Crossref 查不到的条目（中文期刊、书章等）在这里手写，字段与网站模板一致。
+# sort_year / sort_date 会自动补全；知道月份就加 sort_month: <1-12>。
+- key: fang_advances_2013
+  type: article
+  title: 铁电与多铁隧道结研究进展
+  authors: 方跃文, 高永超, 龚士静, 段纯刚
+  journal: 物理学进展
+  year: '2013'
+  volume: '33'
+  number: '6'
+  pages: 382-413
+  link: https://pip.nju.edu.cn/CN/Y2013/V33/I6/382
+  free_full_text_url: https://pip.nju.edu.cn/CN/Y2013/V33/I6/382
+  free_full_text_source: Journal page
+
+# DOI 存在但不由 Crossref 注册（中国 DOI 注册机构），因此元数据要手写。
+- key: fang_interface_2016
+  type: article
+  title: 基于界面的钙钛矿氧化物电子学
+  authors: 方跃文, 聂家财, 段纯刚
+  journal: 物理
+  year: '2016'
+  volume: '45'
+  number: '6'
+  pages: 349-358
+  doi: 10.7693/wl20160601
+  doi_url: https://doi.org/10.7693/wl20160601
+  link: https://wuli.iphy.ac.cn/cn/article/doi/10.7693/wl20160601

@@ -1,0 +1,4 @@
+# Optional per-DOI tweaks. Rarely needed -- almost everything comes from Crossref/Unpaywall.
+# Example:
+# 10.1002/chin.201631291:
+#   hide: true          # ChemInform abstract, duplicate of the real paper
