@@ -616,8 +616,8 @@ a {
 }
 
 .sponsor-note {
-  font-size: 0.75rem;
-  color: var(--muted, #6b7280);
+  font-size: 0.45rem;
+    color: rgba(107, 114, 128, 0.5);
   text-align: center;
   margin-top: 1rem;
 }
