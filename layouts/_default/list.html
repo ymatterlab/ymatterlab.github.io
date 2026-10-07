@@ -238,8 +238,7 @@ document.addEventListener("DOMContentLoaded", function () {
 <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>
 
 {{ else if eq .Section "contact" }}
-{{ $mapsPlace := "Instituto de Nanociencia y Materiales de Aragón (INMA)" }}
-{{ $mapsQuery := printf "%s, %s" $mapsPlace site.Params.address | urlquery }}
+{{ $mapsQuery := site.Params.address | urlquery }}
 {{ $mapsLink := printf "https://www.google.com/maps/search/?api=1&query=%s" $mapsQuery }}
 {{ $mapsEmbed := printf "https://www.google.com/maps?q=%s&output=embed" $mapsQuery }}
 <section class="card contact-card">
@@ -250,15 +249,15 @@ document.addEventListener("DOMContentLoaded", function () {
     <p><strong>Address:</strong> {{ site.Params.address }}</p>
   </div>
 
-  <aside class="contact-map" aria-label="Map to INMA building">
+  <aside class="contact-map" aria-label="Map to the INMA office at Calle de Pedro Cerbuna 12">
     <iframe
-      title="INMA building on Google Maps"
+      title="INMA office at Calle de Pedro Cerbuna 12 on Google Maps"
       src="{{ $mapsEmbed | safeURL }}"
       loading="lazy"
       referrerpolicy="no-referrer-when-downgrade">
     </iframe>
     <a href="{{ $mapsLink | safeURL }}" target="_blank" rel="noopener">
-      Open INMA in Google Maps
+      Open office address in Google Maps
     </a>
   </aside>
 </section>
