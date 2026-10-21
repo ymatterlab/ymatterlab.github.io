@@ -865,6 +865,18 @@ a {
   background: var(--surface);
 }
 
+.person-location {
+  display: inline-block;
+  margin: 0.35rem 0;
+  padding: 0.3rem 0.65rem;
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  background: #eaf5f2;
+  color: var(--accent);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
 .person-time {
   margin: 0.25rem 0;
   color: var(--muted);

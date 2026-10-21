@@ -15,7 +15,7 @@
 }}
 
 <section class="publication-overview people-overview">
-  <p>To meet the team! Some members also belong to <a href="https://cfm.ehu.es/errealab/" target="_blank" rel="noopener">Errea Lab</a> currently.</p>
+  <p>Our team is based in <strong>Zaragoza</strong> and <strong>San Sebastián</strong>. Each current member’s location is highlighted below. Some members also belong to <a href="https://cfm.ehu.es/errealab/" target="_blank" rel="noopener">Errea Lab</a>.</p>
 </section>
 
 <section class="people-tools" aria-label="People filters">
@@ -60,6 +60,10 @@
 
         <div>
           <h2>{{ $personName }}</h2>
+
+          {{ with .location }}
+          <p class="person-location">Based in {{ . }}</p>
+          {{ end }}
 
           {{ with .role }}
           <p class="muted">{{ . | markdownify }}</p>
