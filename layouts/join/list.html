@@ -23,6 +23,7 @@
             {{ with .deadline }}<span>Deadline: {{ . }}</span>{{ end }}
           </p>
           {{ with .description }}<p>{{ . | markdownify }}</p>{{ end }}
+          {{ with .funding }}<p class="join-funding"><strong>Funding:</strong> {{ . | markdownify }}</p>{{ end }}
           {{ with .qualifications }}
           <div class="join-apply join-qualifications">
             <h4>Expected qualifications and skills</h4>

@@ -2,6 +2,7 @@
 title: "Join Us"
 draft: false
 # Open positions. Use "positions: []" to show the "no openings" message.
+# funding is optional: one line naming the funding source (Markdown allowed).
 # qualifications is optional: "required" and "desirable" lists (Markdown allowed).
 # how_to_apply is optional: an intro line plus numbered steps (Markdown allowed).
 positions:
@@ -11,6 +12,7 @@ positions:
     deadline: "2026-Nov-10"
     description: "The offered position is a postdoctoral research appointment at the Aragon Nanoscience and Materials Institute (INMA, CSIC–University of Zaragoza), Spain, under the supervision of CSIC tenured scientist Dr. Yue-Wen Fang. The successful candidate will conduct first-principles calculations and develop advanced computational approaches combining DFT and machine learning to investigate ferroic materials, with particular emphasis on lattice dynamics and phase transitions of ferroelectrics. Opportunities for collaboration with experimental groups will also be available."
     link: "https://inma.unizar-csic.es/en/job-offers/"
+    funding: "This position is funded by the Excelencia Severo Ochoa project CEX2023-001286S."
     qualifications:
       required:
         - "A PhD in Condensed Matter Physics, Materials Science, or a closely related field."
