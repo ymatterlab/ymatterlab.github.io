@@ -45,9 +45,12 @@ menu:
     - name: "Publications"
       url: "/publications/"
       weight: 5
+    - name: "Join Us"
+      url: "/join/"
+      weight: 6
     - name: "Contact"
       url: "/contact/"
-      weight: 6
+      weight: 7
 markup:
   goldmark:
     renderer:

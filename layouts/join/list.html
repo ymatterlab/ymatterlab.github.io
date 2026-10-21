@@ -1,0 +1,86 @@
+{{ define "main" }}
+<article class="page-header">
+  <h1>{{ .Title }}</h1>
+</article>
+
+<section class="research-page">
+  <section class="research-section" aria-labelledby="positions-title">
+    <div class="research-section-heading">
+      <p class="eyebrow">Open positions</p>
+      <h2 id="positions-title">Current Opportunities</h2>
+      <p>Current postdoctoral, PhD, and visiting researcher opportunities in Y-Matter Lab.</p>
+    </div>
+
+    {{ with .Params.positions }}
+    <div class="research-line-list">
+      {{ range . }}
+      <article class="research-line join-position">
+        <div class="research-line-body">
+          <h3>{{ .title }}</h3>
+          <p class="join-position-meta">
+            {{ with .type }}<span>{{ . }}</span>{{ end }}
+            {{ with .location }}<span>{{ . }}</span>{{ end }}
+            {{ with .deadline }}<span>Deadline: {{ . }}</span>{{ end }}
+          </p>
+          {{ with .description }}<p>{{ . | markdownify }}</p>{{ end }}
+          {{ with .how_to_apply }}
+          <div class="join-apply">
+            <h4>How to apply</h4>
+            {{ with .intro }}<p>{{ . | markdownify }}</p>{{ end }}
+            {{ with .steps }}
+            <ol>
+              {{ range . }}<li>{{ . | markdownify }}</li>{{ end }}
+            </ol>
+            {{ end }}
+          </div>
+          {{ end }}
+          {{ with .link }}<a href="{{ . }}" target="_blank" rel="noopener">Official job offer</a>{{ end }}
+        </div>
+      </article>
+      {{ end }}
+    </div>
+    {{ else }}
+    <div class="research-focus-box">
+      <p>There are no advertised openings at the moment. Motivated candidates are always welcome to get in touch, and new positions will be posted here.</p>
+    </div>
+    {{ end }}
+  </section>
+
+  <section class="research-section" aria-labelledby="prospective-title">
+    <div class="research-section-heading">
+      <p class="eyebrow">Prospective applicants</p>
+      <h2 id="prospective-title">Joining Through External Fellowships</h2>
+      <p>Researchers interested in joining the group with their own funding are encouraged to contact us well in advance of the call deadline so we can prepare a competitive application together.</p>
+    </div>
+
+    <div class="research-method-grid join-fellowship-grid">
+      {{ range .Params.fellowships }}
+      <article>
+        <h3>{{ .name }}</h3>
+        <p>{{ .text }}</p>
+        {{ with .link }}<p><a href="{{ . }}" target="_blank" rel="noopener">Program website</a></p>{{ end }}
+      </article>
+      {{ end }}
+    </div>
+
+    <div class="research-focus-box">
+      <h3>General enquiries</h3>
+      <p>If a specific call or open position lists its own application requirements (see <em>How to apply</em> under each opening above), please follow those. Otherwise, when you write to us, please include:</p>
+      <ul>
+        <li>A CV with a publication list.</li>
+        <li>A short statement of your research interests and how they connect to our <a href="{{ "/research/" | relURL }}">research lines</a>.</li>
+        <li>The fellowship or program you plan to apply for and its deadline.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="research-student-callout" aria-labelledby="join-contact-title">
+    <div>
+      <p class="eyebrow">Contact</p>
+      <h2 id="join-contact-title">{{ site.Params.pi_name }}, PI of {{ site.Params.lab_name }}</h2>
+      <p>Email: <a href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a><br>{{ site.Params.affiliation }}</p>
+    </div>
+    <a class="button" href="mailto:{{ site.Params.email }}?subject={{ "Joining Y-Matter Lab" | urlquery }}">Email the PI</a>
+  </section>
+</section>
+{{ end }}
