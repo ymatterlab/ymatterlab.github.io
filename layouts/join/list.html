@@ -23,6 +23,23 @@
             {{ with .deadline }}<span>Deadline: {{ . }}</span>{{ end }}
           </p>
           {{ with .description }}<p>{{ . | markdownify }}</p>{{ end }}
+          {{ with .qualifications }}
+          <div class="join-apply join-qualifications">
+            <h4>Expected qualifications and skills</h4>
+            {{ with .required }}
+            <p><strong>Required</strong></p>
+            <ul>
+              {{ range . }}<li>{{ . | markdownify }}</li>{{ end }}
+            </ul>
+            {{ end }}
+            {{ with .desirable }}
+            <p><strong>Desirable</strong></p>
+            <ul>
+              {{ range . }}<li>{{ . | markdownify }}</li>{{ end }}
+            </ul>
+            {{ end }}
+          </div>
+          {{ end }}
           {{ with .how_to_apply }}
           <div class="join-apply">
             <h4>How to apply</h4>

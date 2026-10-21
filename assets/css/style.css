@@ -1511,3 +1511,18 @@ a {
 .research-focus-box p + ul {
   margin-top: 0.6rem;
 }
+
+.join-apply ul {
+  margin: 0.35rem 0 0;
+  padding-left: 1.2rem;
+  color: var(--muted);
+}
+
+.join-apply li + li {
+  margin-top: 0.35rem;
+}
+
+.join-qualifications p strong {
+  color: var(--deep-navy);
+  font-size: 0.92rem;
+}
