@@ -50,6 +50,12 @@
               {{ range . }}<li>{{ . | markdownify }}</li>{{ end }}
             </ol>
             {{ end }}
+            {{ with .notice }}
+            <div class="join-notice">
+              {{ with .title }}<h5>{{ . }}</h5>{{ end }}
+              {{ with .body }}{{ . | markdownify }}{{ end }}
+            </div>
+            {{ end }}
           </div>
           {{ end }}
           {{ with .link }}<a href="{{ . }}" target="_blank" rel="noopener">Official job offer</a>{{ end }}

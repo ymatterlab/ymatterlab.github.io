@@ -4,7 +4,8 @@ draft: false
 # Open positions. Use "positions: []" to show the "no openings" message.
 # funding is optional: one line naming the funding source (Markdown allowed).
 # qualifications is optional: "required" and "desirable" lists (Markdown allowed).
-# how_to_apply is optional: an intro line plus numbered steps (Markdown allowed).
+# how_to_apply is optional: an intro line plus numbered steps (Markdown allowed),
+# and an optional "notice" (title + Markdown body) shown after the steps.
 positions:
   - title: "Postdoctoral Researcher in AI-assisted atomistic modelling of ferroic materials"
     type: "Postdoc"
@@ -26,6 +27,17 @@ positions:
         - "**Curriculum Vitae (CV)**, including a photo, research/education background, and a full publication list. Please highlight up to three of your most representative publications, briefly describing your contribution to each."
         - "**Cover Letter** (maximum 1 page), briefly describing your research background, interests, and motivation for applying."
         - "**Contact details of two referees.**"
+      notice:
+        title: "Important: CSIC Job Bank Registration"
+        body: |
+          As this position will be recruited through the Spanish National Research Council (CSIC), applicants must also register independently in the **CSIC Job Bank (Bolsa de Trabajo)** to be eligible for the formal selection process.
+
+          - **Registration:** [CSIC Job Bank portal](https://www.bolsatrabajo.csic.es/bolsa_trabajo/)
+          - **Official lists of registered candidates:** [CSIC Bolsa de Trabajo](https://sede.csic.gob.es/tramites/bolsa-de-trabajo)
+
+          Candidates must appear on the **definitive list of admitted applicants (listado definitivo)** before the formal recruitment procedure can be initiated. As this process may take time, early registration is strongly recommended.
+
+          Please note that submitting an application by email does not replace CSIC Job Bank registration. Registration in the Job Bank does not guarantee shortlisting or employment.
 fellowships:
   - name: "Marie Skłodowska-Curie Actions (MSCA) Postdoctoral Fellowships"
     text: "European fellowships for experienced researchers. We are happy to co-develop a proposal with strong candidates well before the call deadline."
