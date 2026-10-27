@@ -47,6 +47,21 @@
   title: 'Dynamic Reconstruction of Atomically Dispersed Copper Catalysts for CO 2 Reduction: From In Situ Observations to Rational Design'
   type: article
   year: '2026'
+- key: rosen_democratizing_2026
+  type: preprint
+  title: Democratizing Atomistic Simulation Workflows for the AI Era with the Quantum Accelerator
+  authors: Andrew S. Rosen, Naisargi Goyal, Brad Ayers, Vineet Bansal, Julia H. Baratta, Samuel M. Blau, Yuan Chiang, Sihoon Choi, Orion Archer Cohen, Blake Dallmann, Tom Demeyere, Will Engler, Yue-Wen Fang, Isabella Furrick, Eliu Huerta, Honghui Kim, Hironori Kondo, Anup Kumar, Jaehong Kwon, Osman Mamun, Charles B. Musgrave III, Hananeh Oliaei, Aryan Saha, Davide Sarpa, Benjamin X. Shi, Yuliang Shi, Xing Wang, Robert B. Wexler
+  journal: arXiv:2609.33823 (under review)
+  year: '2026'
+  month: sep
+  sort_month: 9
+  doi: 10.48550/arXiv.2609.33823
+  doi_url: https://doi.org/10.48550/arXiv.2609.33823
+  link: https://arxiv.org/abs/2609.33823
+  free_full_text_url: https://arxiv.org/pdf/2609.33823
+  free_full_text_source: arXiv
+  sort_year: 2026
+  sort_date: 202609
 - authors: Hui Zhang, Jincheng Yue, Jiongzhi Zheng, Ning Wang, Wenling Ren, Shuyao Lin, Chen Shen, Hao Gao, Yanhui Liu, Yue-Wen Fang, Tian Cui
   doi: 10.1088/0256-307x/43/8/080803
   doi_url: https://doi.org/10.1088/0256-307x/43/8/080803

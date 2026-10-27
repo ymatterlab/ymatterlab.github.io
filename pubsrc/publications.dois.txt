@@ -85,3 +85,4 @@
 10.20517/microstructures.2024.129
 10.21468/scipostphys.20.6.170
 # 10.7693/wl20160601 This DOI of Wuli doesn't appear in Crossref, see publications_extra.yaml
+# 10.48550/arXiv.2609.33823 arXiv preprint (under review); arXiv DOIs are registered with DataCite, not Crossref, see publications_extra.yaml

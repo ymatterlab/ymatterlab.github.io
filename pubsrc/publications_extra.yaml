@@ -26,3 +26,19 @@
   doi: 10.7693/wl20160601
   doi_url: https://doi.org/10.7693/wl20160601
   link: https://wuli.iphy.ac.cn/cn/article/doi/10.7693/wl20160601
+
+# arXiv 预印本（审稿中）。arXiv 的 DOI 由 DataCite 注册，Crossref 查不到，元数据从 DataCite 抄来。
+# 正式发表后：删掉这一条，把期刊 DOI 加进 publications.dois.txt。
+- key: rosen_democratizing_2026
+  type: preprint
+  title: Democratizing Atomistic Simulation Workflows for the AI Era with the Quantum Accelerator
+  authors: Andrew S. Rosen, Naisargi Goyal, Brad Ayers, Vineet Bansal, Julia H. Baratta, Samuel M. Blau, Yuan Chiang, Sihoon Choi, Orion Archer Cohen, Blake Dallmann, Tom Demeyere, Will Engler, Yue-Wen Fang, Isabella Furrick, Eliu Huerta, Honghui Kim, Hironori Kondo, Anup Kumar, Jaehong Kwon, Osman Mamun, Charles B. Musgrave III, Hananeh Oliaei, Aryan Saha, Davide Sarpa, Benjamin X. Shi, Yuliang Shi, Xing Wang, Robert B. Wexler
+  journal: arXiv:2609.33823 (under review)
+  year: '2026'
+  month: sep
+  sort_month: 9
+  doi: 10.48550/arXiv.2609.33823
+  doi_url: https://doi.org/10.48550/arXiv.2609.33823
+  link: https://arxiv.org/abs/2609.33823
+  free_full_text_url: https://arxiv.org/pdf/2609.33823
+  free_full_text_source: arXiv
