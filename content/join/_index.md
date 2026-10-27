@@ -30,14 +30,14 @@ positions:
       notice:
         title: "Important: CSIC Job Bank Registration"
         body: |
-          As this position will be recruited through the Spanish National Research Council (CSIC), applicants must also register independently in the **CSIC Job Bank (Bolsa de Trabajo)** to be eligible for the formal selection process.
+          As this position will be recruited through the Spanish National Research Council (CSIC), applicants will also need to register independently in the **CSIC Job Bank (Bolsa de Trabajo)** to be eligible for the formal selection process.
 
           - **Registration:** [CSIC Job Bank portal](https://www.bolsatrabajo.csic.es/bolsa_trabajo/)
           - **Official lists of registered candidates:** [CSIC Bolsa de Trabajo](https://sede.csic.gob.es/tramites/bolsa-de-trabajo)
 
-          Candidates must appear on the **definitive list of admitted applicants (listado definitivo)** before the formal recruitment procedure can be initiated. As this process may take time, early registration is strongly recommended.
+          Applicants are required to register in the CSIC Job Bank under the **Doctor FC (Doctor Fuera de Convenio)** category. Registration should be completed as early as possible, as candidates must appear on the **definitive list of registered applicants** before the formal recruitment procedure can be initiated.
 
-          Please note that submitting an application by email does not replace CSIC Job Bank registration. Registration in the Job Bank does not guarantee shortlisting or employment.
+          At the current **pre-call stage**, an application by email is sufficient. However, we strongly encourage early registration in the CSIC Job Bank, as it is a mandatory step in the formal, official selection process. Registration in the Job Bank does not guarantee shortlisting or employment.
 fellowships:
   - name: "Marie Skłodowska-Curie Actions (MSCA) Postdoctoral Fellowships"
     text: "European fellowships for experienced researchers. We are happy to co-develop a proposal with strong candidates well before the call deadline."
