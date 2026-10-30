@@ -27,17 +27,6 @@ positions:
         - "**Curriculum Vitae (CV)**, including a photo, research/education background, and a full publication list. Please highlight up to three of your most representative publications, briefly describing your contribution to each."
         - "**Cover Letter** (maximum 1 page), briefly describing your research background, interests, and motivation for applying."
         - "**Contact details of two referees.**"
-      notice:
-        title: "Important: CSIC Job Bank Registration"
-        body: |
-          As this position will be recruited through the Spanish National Research Council (CSIC), applicants will also need to register independently in the **CSIC Job Bank (Bolsa de Trabajo)** to be eligible for the formal selection process.
-
-          - **Registration:** [CSIC Job Bank portal](https://www.bolsatrabajo.csic.es/bolsa_trabajo/)
-          - **Official lists of registered candidates:** [CSIC Bolsa de Trabajo](https://sede.csic.gob.es/tramites/bolsa-de-trabajo)
-
-          Applicants are required to register in the CSIC Job Bank under the **Doctor FC (Doctor Fuera de Convenio)** category. Registration should be completed as early as possible, as candidates must appear on the **definitive list of registered applicants** before the formal recruitment procedure can be initiated.
-
-          At the current **pre-call stage**, an application by email is sufficient. However, we strongly encourage early registration in the CSIC Job Bank, as it is a mandatory step in the formal, official selection process. Registration in the Job Bank does not guarantee shortlisting or employment.
 fellowships:
   - name: "Marie Skłodowska-Curie Actions (MSCA) Postdoctoral Fellowships"
     text: "European fellowships for experienced researchers. We are happy to co-develop a proposal with strong candidates well before the call deadline."
