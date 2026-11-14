@@ -1,60 +1,72 @@
-- name: "Yue-Wen Fang"
-  location: "Zaragoza"
-  role: "Tenured Scientist of CSIC, one of the PIs of [ATMOS](https://atmos.unizar.es/) at INMA"
-  group: "pi"
-  time: "2024-12 ~ now"
-  email: "yuewen.fang@csic.es"
-  website: "https://yw-fang.github.io/"
-  github: "https://github.com/yw-fang"
-  scholar: "https://scholar.google.com/citations?user=6NU1KPQAAAAJ&hl=en"
-  orcid: "https://orcid.org/0000-0003-3674-7352"
-  photo: "/images/people/ywfang_photo.jpg"
-  bio: "Yue-Wen is a Tenured Scientist of CSIC. He received all the educations in China mostly in Zhejiang and Shanghai. He assumed the role of CSIC first at the Centero de Física de Materiales (CFM) in San Sebastián, and then at the Instituto de Nanociencia y Materiales de Aragón (INMA) in Zaragoza."
-- name: "Hao Gao"
-  role: "Postdoctoral Researcher"
-  group: "alumni"
-  time: "2025-06 ~ 2026-05"
-  email: "hao.gao@ehu.eus"
-  github: "https://github.com/gooaah"
-  scholar: "https://scholar.google.com/citations?user=MDsVn3AAAAAJ&hl=zh-CN"
-  photo: "/images/people/HaoGao_photo.jpg"
-  bio: "Co-supervised by Prof. Ion Errea. Hao obtained his PhD at Nanjing University. He is now a professor of the South China Normal University."
-- name: "Jincheng Yue"
-  location: "San Sebastián"
-  role: "PhD Student"
-  group: "students"
-  time: "2025-06 ~ now"
-  email: "jyue001@ikasle.ehu.eus"
-  scholar: "https://scholar.google.com/citations?user=tENxFtcAAAAJ&hl=zh-CN"
-  orcid: "https://orcid.org/0000-0001-5107-4139"
-  photo: "/images/people/Jincheng_photo.png"
-  bio: "Enroled at the University of the Basque Country. Co-supervised by Prof. Ion Errea. Works on temperature-responsive materials and methods development."
-- name: "Tingting Sui"
-  location: "Zaragoza"
-  role: "Visiting Scholar"
-  group: "visiting-scholar"
-  time: "2026-02 ~ now"
-  email: "suitt@ustb.edu.cn"
-  scholar: "https://scholar.google.com/citations?hl=zh-CN&user=e9DOdzkAAAAJ"
-  orcid: "https://orcid.org/0000-0001-7677-3462"
-  researchgate: "https://www.researchgate.net/profile/Tingting-Sui-3"
-  photo: "/images/people/TingtingSui_photo.jpg"
-  bio: "Lecturer of USTB. Tingting obtained her PhD at Shandong University. Works on crystal structure and property, mechanism of optical component damage and anharmonic dynamics of ferroelectrics."
-- name: "Yuanjun Tang"
-  role: "Visiting PhD Student"
-  group: "alumni"
-  time: "2025-07 ~ 2026-07"
-  email: "tangyuanjun2025@gmail.com"
-  github: "https://github.com/junyuanjun"
-  photo: "/images/people/YuanjunTang_photo.jpg"
-  bio: "Visiting student of BUPT from the group of Zhenping Wu and Fan Zhang. Works on defects in semiconductors."
-- name: "Jun Ding"
-  location: "San Sebastián"
-  role: "Visiting Scholar"
-  group: "visiting-scholar"
-  time: "2026-05 ~ now"
-  email: "dingjun@haue.edu.cn"
-  orcid: "https://orcid.org/0000-0002-0923-3789"
-  researchgate: "https://www.researchgate.net/profile/Jun-Ding-19"
-  photo: "/images/people/JunDing_photo.jpeg"
-  bio: "Professor of Henan University of Engineering, earned PhD at Institute of Physics, Chinese Academy of Sciences. Works on multiferroics, especially the magnetoelectric coupling between ferroelectricity (antiferroelectricity) and ferromagnetism (antiferromagnetism)."
+- name: Yue-Wen Fang
+  location: Zaragoza
+  role: Tenured Scientist of CSIC, one of the PIs of
+    [ATMOS](https://atmos.unizar.es/) at INMA
+  group: pi
+  time: 2024-12 ~ present
+  email: yuewen.fang@csic.es
+  website: https://yw-fang.github.io/
+  github: https://github.com/yw-fang
+  scholar: https://scholar.google.com/citations?user=6NU1KPQAAAAJ&hl=en
+  orcid: https://orcid.org/0000-0003-3674-7352
+  photo: /images/people/ywfang_photo.jpg
+  bio: Yue-Wen is a Tenured Scientist of CSIC. He received all the educations in
+    China mostly in Zhejiang and Shanghai. He assumed the role of CSIC first at
+    the Centero de Física de Materiales (CFM) in San Sebastián, and then at the
+    Instituto de Nanociencia y Materiales de Aragón (INMA) in Zaragoza.
+- name: Hao Gao
+  role: Postdoctoral Researcher
+  group: alumni
+  time: 2025-06 ~ 2026-05
+  email: hao.gao@ehu.eus
+  github: https://github.com/gooaah
+  scholar: https://scholar.google.com/citations?user=MDsVn3AAAAAJ&hl=zh-CN
+  photo: /images/people/HaoGao_photo.jpg
+  bio: Co-supervised by Prof. Ion Errea. Hao obtained his PhD at Nanjing
+    University. He is now a professor of the South China Normal University.
+- name: Jincheng Yue
+  location: San Sebastián
+  role: PhD Student
+  group: students
+  time: 2025-06 ~ now
+  email: jyue001@ikasle.ehu.eus
+  scholar: https://scholar.google.com/citations?user=tENxFtcAAAAJ&hl=zh-CN
+  orcid: https://orcid.org/0000-0001-5107-4139
+  photo: /images/people/Jincheng_photo.png
+  bio: Enroled at the University of the Basque Country. Co-supervised by Prof. Ion
+    Errea. Works on temperature-responsive materials and methods development.
+- name: Tingting Sui
+  location: Zaragoza
+  role: Visiting Scholar
+  group: visiting-scholar
+  time: 2026-02 ~ now
+  email: suitt@ustb.edu.cn
+  scholar: https://scholar.google.com/citations?hl=zh-CN&user=e9DOdzkAAAAJ
+  orcid: https://orcid.org/0000-0001-7677-3462
+  photo: /images/people/TingtingSui_photo.jpg
+  bio: Lecturer of USTB. Tingting obtained her PhD at Shandong University. Works
+    on crystal structure and property, mechanism of optical component damage and
+    anharmonic dynamics of ferroelectrics.
+  researchgate: https://www.researchgate.net/profile/Tingting-Sui-3
+- name: Yuanjun Tang
+  role: Visiting PhD Student
+  group: alumni
+  time: 2025-07 ~ 2026-07
+  email: tangyuanjun2025@gmail.com
+  github: https://github.com/junyuanjun
+  photo: /images/people/YuanjunTang_photo.jpg
+  bio: Visiting student of BUPT from the group of Zhenping Wu and Fan Zhang. Works
+    on defects in semiconductors.
+- name: Jun Ding
+  location: San Sebastián
+  role: Visiting Scholar
+  group: visiting-scholar
+  time: 2026-05 ~ now
+  email: dingjun@haue.edu.cn
+  orcid: https://orcid.org/0000-0002-0923-3789
+  photo: /images/people/JunDing_photo.jpeg
+  bio: Professor of Henan University of Engineering, earned PhD at Institute of
+    Physics, Chinese Academy of Sciences. Works on multiferroics, especially the
+    magnetoelectric coupling between ferroelectricity (antiferroelectricity) and
+    ferromagnetism (antiferromagnetism).
+  researchgate: https://www.researchgate.net/profile/Jun-Ding-19
