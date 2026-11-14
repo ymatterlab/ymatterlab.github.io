@@ -4,10 +4,9 @@ Source of <https://ymatterlab.github.io/>.
 
 ## For group members
 
-- **Add news:** follow [docs/adding-news.md](docs/adding-news.md). Use the web editor or
-  GitHub.com (no Git needed), or open a
-  [News item request](https://github.com/ymatterlab/ymatterlab.github.io/issues/new/choose).
-- All edits go to the **`develop`** branch. Yuewen reviews them and merges into `main` to publish.
+- **Submit news:** [fill in the news form](https://github.com/ymatterlab/ymatterlab.github.io/issues/new?template=news.yml).
+  Yuewen reviews submissions and publishes them. [Short guide](docs/adding-news.md).
+- Website maintainers work on **`develop`** and merge reviewed changes into `main` to publish.
 
 
 ## License
@@ -121,11 +120,10 @@ Structured data identifies the lab and its INMA/CSIC parent organizations.
    not set the destination branch. If offered a new config on `main`, switch to
    `develop` rather than creating one there. Protect `main` with a GitHub ruleset
    requiring PRs if you want to enforce this for all editors.
-3. Edit news, people, positions/fellowships, Home, Research or shared copy in the
-   forms. News uses the archetype's title/draft/categories/body fields plus an
-   explicit publication date. Keep existing monthly filenames when editing them;
-   new dated filenames are generated automatically. Upload images through Media;
-   use group-owned figures, WebP ≤1600 px wide, alt text and DOI/source captions.
+3. Edit people, positions/fellowships, Home, Research or shared copy in the forms.
+   Member news submissions use the [news form](https://github.com/ymatterlab/ymatterlab.github.io/issues/new?template=news.yml).
+   Upload images through Media; use group-owned figures, WebP ≤1600 px wide,
+   alt text and DOI/source captions.
 4. Save. The CMS creates a commit on the selected branch (`content: update {path}`,
    with matching add/delete/rename templates). Check its branch CI, preview, and
    submit a PR to `main` for a separate review and release.
@@ -151,3 +149,17 @@ Configuration references: [Pages CMS setup](https://pagescms.org/docs/quick-star
 [merge/commit settings](https://pagescms.org/docs/configuration/settings/).
 The hosted CMS sign-in/save flow requires a group member's GitHub account and has
 not been exercised from this checkout.
+
+
+## Maintaining news submissions
+
+The news form creates a public GitHub issue for review; it does not publish or
+change website files automatically. Yuewen or a maintainer turns approved requests
+into `content/news/YYYY-MM-DD-slug.md` on `develop`, using the existing
+`announcements`, `honors`, `output`, or `life` category keys.
+Review the branch preview, publish through a reviewed merge into `main`, and close
+the request with a link to the published news. No CMS access is needed to submit.
+
+GitHub loads issue forms from the repository's default branch. The form at
+`.github/ISSUE_TEMPLATE/news.yml` must be merged into `main` before the submission
+link becomes available. See [GitHub's issue-form setup](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository).

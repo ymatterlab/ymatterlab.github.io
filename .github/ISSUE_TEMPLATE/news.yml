@@ -1,63 +1,55 @@
-name: News item request
-description: Ask for a news item to be posted on the Y-Matter Lab website.
+name: Submit news
+description: Send a news item to Yuewen for review and publication.
 title: "News: "
-labels: ["news"]
 body:
   - type: markdown
     attributes:
       value: |
-        Fill in the fields below and a lab member will post the news item.
-        Guidelines: see docs/adding-news.md in this repository.
-  - type: input
-    id: title
-    attributes:
-      label: Title
-      description: Short and specific, sentence case.
-      placeholder: "Jincheng's paper on negative thermal expansion published in PRB"
-    validations:
-      required: true
+        Use the title above as your news headline, then fill in the fields below.
+        Yuewen will review and publish the news. This request and any attachments are public.
   - type: input
     id: date
     attributes:
-      label: Date (YYYY-MM-DD)
-      placeholder: "2026-11-20"
+      label: Event date
+      description: When did the news happen? Use YYYY-MM-DD.
+      placeholder: "2026-11-14"
     validations:
       required: true
   - type: dropdown
     id: category
     attributes:
       label: Category
-      multiple: true
+      description: Choose the best match.
       options:
-        - announcements (positions, new members, events, talks, visits)
-        - honors (awards, editorial roles, grants, fellowships)
+        - announcements (new members, positions, talks, visits, events)
+        - honors (awards, grants, fellowships)
         - output (papers, preprints, software, datasets)
-        - life (PhD defenses, group outings, celebrations)
+        - life (defenses, group outings, celebrations)
     validations:
       required: true
   - type: textarea
     id: text
     attributes:
-      label: Text
-      description: One to three sentences.
+      label: News text
+      description: One to three sentences. Include the full names of the people involved.
+      placeholder: "What happened, who was involved, and why does it matter?"
     validations:
       required: true
   - type: input
     id: link
     attributes:
-      label: Link
-      description: The paper's DOI, award page or event page.
+      label: Source link (optional)
+      description: Link to the paper's DOI, award announcement, or event page, if available.
       placeholder: "https://doi.org/..."
   - type: textarea
     id: image
     attributes:
       label: Image (optional)
-      description: Drag an image here and add a short description for screen readers.
+      description: Attach an image and describe what it shows. For a research figure, include the paper and DOI.
   - type: checkboxes
     id: checks
     attributes:
-      label: Checks
+      label: Ready to submit
       options:
-        - label: The results are published or public (no embargo, nothing confidential).
+        - label: This news is ready to share publicly, and I have permission to share any attached images (including consent from people pictured).
           required: true
-        - label: Everyone recognizable in any photo has agreed to its use.

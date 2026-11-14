@@ -8,7 +8,8 @@
 - Home copy is in `content/_index.md` front matter. Research overview, methods,
   tool lists and other page/interface labels are in `data/copy.yaml`, grouped by
   layout. Research lines and figures are in `data/research_lines.yaml`.
-  News is in `content/news/` (member guide: `docs/adding-news.md`; new files
+  Members submit news through `.github/ISSUE_TEMPLATE/news.yml` (guide:
+  `docs/adding-news.md`); maintainers publish approved requests in `content/news/` (new files
   `YYYY-MM-DD-slug.md`, categories announcements/honors/output/life), people in `data/people.yaml`, Join Us opportunities
   and fellowships in `content/join/_index.md`, other prose in page Markdown.
   Shared identity/navigation/research-area cards are in `config.yaml`.

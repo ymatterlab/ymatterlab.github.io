@@ -18,42 +18,7 @@ settings:
       delete: 'content: delete {path}'
       rename: 'content: rename {oldPath} to {newPath}'
 content:
-- name: news
-  label: News
-  type: collection
-  path: content/news
-  format: yaml-frontmatter
-  exclude:
-  - _index.md
-  subfolders: false
-  filename:
-    template: '{year}-{month}-{day}-{primary}.md'
-    field: create
-  view:
-    primary: title
-    sort: date
-    order: desc
-  fields:
-  - name: title
-    type: string
-    required: true
-  - name: date
-    type: date
-    required: true
-  - name: draft
-    type: boolean
-    default: false
-  - name: categories
-    type: select
-    options:
-      values:
-      - announcements
-      - honors
-      - output
-      - life
-      multiple: true
-  - name: body
-    type: rich-text
+# News submissions use the GitHub issue form; news authoring is omitted here.
 - name: people
   label: People
   type: file
