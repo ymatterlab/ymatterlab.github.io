@@ -1023,14 +1023,9 @@ a {
   background: var(--surface-subtle);
 }
 
-.people-maintenance {
-  margin: var(--section-gap) 0 0;
-  color: var(--muted);
+.people-overview .people-maintenance {
+  margin: 0 0 var(--space-2);
   font-size: var(--text-sm);
-}
-
-.people-maintenance p {
-  margin: 0;
 }
 
 .muted {

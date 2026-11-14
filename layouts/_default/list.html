@@ -13,6 +13,7 @@
 {{ end }}
 
 <section class="publication-overview people-overview">
+<p class="people-maintenance">{{ $copy.copy_people_member_note | markdownify }}</p>
 <p>{{ $copy.copy_our_team_is_based_in_zaragoza_and_san_sebasti_n_each_current_memb | markdownify }}</p>
 </section>
 
@@ -46,7 +47,6 @@
 </section>
 {{ end }}
 
-<p class="people-maintenance">{{ $copy.copy_people_member_note | markdownify }}</p>
 <script>
 (function () {
   const tools = document.querySelector("[data-people-tools]");
