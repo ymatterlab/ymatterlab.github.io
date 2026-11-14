@@ -7,6 +7,7 @@
 {{ $filters := site.Data.copy._default_list.filters }}
 
 <section class="publication-overview people-overview">
+<p>{{ site.Data.copy._default_list.copy_people_member_note | markdownify }}</p>
 <p>{{ site.Data.copy._default_list.copy_our_team_is_based_in_zaragoza_and_san_sebasti_n_each_current_memb | markdownify }}</p>
 </section>
 <section aria-label="{{ site.Data.copy._default_list.copy_aria_label_people_filters }}" class="people-tools">
