@@ -16,6 +16,14 @@ Source of <https://ymatterlab.github.io/>.
 
 - **Submit news:** [fill in the news form](https://github.com/ymatterlab/ymatterlab.github.io/issues/new?template=news.yml).
   Yuewen reviews submissions and publishes them. [Short guide](docs/adding-news.md).
+- **Update your profile:** ask Yue-Wen for a Pages CMS invitation (sent by email; no
+  GitHub account needed). Then edit your entry under **People** in
+  [Pages CMS](https://app.pagescms.org/ymatterlab/ymatterlab.github.io/main) and click
+  **Save**. Changes go live within a few minutes, so edit only your own entry.
+- **Inviting members (maintainers):** open
+  [Pages CMS](https://app.pagescms.org/ymatterlab/ymatterlab.github.io/main) →
+  **Admin → Collaborators** and enter the member's email
+  ([docs](https://pagescms.org/docs/configuration/collaborators/)).
 - Website maintainers create a short-lived branch from `main` (e.g. `content/...`,
   `feat/...`, `fix/...`), open a pull request to `main`, check CI and the preview
   artifact, merge, and delete the branch.
