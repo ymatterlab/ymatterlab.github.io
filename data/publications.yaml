@@ -96,8 +96,8 @@
 - authors: Hui Zhang, Jincheng Yue, Jiongzhi Zheng, Ning Wang, Wenling Ren, Shuyao Lin, Chen Shen, Hao Gao, Yanhui Liu, Yue-Wen Fang, Tian Cui
   doi: 10.1088/0256-307x/43/8/080803
   doi_url: https://doi.org/10.1088/0256-307x/43/8/080803
-  free_full_text_source: Open access at journal
-  free_full_text_url: https://doi.org/10.1088/0256-307x/43/8/080803
+  free_full_text_source: arXiv
+  free_full_text_url: https://arxiv.org/pdf/2603.16477
   journal: Chinese Physics Letters
   key: zhang_anharmonicity_2026
   link: https://iopscience.iop.org/article/10.1088/0256-307X/43/8/080803
@@ -166,7 +166,7 @@
   doi: 10.1038/s42005-026-02552-4
   doi_url: https://doi.org/10.1038/s42005-026-02552-4
   free_full_text_source: Open access at journal
-  free_full_text_url: https://www.nature.com/articles/s42005-026-02552-4_reference.pdf
+  free_full_text_url: https://www.nature.com/articles/s42005-026-02552-4
   journal: Communications Physics
   key: sanna_search_2026
   link: https://www.nature.com/articles/s42005-026-02552-4
@@ -328,7 +328,7 @@
   doi: 10.1038/s41467-025-66697-6
   doi_url: https://doi.org/10.1038/s41467-025-66697-6
   free_full_text_source: Open access at journal
-  free_full_text_url: https://www.nature.com/articles/s41467-025-66697-6_reference.pdf
+  free_full_text_url: https://www.nature.com/articles/s41467-025-66697-6
   journal: Nature Communications
   key: li_efficient_2025
   link: https://www.nature.com/articles/s41467-025-66697-6
@@ -708,8 +708,8 @@
 - authors: Đorđe Dangić, Peio Garcia-Goiricelaya, Yue-Wen Fang, Julen Ibañez-Azpiroz, Ion Errea
   doi: 10.1103/physrevb.108.064517
   doi_url: https://doi.org/10.1103/physrevb.108.064517
-  free_full_text_source: Open access at journal
-  free_full_text_url: http://link.aps.org/pdf/10.1103/PhysRevB.108.064517
+  free_full_text_source: arXiv
+  free_full_text_url: https://arxiv.org/pdf/2305.06751
   journal: Physical Review B
   key: dangić_initio_2023
   link: https://link.aps.org/doi/10.1103/PhysRevB.108.064517
@@ -758,8 +758,8 @@
 - authors: Rui-Qi Wang, Tian-Min Lei, Yue-Wen Fang
   doi: 10.1088/1402-4896/acd7b3
   doi_url: https://doi.org/10.1088/1402-4896/acd7b3
-  free_full_text_source: Open access at journal
-  free_full_text_url: https://iopscience.iop.org/article/10.1088/1402-4896/acd7b3/pdf
+  free_full_text_source: arXiv
+  free_full_text_url: https://arxiv.org/pdf/2305.13549
   journal: Physica Scripta
   key: wang_first_2023
   link: https://iopscience.iop.org/article/10.1088/1402-4896/acd7b3
@@ -1037,8 +1037,8 @@
 - authors: Hong Jian Zhao, Peng Chen, Charles Paillard, Rémi Arras, Yue-Wen Fang, Xu Li, Julien Gosteau, Yurong Yang, Laurent Bellaiche
   doi: 10.1103/physrevb.102.041203
   doi_url: https://doi.org/10.1103/physrevb.102.041203
-  free_full_text_source: Open access at journal
-  free_full_text_url: http://link.aps.org/pdf/10.1103/PhysRevB.102.041203
+  free_full_text_source: Office of Scientific and Technical Information
+  free_full_text_url: https://www.osti.gov/servlets/purl/1801560
   journal: Physical Review B
   key: zhao_large_2020
   link: https://link.aps.org/doi/10.1103/PhysRevB.102.041203
@@ -1274,8 +1274,8 @@
 - authors: Fan Zhang, Yue-Wen Fang, Ngai Yui Chan, Wing Chong Lo, Dan Feng Li, Chun-Gang Duan, Feng Ding, Ji Yan Dai
   doi: 10.1103/physrevb.93.214427
   doi_url: https://doi.org/10.1103/physrevb.93.214427
-  free_full_text_source: Open access at journal
-  free_full_text_url: http://link.aps.org/pdf/10.1103/PhysRevB.93.214427
+  free_full_text_source: arXiv
+  free_full_text_url: https://arxiv.org/pdf/1607.02808
   journal: Physical Review B
   key: zhang_dynamic_2016
   link: https://link.aps.org/doi/10.1103/PhysRevB.93.214427
