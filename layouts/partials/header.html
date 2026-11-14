@@ -3,10 +3,14 @@
 <a aria-label="{{ site.Params.lab_name }} home" class="site-brand" href="{{ site.Data.copy.partials_header.path_ | relURL }}">
 <img alt="{{ site.Params.lab_name }}" src="{{ site.Data.copy.partials_header.path_images_logo_ymatterlab_log_v5_svg | relURL }}"/>
 </a>
-<nav>
+<nav aria-label="Main">
 <ul class="nav-list">
+        {{ $current := $.RelPermalink }}
         {{ range site.Menus.main }}
-          <li><a href="{{ .URL | relURL }}">{{ .Name }}</a></li>
+          {{ $url := .URL | relURL }}
+          {{ $exact := eq $current $url }}
+          {{ $inSection := and (ne .URL "/") (hasPrefix $current $url) }}
+          <li><a href="{{ $url }}"{{ if $exact }} aria-current="page"{{ else if $inSection }} aria-current="true"{{ end }}>{{ .Name }}</a></li>
         {{ end }}
       </ul>
 </nav>
