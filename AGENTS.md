@@ -1,7 +1,9 @@
 # Working on Y-Matter Lab
 
 - This is a Hugo site, deployed from `main` by `.github/workflows/hugo.yml`.
-  Work on `develop` or a feature branch. Never commit or push directly to `main`.
+  Never commit or push directly to `main`. Create a short-lived branch from `main`
+  (e.g. `content/...`, `feat/...`, `fix/...`), open a pull request to `main`, check
+  CI and the preview artifact, merge, and delete the branch.
 - Install Hugo (CI uses 0.128.0) and Python/PyYAML. Preview with `make serve`
   (http://localhost:1313); build with `hugo --minify`. Build before each commit.
   Inspect `git status` before committing; stage explicit paths.

@@ -1,5 +1,5 @@
-# Select the develop branch in Pages CMS before editing. Branch selection is an
-# application setting, not a .pages.yml option. Protect main in GitHub as well.
+# Pages CMS edits main by default; a save on main goes live immediately, so use
+# it for small maintainer edits only. Larger edits use a branch and pull request.
 # LOCKED: data/research_lines.yaml is omitted entirely (including names/order).
 # Publications/DOIs/cache are omitted: CI and production builds stay offline.
 # merge:true preserves unmanaged front matter, anchor maps and locked copy fields.

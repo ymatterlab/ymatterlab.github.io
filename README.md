@@ -1,7 +1,7 @@
 # Y-Matter Lab website
 
 [![Deploy](https://github.com/ymatterlab/ymatterlab.github.io/actions/workflows/hugo.yml/badge.svg?branch=main)](https://github.com/ymatterlab/ymatterlab.github.io/actions/workflows/hugo.yml)
-[![Validate develop](https://github.com/ymatterlab/ymatterlab.github.io/actions/workflows/ci.yml/badge.svg?branch=develop)](https://github.com/ymatterlab/ymatterlab.github.io/actions/workflows/ci.yml)
+[![CI](https://github.com/ymatterlab/ymatterlab.github.io/actions/workflows/ci.yml/badge.svg)](https://github.com/ymatterlab/ymatterlab.github.io/actions/workflows/ci.yml)
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fymatterlab.github.io&label=ymatterlab.github.io)](https://ymatterlab.github.io/)
 [![Hugo](https://img.shields.io/badge/Hugo-0.128-FF4088?logo=hugo&logoColor=white)](https://gohugo.io/)
 [![Code: MIT](https://img.shields.io/badge/code-MIT-blue.svg)](LICENSE)
@@ -16,7 +16,9 @@ Source of <https://ymatterlab.github.io/>.
 
 - **Submit news:** [fill in the news form](https://github.com/ymatterlab/ymatterlab.github.io/issues/new?template=news.yml).
   Yuewen reviews submissions and publishes them. [Short guide](docs/adding-news.md).
-- Website maintainers work on **`develop`** and merge reviewed changes into `main` to publish.
+- Website maintainers create a short-lived branch from `main` (e.g. `content/...`,
+  `feat/...`, `fix/...`), open a pull request to `main`, check CI and the preview
+  artifact, merge, and delete the branch.
 
 
 ## License
@@ -66,7 +68,9 @@ If you are not a member but believe you have a relevant contribution, feel free 
 
 Use Hugo (the deployment workflow pins 0.128.0) and Python with PyYAML installed.
 Run `make serve` and open http://localhost:1313, or build with `hugo --minify`.
-Work on `develop` or a feature branch; `main` deploys production.
+Create a short-lived branch from `main` (e.g. `content/...`, `feat/...`, `fix/...`),
+open a pull request to `main`, check CI and the preview artifact, merge, and delete
+the branch. `main` deploys production.
 
 - Home: `content/_index.md` front matter contains the hero, featured papers, labels,
   links, sponsor images and captions. Shared lab identity and research-area cards
@@ -125,18 +129,18 @@ Structured data identifies the lab and its INMA/CSIC parent organizations.
 1. Open [Pages CMS](https://app.pagescms.org/), sign in with GitHub and install or
    authorize its GitHub App for `ymatterlab/ymatterlab.github.io`. Organization
    owners may need to approve that installation.
-2. Select this repository, then explicitly select the **develop** branch in the
-   app's branch selector before editing. `.pages.yml` is read per branch; it does
-   not set the destination branch. If offered a new config on `main`, switch to
-   `develop` rather than creating one there. Protect `main` with a GitHub ruleset
-   requiring PRs if you want to enforce this for all editors.
+2. Select this repository and the **main** branch. A save on `main` goes live
+   immediately, so use the web editor for small maintainer edits only. For larger
+   edits, select a short-lived branch from `main` in the app's branch selector and
+   open a pull request to `main`. `.pages.yml` is read per branch; it does not set
+   the destination branch.
 3. Edit people, positions/fellowships, Home, Research or shared copy in the forms.
    Member news submissions use the [news form](https://github.com/ymatterlab/ymatterlab.github.io/issues/new?template=news.yml).
    Upload images through Media; use group-owned figures, WebP ≤1600 px wide,
    alt text and DOI/source captions.
 4. Save. The CMS creates a commit on the selected branch (`content: update {path}`,
-   with matching add/delete/rename templates). Check its branch CI, preview, and
-   submit a PR to `main` for a separate review and release.
+   with matching add/delete/rename templates). On `main` this deploys directly;
+   on a branch, open a PR to `main` and check its CI and preview before merging.
 
 The locked Major Research Lines are **omitted entirely** from the CMS, including
 names, order and detailed wording in `data/research_lines.yaml`. Their heading and
@@ -148,10 +152,10 @@ Publications are deliberately excluded. Add DOIs locally and run `make pubs` so
 new records and `pubcache.json` are committed together. CI and deployment continue
 using the cache offline, avoiding failures caused by DOI-service network outages.
 
-For a branch preview, open GitHub Actions → **Validate branch website**, select a
-successful `develop` run and download **built-website** (available for 14 days).
+For a pull request preview, open GitHub Actions → **Validate pull request**, select
+the PR's successful run and download **built-website** (available for 14 days).
 Extract it and run `python -m http.server 8000 --directory <extracted-folder>`;
-open http://localhost:8000. Or check out `develop` and run `make serve`.
+open http://localhost:8000. Or check out the branch and run `make serve`.
 CI uploads a preview artifact; it does not publish a branch website.
 
 Configuration references: [Pages CMS setup](https://pagescms.org/docs/quick-start/),
@@ -165,7 +169,7 @@ not been exercised from this checkout.
 
 The news form creates a public GitHub issue for review; it does not publish or
 change website files automatically. Yuewen or a maintainer turns approved requests
-into `content/news/YYYY-MM-DD-slug.md` on `develop`, using the existing
+into `content/news/YYYY-MM-DD-slug.md` on a short-lived branch, using the existing
 `announcements`, `honors`, `output`, or `life` category keys.
 Review the branch preview, publish through a reviewed merge into `main`, and close
 the request with a link to the published news. No CMS access is needed to submit.
