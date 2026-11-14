@@ -1850,26 +1850,11 @@ a {
   margin-top: 0.6rem;
 }
 
-/* Methods: approach + tools in one section */
-.research-subsection {
-  display: grid;
-  gap: 1rem;
-  margin-top: 0.5rem;
-  border-top: 1px solid var(--border);
-  padding-top: 1.25rem;
-}
-
-.research-subsection-heading h3 {
+/* One methods introduction followed by four peer categories. */
+.methods-tools-note {
   margin: 0;
-  color: var(--brand-navy);
-  font-size: clamp(1.2rem, 2vw, 1.5rem);
-  line-height: 1.2;
-}
-
-.research-subsection-heading p:not(.eyebrow) {
-  max-width: 820px;
-  margin: 0.45rem 0 0;
   color: var(--muted);
+  font-size: 0.92rem;
 }
 
 /* Methods & Tools */
@@ -1882,8 +1867,8 @@ a {
 .research-tool-grid article {
   border: 1px solid var(--border);
   border-radius: 8px;
-  background: #fbfcfd;
-  padding: 0.9rem;
+  background: var(--surface);
+  padding: 0.9rem 1rem;
 }
 
 .research-tool-grid h3 {

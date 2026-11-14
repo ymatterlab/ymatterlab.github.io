@@ -41,13 +41,8 @@ research_list:
   copy_major_research_lines: Major Research Lines
   copy_these_lines_are_connected_to_reveal_design_principles_that_can_gu: These lines are connected to
     reveal design principles that can guide new experiments and new materials.
-  copy_methods: Methods
+  copy_methods: Methods & Tools
   copy_how_we_work: How We Work
-  copy_methods_tools_2: Methods & Tools
-  copy_codes_workflows_and_computing: Codes, Workflows, and Computing
-  copy_the_tools_we_use_most_often_grouped_by_task_tools_tagged_we_contr: The tools we use most often,
-    grouped by task. Tools tagged <span class="tool-badge">we contribute</span> are codes and methods
-    our group has helped develop.
   copy_publications_2: Publications
   copy_selected_publications: Selected Publications
   copy_full_publication_list: Full publication list
@@ -58,17 +53,6 @@ research_list:
     physical interpretation. Projects are often collaborative, with room to move from careful mechanism-building
     to exploratory materials discovery.
   copy_contact_the_lab: Contact the Lab
-  methods:
-  - title: First-Principles and Atomistic Simulations
-    text: Density functional theory, phonon calculations, lattice dynamics, molecular dynamics, and finite-temperature
-      simulations connect composition and structure with stability, transport, phase transitions, and
-      electron-phonon physics.
-  - title: Materials Informatics
-    text: Machine learning and data-driven workflows help us search large materials spaces, build structure-property
-      models, and prioritize candidates for detailed study, especially when available data are limited.
-  - title: Theory-Experiment Integration
-    text: Computation is used to interpret measurements, test mechanisms, and suggest new compositions,
-      strain states, defects, interfaces, and growth conditions for experimental collaborators.
   tool_categories:
   - title: Ab initio codes
     text: Density functional theory with VASP and Quantum ESPRESSO, plus WIEN2k and Elk for all-electron
@@ -129,6 +113,12 @@ research_list:
       <span>Machine-learning interatomic potentials trained on DFT data, from moment tensor potentials
       to fine-tuned atomistic foundation models such as MatterSim, used for SSCHA calculations, molecular
       dynamics, and large structure searches.</span>'
+  methods_intro: We combine first-principles and atomistic simulations with materials informatics to connect
+    composition and structure with stability, transport, phase transitions, and functional response. Working
+    with experimental collaborators, we use these calculations to interpret measurements, test mechanisms,
+    and suggest new compositions, strain states, defects, interfaces, and growth conditions.
+  tools_note: Tools tagged <span class="tool-badge">we contribute</span> are codes and methods our group
+    has helped develop.
 join_list:
   path_research: /research/
   copy_open_positions: Open positions

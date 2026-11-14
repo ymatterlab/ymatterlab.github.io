@@ -541,16 +541,6 @@ content:
     - name: copy_how_we_work
       label: How we work
       type: string
-    - name: copy_methods_tools_2
-      label: Methods tools 2
-      type: string
-    - name: copy_codes_workflows_and_computing
-      label: Codes workflows and computing
-      type: string
-    - name: copy_the_tools_we_use_most_often_grouped_by_task_tools_tagged_we_contr
-      label: The tools we use most often grouped by task tools tagged we contr
-      type: text
-      description: Markdown and inline HTML supported. Preserve scientific subscripts and citation markup.
     - name: copy_publications_2
       label: Publications 2
       type: string
@@ -572,20 +562,6 @@ content:
     - name: copy_contact_the_lab
       label: Contact the lab
       type: string
-    - name: methods
-      label: Methods
-      type: object
-      list:
-        collapsible:
-          collapsed: true
-          summary: '{title}'
-      fields:
-      - name: title
-        label: Title
-        type: string
-      - name: text
-        label: Text
-        type: text
     - name: tool_categories
       label: Tool categories
       type: object
@@ -604,6 +580,13 @@ content:
         label: Items
         type: text
         list: true
+    - name: methods_intro
+      label: Methods introduction
+      type: text
+    - name: tools_note
+      label: Contribution badge explanation
+      type: text
+      description: Preserve the tool-badge span around the contribution label.
   - name: join_list
     label: Join list
     type: object

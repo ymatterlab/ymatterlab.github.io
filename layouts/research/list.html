@@ -45,35 +45,25 @@
     {{ end }}
   </section>
 <section aria-labelledby="methods-title" class="research-section" id="methods">
-<div class="research-section-heading">
-<p class="eyebrow">{{ site.Data.copy.research_list.copy_methods | markdownify }}</p>
-<h2 id="methods-title">{{ site.Data.copy.research_list.copy_how_we_work | markdownify }}</h2>
-</div>
-<div class="research-method-grid">
-{{ range site.Data.copy.research_list.methods }}
-<article>
-<h3>{{ .title }}</h3>
-<p>{{ .text | markdownify }}</p>
-{{ with .items }}<ul class="tool-list">{{ range . }}<li>{{ . | markdownify }}</li>{{ end }}</ul>{{ end }}
-</article>
-{{ end }}
-</div>
-<div class="research-subsection" id="methods-tools">
-<div class="research-subsection-heading">
-<p class="eyebrow">{{ site.Data.copy.research_list.copy_methods_tools_2 | markdownify }}</p>
-<h3>{{ site.Data.copy.research_list.copy_codes_workflows_and_computing | markdownify }}</h3>
-<p>{{ site.Data.copy.research_list.copy_the_tools_we_use_most_often_grouped_by_task_tools_tagged_we_contr | markdownify }}</p>
-</div>
-<div class="research-tool-grid">
-{{ range site.Data.copy.research_list.tool_categories }}
-<article>
-<h3>{{ .title }}</h3>
-<p>{{ .text | markdownify }}</p>
-{{ with .items }}<ul class="tool-list">{{ range . }}<li>{{ . | markdownify }}</li>{{ end }}</ul>{{ end }}
-</article>
-{{ end }}
-</div>
-</div>
+  <div class="research-section-heading">
+    <p class="eyebrow">{{ site.Data.copy.research_list.copy_methods | markdownify }}</p>
+    <h2 id="methods-title">{{ site.Data.copy.research_list.copy_how_we_work | markdownify }}</h2>
+    <p>{{ site.Data.copy.research_list.methods_intro | markdownify }}</p>
+  </div>
+  <p class="methods-tools-note">{{ site.Data.copy.research_list.tools_note | markdownify }}</p>
+  <div class="research-tool-grid" id="methods-tools">
+    {{ range site.Data.copy.research_list.tool_categories }}
+    <article>
+      <h3>{{ .title }}</h3>
+      <p>{{ .text | markdownify }}</p>
+      {{ with .items }}
+      <ul class="tool-list">
+        {{ range . }}<li>{{ . | markdownify }}</li>{{ end }}
+      </ul>
+      {{ end }}
+    </article>
+    {{ end }}
+  </div>
 </section>
 <section aria-labelledby="selected-pubs-title" class="research-section" id="selected-publications">
 <div class="research-section-heading section-heading">
