@@ -28,6 +28,35 @@ Source of <https://ymatterlab.github.io/>.
   `feat/...`, `fix/...`), open a pull request to `main`, check CI and the preview
   artifact, merge, and delete the branch.
 
+### 组员须知(中文)
+
+- **提交新闻:** [填写新闻表单](https://github.com/ymatterlab/ymatterlab.github.io/issues/new?template=news.yml)。
+  Yue-Wen 审核后发布。[简短指南(英文)](docs/adding-news.md)。
+- **更新个人信息:** 请向 Yue-Wen 申请 Pages CMS 邀请(通过邮件发送,无需 GitHub 账号)。
+  然后在 [Pages CMS](https://app.pagescms.org/ymatterlab/ymatterlab.github.io/main) 的
+  **People** 中修改自己的条目并点击 **Save**。修改几分钟内即在网站上生效,请只修改自己的条目。
+- **邀请组员(管理员):** 打开 [Pages CMS](https://app.pagescms.org/ymatterlab/ymatterlab.github.io/main)
+  → **Admin → Collaborators**,输入组员的邮箱
+  ([文档](https://pagescms.org/docs/configuration/collaborators/))。
+- 网站维护者从 `main` 创建短期分支(如 `content/...`、`feat/...`、`fix/...`),
+  向 `main` 提交 pull request,检查 CI 和预览产物后合并,并删除该分支。
+
+### Para miembros del grupo (español)
+
+- **Enviar noticias:** [rellena el formulario de noticias](https://github.com/ymatterlab/ymatterlab.github.io/issues/new?template=news.yml).
+  Yue-Wen revisa las propuestas y las publica. [Guía breve (en inglés)](docs/adding-news.md).
+- **Actualizar tu perfil:** pide a Yue-Wen una invitación a Pages CMS (se envía por correo;
+  no hace falta cuenta de GitHub). Después edita tu entrada en **People** en
+  [Pages CMS](https://app.pagescms.org/ymatterlab/ymatterlab.github.io/main) y pulsa
+  **Save**. Los cambios se publican en pocos minutos, así que edita solo tu propia entrada.
+- **Invitar a miembros (mantenedores):** abre
+  [Pages CMS](https://app.pagescms.org/ymatterlab/ymatterlab.github.io/main) →
+  **Admin → Collaborators** e introduce el correo del miembro
+  ([documentación](https://pagescms.org/docs/configuration/collaborators/)).
+- Los mantenedores del sitio crean una rama de corta duración a partir de `main`
+  (p. ej. `content/...`, `feat/...`, `fix/...`), abren un pull request hacia `main`,
+  revisan la CI y el artefacto de vista previa, fusionan y eliminan la rama.
+
 
 ## License
 
