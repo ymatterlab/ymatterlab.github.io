@@ -173,9 +173,9 @@ content:
   - name: draft
     label: Draft
     type: boolean
-  - name: hero_text
-    label: Hero text
-    type: text
+  - name: hero_headline
+    label: Hero headline
+    type: string
   - name: hero_subtext
     label: Hero subtext
     type: text
@@ -221,20 +221,40 @@ content:
       - name: doi2
         label: Doi2
         type: string
+      - name: panel
+        label: Panel image (file name in images/research/panels, without .webp)
+        type: string
+      - name: panel_alt
+        label: Panel alt text
+        type: text
+      - name: credit
+        label: Panel credit (source figure and paper)
+        type: string
+    - name: open_source
+      label: Open-source codes we contribute to
+      type: object
+      list:
+        collapsible:
+          collapsed: true
+          summary: '{name}'
+      fields:
+      - name: name
+        label: Name
+        type: string
+      - name: url
+        label: URL
+        type: string
+      - name: text
+        label: Short description
+        type: text
     - name: path_research
       label: Path research
-      type: string
-    - name: path_people
-      label: Path people
       type: string
     - name: path_publications
       label: Path publications
       type: string
     - name: path_news
       label: Path news
-      type: string
-    - name: path_contact
-      label: Path contact
       type: string
     - name: path_images_sponsors_mciu_csic_png
       label: Path images sponsors mciu csic png
@@ -259,9 +279,6 @@ content:
       type: string
     - name: copy_aria_label_rotating_cubic_pbtio3_perovskite_structure
       label: Aria label rotating cubic pbtio3 perovskite structure
-      type: string
-    - name: copy_aria_label_about_the_lab_and_latest_news
-      label: Aria label about the lab and latest news
       type: string
     - name: copy_href_https_www_csic_es_en
       label: Href https www csic es en
@@ -320,9 +337,6 @@ content:
     - name: copy_research
       label: Research
       type: string
-    - name: copy_people
-      label: People
-      type: string
     - name: copy_publications
       label: Publications
       type: string
@@ -338,9 +352,6 @@ content:
       type: string
     - name: copy_explore_our_research
       label: Explore our research
-      type: string
-    - name: copy_learn_more
-      label: Learn more
       type: string
     - name: copy_highlights
       label: Highlights
@@ -369,12 +380,6 @@ content:
     - name: copy_publications_will_appear_here_soon
       label: Publications will appear here soon
       type: string
-    - name: copy_about_the_lab
-      label: About the lab
-      type: string
-    - name: copy_we_develop_computational_approaches_to_understand_and_design_func
-      label: We develop computational approaches to understand and design func
-      type: text
     - name: copy_latest_news
       label: Latest news
       type: string
@@ -384,17 +389,53 @@ content:
     - name: copy_news_will_appear_here_soon
       label: News will appear here soon
       type: string
-    - name: copy_explore
-      label: Explore
+    - name: path_research_methods
+      label: Path to Research methods
       type: string
-    - name: copy_research_directions
-      label: Research directions
+    - name: path_join
+      label: Path to Join Us
       type: string
-    - name: copy_group_members
-      label: Group members
+    - name: copy_how_we_work
+      label: How we work
       type: string
-    - name: copy_contact
-      label: Contact
+    - name: copy_methods_open_science
+      label: Methods & Open Science
+      type: string
+    - name: copy_approaches
+      label: Approaches
+      type: string
+    - name: copy_open_source_codes
+      label: Open-source codes we contribute to
+      type: string
+    - name: copy_methods_and_tools
+      label: Methods & tools link
+      type: string
+    - name: copy_research_context
+      label: Research context link
+      type: string
+    - name: copy_papers
+      label: Papers label
+      type: string
+    - name: copy_opens_publication
+      label: Screen-reader note for paper links
+      type: string
+    - name: copy_news
+      label: News eyebrow
+      type: string
+    - name: copy_opportunities
+      label: Opportunities eyebrow
+      type: string
+    - name: copy_join_us
+      label: Join Us heading
+      type: string
+    - name: copy_open_positions
+      label: Open positions label
+      type: string
+    - name: copy_deadline
+      label: Deadline label
+      type: string
+    - name: copy_see_opportunities
+      label: See all opportunities button
       type: string
     - name: copy_research_sponsors
       label: Research sponsors
