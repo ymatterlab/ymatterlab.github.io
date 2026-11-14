@@ -1034,35 +1034,58 @@ a {
 
 .contact-card {
   display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1.05fr);
-  gap: 1.25rem;
-  align-items: stretch;
-}
-
-.contact-card p {
-  margin: 0.35rem 0;
+  gap: var(--space-5);
 }
 
 .contact-details {
-  align-self: center;
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
 }
 
-.contact-map {
+.contact-details > div {
   display: grid;
-  gap: 0.55rem;
+  grid-template-columns: 7.5rem minmax(0, 1fr);
+  gap: var(--space-3);
+}
+
+.contact-details dt {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.contact-details dd {
+  margin: 0;
+  color: var(--text);
+}
+
+.contact-details a {
+  font-weight: 700;
+}
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.contact-actions button {
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.contact-map[hidden],
+.weather-card[hidden] {
+  display: none;
 }
 
 .contact-map iframe {
+  display: block;
   width: 100%;
-  min-height: 260px;
+  height: clamp(260px, 40vw, 380px);
   border: var(--rule);
   border-radius: var(--radius);
-}
-
-.contact-map a {
-  justify-self: start;
-  font-weight: 700;
-  text-decoration: none;
 }
 
 .weather-card {
@@ -1094,8 +1117,7 @@ a {
   text-decoration: none;
 }
 
-.weather-tip,
-.weather-loading {
+.weather-tip {
   margin: 0;
   color: var(--muted);
 }
@@ -1127,6 +1149,7 @@ a {
   justify-content: center;
   min-height: 2.45rem;
   border-radius: var(--radius);
+  padding: var(--space-1) var(--space-3);
   background: var(--accent);
   color: var(--on-accent);
   font-weight: 700;
@@ -1354,10 +1377,6 @@ a {
   }
 
   
-
-  .contact-card {
-    grid-template-columns: 1fr;
-  }
 
   .weather-days {
     grid-template-columns: 1fr;
@@ -2476,6 +2495,11 @@ a {
 }
 
 @media (max-width: 700px) {
+  .contact-details > div {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
   .join-qualifications {
     grid-template-columns: 1fr;
   }

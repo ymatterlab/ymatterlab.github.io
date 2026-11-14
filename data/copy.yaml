@@ -182,8 +182,6 @@ _default_list:
   copy_aria_label_google_scholar: Google Scholar
   copy_aria_label_orcid: ORCID
   copy_aria_label_researchgate: ResearchGate
-  copy_aria_label_map_to_the_inma_office_at_calle_de_pedro_cerbuna_12: Map to the INMA office at Calle
-    de Pedro Cerbuna 12
   copy_title_inma_office_at_calle_de_pedro_cerbuna_12_on_google_maps: INMA office at Calle de Pedro Cerbuna
     12 on Google Maps
   copy_href_https_www_google_com_search_q_weather_zaragoza: https://www.google.com/search?q=weather+Zaragoza
@@ -202,12 +200,14 @@ _default_list:
   copy_affiliation: 'Affiliation:'
   copy_address: 'Address:'
   copy_open_address_of_inma_in_google_maps: Open address of INMA in Google Maps
+  copy_email_us: Email us
+  copy_show_map: Show map
+  copy_hide_map: Hide map
   copy_funny_tips: Funny Tips
   copy_sunglasses_check_for_zaragoza: Sunglasses Check for Zaragoza
   copy_full_forecast: Full forecast
   copy_to_check_if_you_need_sunglasses_and_sunscreen_when_you_visit_us_c: To check if you need sunglasses
     and sunscreen when you visit us, check if it is sunny in Zaragoza.
-  copy_loading_live_weather_near_inma: Loading live weather near INMA&#46;&#46;&#46;
   based_in: Based in
   bibliography_summary: publications
   copy_search_publications: Search titles and authors
@@ -277,7 +277,6 @@ weather:
     skip the sunscreen today, but this is Zaragoza where the sun usually comes back fast.
   sunglasses_recommended: Sunglasses recommended
   sunglasses_optional: Sunglasses optional
-  unavailable: Live weather is hiding behind a cloud. Try the full forecast link before you visit.
 accessibility:
   skip: Skip to main content
   pause: Pause rotation

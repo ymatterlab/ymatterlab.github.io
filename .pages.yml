@@ -738,9 +738,6 @@ content:
     - name: copy_aria_label_researchgate
       label: Aria label researchgate
       type: string
-    - name: copy_aria_label_map_to_the_inma_office_at_calle_de_pedro_cerbuna_12
-      label: Aria label map to the inma office at calle de pedro cerbuna 12
-      type: string
     - name: copy_title_inma_office_at_calle_de_pedro_cerbuna_12_on_google_maps
       label: Title inma office at calle de pedro cerbuna 12 on google maps
       type: string
@@ -788,6 +785,15 @@ content:
     - name: copy_open_address_of_inma_in_google_maps
       label: Open address of inma in google maps
       type: string
+    - name: copy_email_us
+      label: Email us button
+      type: string
+    - name: copy_show_map
+      label: Show map button
+      type: string
+    - name: copy_hide_map
+      label: Hide map button
+      type: string
     - name: copy_funny_tips
       label: Funny tips
       type: string
@@ -800,9 +806,6 @@ content:
     - name: copy_to_check_if_you_need_sunglasses_and_sunscreen_when_you_visit_us_c
       label: To check if you need sunglasses and sunscreen when you visit us c
       type: text
-    - name: copy_loading_live_weather_near_inma
-      label: Loading live weather near inma
-      type: string
     - name: based_in
       label: Based in
       type: string
@@ -996,9 +999,6 @@ content:
       type: string
     - name: sunglasses_optional
       label: Sunglasses optional
-      type: string
-    - name: unavailable
-      label: Unavailable
       type: string
   - name: accessibility
     label: Accessibility

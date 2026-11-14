@@ -169,23 +169,48 @@
 <script async="" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>
 
 {{ else if eq .Section "contact" }}
+{{ $copy := site.Data.copy._default_list }}
 {{ $mapsQuery := site.Params.address | urlquery }}
 {{ $mapsLink := printf "https://www.google.com/maps/search/?api=1&query=%s" $mapsQuery }}
 {{ $mapsEmbed := printf "https://www.google.com/maps?q=%s&output=embed" $mapsQuery }}
 <section class="card contact-card">
-<div class="contact-details">
-<p><strong>{{ site.Data.copy._default_list.copy_pi | markdownify }}</strong> {{ site.Params.pi_name }}</p>
-<p><strong>{{ site.Data.copy._default_list.copy_email | markdownify }}</strong> <a href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a></p>
-<p><strong>{{ site.Data.copy._default_list.copy_affiliation | markdownify }}</strong> {{ site.Params.affiliation }}</p>
-<p><strong>{{ site.Data.copy._default_list.copy_address | markdownify }}</strong> {{ site.Params.address }}</p>
+<dl class="contact-details">
+<div><dt>{{ $copy.copy_pi | markdownify }}</dt><dd>{{ site.Params.pi_name }}</dd></div>
+<div><dt>{{ $copy.copy_email | markdownify }}</dt><dd><a href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a></dd></div>
+<div><dt>{{ $copy.copy_affiliation | markdownify }}</dt><dd>{{ site.Params.affiliation }}</dd></div>
+<div><dt>{{ $copy.copy_address | markdownify }}</dt><dd>{{ site.Params.address }}</dd></div>
+</dl>
+<div class="contact-actions">
+<a class="button" href="mailto:{{ site.Params.email }}">{{ $copy.copy_email_us }}</a>
+<a class="button button-secondary" href="{{ $mapsLink | safeURL }}" rel="noopener" target="_blank">{{ $copy.copy_open_address_of_inma_in_google_maps | markdownify }}</a>
+{{/* The embedded map is a third-party frame that can fail silently, so it loads only on request. */}}
+<button class="button button-secondary" type="button" data-map-toggle data-map-src="{{ $mapsEmbed }}" aria-controls="contact-map" aria-expanded="false" hidden>{{ $copy.copy_show_map }}</button>
 </div>
-<aside aria-label="{{ site.Data.copy._default_list.copy_aria_label_map_to_the_inma_office_at_calle_de_pedro_cerbuna_12 }}" class="contact-map">
-<iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="{{ $mapsEmbed | safeURL }}" title="{{ site.Data.copy._default_list.copy_title_inma_office_at_calle_de_pedro_cerbuna_12_on_google_maps }}">
-</iframe>
-<a href="{{ $mapsLink | safeURL }}" rel="noopener" target="_blank">{{ site.Data.copy._default_list.copy_open_address_of_inma_in_google_maps | markdownify }}</a>
-</aside>
+<div class="contact-map" id="contact-map" hidden></div>
 </section>
-<section aria-labelledby="weather-title" class="card weather-card">
+<script>
+(function () {
+  const toggle = document.querySelector("[data-map-toggle]");
+  const box = document.getElementById("contact-map");
+  if (!toggle || !box) return;
+  toggle.hidden = false;
+  toggle.addEventListener("click", function () {
+    if (!box.firstChild) {
+      const frame = document.createElement("iframe");
+      frame.src = toggle.dataset.mapSrc;
+      frame.title = {{ $copy.copy_title_inma_office_at_calle_de_pedro_cerbuna_12_on_google_maps | jsonify | safeJS }};
+      frame.loading = "lazy";
+      frame.referrerPolicy = "no-referrer-when-downgrade";
+      box.appendChild(frame);
+    }
+    box.hidden = !box.hidden;
+    toggle.setAttribute("aria-expanded", String(!box.hidden));
+    toggle.textContent = box.hidden ? {{ $copy.copy_show_map | jsonify | safeJS }} : {{ $copy.copy_hide_map | jsonify | safeJS }};
+  });
+})();
+</script>
+{{/* Live weather is optional: the panel stays hidden unless the forecast actually loads. */}}
+<section aria-labelledby="weather-title" class="card weather-card" data-weather-section hidden>
 <div class="weather-card-heading">
 <div>
 <p class="eyebrow">{{ site.Data.copy._default_list.copy_funny_tips | markdownify }}</p>
@@ -194,14 +219,13 @@
 <a href="{{ site.Data.copy._default_list.copy_href_https_www_google_com_search_q_weather_zaragoza }}" rel="noopener" target="_blank">{{ site.Data.copy._default_list.copy_full_forecast | markdownify }}</a>
 </div>
 <p class="weather-tip">{{ site.Data.copy._default_list.copy_to_check_if_you_need_sunglasses_and_sunscreen_when_you_visit_us_c | markdownify }}</p>
-<div class="weather-widget" data-latitude="41.6488" data-longitude="-0.8891" data-weather-widget="">
-<p class="weather-loading">{{ site.Data.copy._default_list.copy_loading_live_weather_near_inma | markdownify }}</p>
-</div>
+<div class="weather-widget" data-latitude="41.6488" data-longitude="-0.8891" data-weather-widget=""></div>
 </section>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   const widget = document.querySelector("[data-weather-widget]");
-  if (!widget) {
+  const section = document.querySelector("[data-weather-section]");
+  if (!widget || !section) {
     return;
   }
 
@@ -266,7 +290,10 @@ document.addEventListener("DOMContentLoaded", function () {
     return new Intl.DateTimeFormat("en", { weekday: "short" }).format(new Date(`${date}T12:00:00`));
   }
 
-  fetch(endpoint)
+  const controller = new AbortController();
+  const timer = setTimeout(function () { controller.abort(); }, 8000);
+
+  fetch(endpoint, { signal: controller.signal })
     .then(function (response) {
       if (!response.ok) {
         throw new Error(weatherCopy.weather_request_failed);
@@ -303,6 +330,9 @@ document.addEventListener("DOMContentLoaded", function () {
         `;
       }).join("");
 
+      if (!current || !daily || !Array.isArray(daily.time)) {
+        throw new Error(weatherCopy.weather_request_failed);
+      }
       widget.innerHTML = `
         <div class="weather-now ${currentSunny ? "is-sunny" : ""}">
           <span class="weather-status">${currentSunny ? weatherCopy.sunglasses_recommended : weatherCopy.sunglasses_optional}</span>
@@ -315,13 +345,13 @@ document.addEventListener("DOMContentLoaded", function () {
           ${dayCards}
         </div>
       `;
+      section.hidden = false;
     })
     .catch(function () {
-      widget.innerHTML = `
-        <p class="weather-loading">
-          ${weatherCopy.unavailable}
-        </p>
-      `;
+      section.hidden = true;
+    })
+    .finally(function () {
+      clearTimeout(timer);
     });
 });
 </script>
