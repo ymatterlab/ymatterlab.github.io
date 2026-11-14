@@ -5,13 +5,15 @@ body:
   - type: markdown
     attributes:
       value: |
-        Use the title above as your news headline, then fill in the fields below.
+        **Title:** use `News: [short headline]`, for example `News: New PhD student joins Y-Matter Lab`.
+        Fill in the required date, category, and news text below. Replace the bracketed text in the news template with your own information.
+        Source links and images are optional; leave those fields empty if they do not apply.
         Yuewen will review and publish the news. This request and any attachments are public.
   - type: input
     id: date
     attributes:
       label: Event date
-      description: When did the news happen? Use YYYY-MM-DD.
+      description: "Date of the event, publication, or award. Format: YYYY-MM-DD (four-digit year, two-digit month and day), for example 2026-11-14."
       placeholder: "2026-11-14"
     validations:
       required: true
@@ -19,7 +21,7 @@ body:
     id: category
     attributes:
       label: Category
-      description: Choose the best match.
+      description: Choose one category from the list; no need to type a category name.
       options:
         - announcements (new members, positions, talks, visits, events)
         - honors (awards, grants, fellowships)
@@ -31,21 +33,28 @@ body:
     id: text
     attributes:
       label: News text
-      description: One to three sentences. Include the full names of the people involved.
-      placeholder: "What happened, who was involved, and why does it matter?"
+      description: Write one to three sentences in plain English. Use full names and replace every bracketed prompt below. Delete any sentence that does not apply.
+      value: |
+        [Full name(s)] [what happened: published a paper, received an award, joined the group, or attended an event].
+        [Briefly explain the research, achievement, or event and why it matters].
+        [Optional: name collaborators, the journal, award, or event].
     validations:
       required: true
   - type: input
     id: link
     attributes:
       label: Source link (optional)
-      description: Link to the paper's DOI, award announcement, or event page, if available.
-      placeholder: "https://doi.org/..."
+      description: "Paste a full URL starting with https:// (not a bare DOI). For a paper, use https://doi.org/[DOI]; otherwise link to the award announcement or event page."
+      placeholder: "https://doi.org/10.1126/science.abm5134"
   - type: textarea
     id: image
     attributes:
       label: Image (optional)
-      description: Attach an image and describe what it shows. For a research figure, include the paper and DOI.
+      description: Attach an image, then add the details below. Use a group-owned WebP or JPEG up to 1600 pixels wide. For a research figure, cite the source paper and DOI.
+      placeholder: |
+        [Drag or paste your image here]
+        Description: [One sentence describing what is visible, including names if relevant]
+        Caption / credit: [Caption and image credit; for a research figure, paper citation and https://doi.org/...]
   - type: checkboxes
     id: checks
     attributes:
