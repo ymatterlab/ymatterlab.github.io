@@ -1,0 +1,267 @@
+- id: quantum-materials
+  number: '01'
+  title: Quantum Materials
+  summary: We study superconductors, hydrides, two-dimensional systems, polar metals, magnetic materials,
+    and oxide interfaces where electronic, structural, magnetic, and vibrational degrees of freedom are
+    strongly coupled.
+  bullets:
+  - Electron-phonon coupling, anharmonicity, and superconductivity.
+  - Pressure, strain, dimensionality, and chemical tuning of quantum phases.
+  - Microscopic mechanisms behind emergent electronic and magnetic responses.
+  questions_title: Key questions
+  questions:
+  - Can conventional superconductors reach high T<sub>c</sub> without extreme pressure, and which chemistries
+    make this possible?
+  - How does quantum nuclear motion change stability and pairing in light-element compounds?
+  - Which new electronic phases appear at oxide interfaces, or when polarity coexists with metallicity?
+  themes:
+  - title: Hydride superconductors at ambient pressure
+    text: 'A central theme is conventional, phonon-mediated superconductivity in hydrides at or near ambient
+      pressure. With collaborators, we combine machine learning with high-throughput <em>ab initio</em>
+      calculations to map large materials spaces: one search of more than 150 000 compounds found about
+      50 hydrides with predicted T<sub>c</sub> above 20 K. Screening the thermodynamically stable cubic
+      hydrides of the GNoME database, we identified 25 superconductors with T<sub>c</sub> above 4.2 K,
+      the highest being 17 K in LiZrH<sub>6</sub>Ru. We also test claims critically: our crystal structure
+      searches for the Lu–N–H system find no stable phase with high-temperature superconductivity near
+      ambient pressure.'
+  - title: Quantum anharmonic effects
+    text: High-throughput screens usually work in the harmonic approximation. Because hydrogen is so light,
+      ionic quantum and anharmonic effects can change both dynamical stability and T<sub>c</sub>. Including
+      them, we predict that RbPH<sub>3</sub> is thermodynamically stable at about 30 GPa in a perovskite
+      structure and stays dynamically stable down to ambient pressure, with a predicted T<sub>c</sub>
+      around 100 K. We treat these effects with the stochastic self-consistent harmonic approximation
+      (SSCHA), accelerated by machine-learned interatomic potentials, for example in LaBeH<sub>8</sub>
+      and metal-stuffed B–C clathrates, and we are building crystal structure prediction schemes that
+      include anharmonic lattice dynamics.
+  - title: Polar metals and oxide interfaces
+    text: We design polar metals such as BiPbTi<sub>2</sub>O<sub>6</sub>, in which polar displacements
+      coexist with metallic conduction and can be switched through interfacial coupling to a ferroelectric.
+      We also study emergent magnetism and Berry-curvature effects at oxide interfaces.
+  figures:
+  - image: /images/research/hydride-screening-rbph3-adfm2024-commt2025.webp
+    alt: 'Left: heat map of predicted critical temperature versus distance to the convex hull for screened
+      hydrides. Right: harmonic and SSCHA phonon band structures of RbPH3 at 0 and 25 GPa.'
+    width: '1600'
+    height: '1013'
+    style: 'flex-grow: 1.58'
+    caption: "(1) Machine-learning-assisted screening of ambient-pressure hydride superconductors: predicted\
+      \ T<sub>c</sub> versus distance to the convex hull and hydrogen contribution to the density of states.\n\
+      \            Fig. 2 from T. F. T. Cerqueira <em>et al.</em>, <em>Adv. Funct. Mater.</em> <strong>34</strong>,\
+      \ 2404043 (2024), open access.\n            <a href=\"https://doi.org/10.1002/adfm.202404043\" rel=\"\
+      noopener\" target=\"_blank\">doi:10.1002/adfm.202404043</a>.\n            (2) Harmonic (DFPT) versus\
+      \ SSCHA phonons of RbPH<sub>3</sub> at 0 and 25 GPa: quantum anharmonic effects remove the harmonic\
+      \ instabilities.\n            Fig. 3 from Đ. Dangić <em>et al.</em>, <em>Comput. Mater. Today</em>\
+      \ <strong>8</strong>, 100043 (2025), CC BY-NC 4.0; figure taken from the preprint\n            <a\
+      \ href=\"https://arxiv.org/abs/2411.03822\" rel=\"noopener\" target=\"_blank\">arXiv:2411.03822</a>.\n\
+      \            <a href=\"https://doi.org/10.1016/j.commt.2025.100043\" rel=\"noopener\" target=\"\
+      _blank\">doi:10.1016/j.commt.2025.100043</a>"
+  - image: /images/research/gnome-hydride-workflow-commsphys2026.webp
+    alt: Flowchart of the screening of cubic hydrides from the GNoME database using spin-polarized DFT,
+      an ALIGNN machine-learning model, and DFPT calculations of Tc.
+    width: '737'
+    height: '879'
+    style: 'flex-grow: 0.84'
+    caption: "Workflow for screening thermodynamically stable cubic hydrides in the GNoME database: high-throughput\
+      \ DFT, an ALIGNN machine-learning model of T<sub>c</sub>, and DFPT calculations. Numbers give the\
+      \ hydrides kept at each step.\n            Fig. 1 from A. Sanna <em>et al.</em>, <em>Commun. Phys.</em>\
+      \ <strong>9</strong>, 94 (2026), CC BY 4.0.\n            <a href=\"https://doi.org/10.1038/s42005-026-02552-4\"\
+      \ rel=\"noopener\" target=\"_blank\">doi:10.1038/s42005-026-02552-4</a>"
+  papers_title: Representative papers
+  papers:
+  - 10.1002/adfm.202404043
+  - 10.1016/j.commt.2025.100043
+  - 10.1038/s42005-026-02552-4
+  - 10.1103/fcrd-8zzf
+  - 10.1038/s43246-019-0005-6
+  more_title: More related papers
+  more_papers:
+  - 10.1038/s43246-024-00500-9
+  - 10.1016/j.mtphys.2025.101939
+  - 10.1038/s41524-025-01816-x
+  - 10.1103/gwc3-myp7
+  - 10.1103/g518-sjsf
+  - 10.21468/scipostphys.20.6.170
+  - 10.1039/d6tc01827k
+  - 10.1039/d5tc02828k
+  - 10.1016/j.commt.2026.100052
+  - 10.1038/s41467-025-63702-w
+  - 10.1038/s41524-024-01214-9
+  - 10.1038/s41467-023-40240-x
+  - 10.1103/PhysRevB.102.144418
+  - 10.1063/1.5035133
+  - 10.1088/1361-648X/ab31e0
+  - 10.1016/j.apmt.2021.101101
+  - 10.1021/acsnano.0c10200
+  - 10.1088/1402-4896/acd7b3
+  - 10.1002/adma.201602281
+  - 10.1002/aelm.202000803
+  - 10.1021/acsphotonics.7b01339
+  - 10.1103/PhysRevB.92.115304
+  - 10.1103/PhysRevB.93.214427
+  - 10.1021/acs.jpclett.2c00384
+  - 10.20517/microstructures.2024.129
+- id: information-materials
+  number: '02'
+  title: Information Materials
+  summary: We investigate ferroelectric, ferromagnetic, piezoelectric, and multiferroic materials for
+    electronics and spintronics. Much of this work focuses on how polarization, magnetism, defects, and
+    interfaces can be controlled.
+  bullets:
+  - Ferroelectric switching, tunnel junctions, and photovoltaic response.
+  - Multiferroics, magnetoelectric coupling, and magnetic anisotropy.
+  - Complex oxide thin films, heterostructures, vacancies, and interfacial reconstruction.
+  questions_title: Key questions
+  questions:
+  - How thin can a ferroelectric become and still switch reliably?
+  - How do defects, chemical substitution, and interfaces control polarization, magnetism, and their coupling?
+  - Which material designs lead to multi-level, low-power memory and optoelectronic devices?
+  themes:
+  - title: Atomic-scale ferroelectrics and tunnel junctions
+    text: Much of this work is done with experimental groups who grow and measure thin films, while we
+      build first-principles models of structure, polarization, and electronic states. In Sm-substituted
+      layered bismuth oxide, a ferroelectric hysteresis loop is observed down to about 1 nm, and first-principles
+      calculations point to a lone-pair-driven ferroelectric. Tunnel junctions built on this material
+      keep a tunnelling electroresistance of 7 × 10<sup>5</sup> at 1 nm thickness and support up to 32
+      resistance states. Our DFT+U calculations of the interface show how switching the polarization turns
+      the interfacial layers of the Nb:SrTiO<sub>3</sub> electrode between metallic and insulating, which
+      explains the large resistance contrast.
+  - title: Chemical design of ferroic films
+    text: Inequivalent cation substitution, oxygen vacancies, and anion (sulfur) substitution are used
+      to tune polarization, band gap, and magnetic order. Examples include enhanced ferroelectric photovoltaic
+      responses in double-perovskite films, robust ferroelectricity through polarization rotation in sulfurized
+      BiFeO<sub>3</sub>, and stronger magnetic ordering in super-tetragonal BiFeO<sub>3</sub>.
+  - title: Theory-led device concepts
+    text: On the theory side, we have proposed a monolayer two-dimensional ferroelectric tunnel junction
+      based on doped SnSe, and predicted robust ferroelectricity in the nitride perovskite LaWN<sub>3</sub>.
+  figures:
+  - image: /images/research/bismuth-oxide-dft-stem-science2023.webp
+    alt: DFT energy versus polar displacement, electron localization functions of ferroelectric and paraelectric
+      Bi6O9, the DFT-predicted structure of Sm-substituted Bi6O9, and HAADF-STEM images.
+    width: '1180'
+    height: '711'
+    style: 'flex-grow: 1.66'
+    caption: "Structure of Sm-substituted layered bismuth oxide confirmed by DFT and HAADF-STEM: (A) DFT\
+      \ energy versus polar displacement, (B) electron localization function of the ferroelectric and\
+      \ paraelectric phases, (C) DFT-predicted ferroelectric structure, (D) HAADF-STEM images compared\
+      \ with simulations.\n            Fig. 5 from Q. Yang <em>et al.</em>, <em>Science</em> <strong>379</strong>,\
+      \ 1218–1224 (2023).\n            <a href=\"https://doi.org/10.1126/science.abm5134\" rel=\"noopener\"\
+      \ target=\"_blank\">doi:10.1126/science.abm5134</a>"
+  - image: /images/research/ftj-ter-origin-dft-ncomms2024.webp
+    alt: Energy-band diagrams of low- and high-resistance states, fitted current-voltage curves, and DFT+U
+      projected density of states of interface Ti 3d orbitals for two polarization directions.
+    width: '1118'
+    height: '870'
+    style: 'flex-grow: 1.29'
+    caption: "Origin of the giant tunnelling electroresistance: band diagrams of the low- and high-resistance\
+      \ states, fits to measured I–V curves, and DFT+U projected density of states of interface Ti 3d\
+      \ orbitals for the two polarization directions.\n            Fig. 3 from Y. Jia <em>et al.</em>,\
+      \ <em>Nat. Commun.</em> <strong>15</strong>, 693 (2024), CC BY 4.0.\n            <a href=\"https://doi.org/10.1038/s41467-024-44927-7\"\
+      \ rel=\"noopener\" target=\"_blank\">doi:10.1038/s41467-024-44927-7</a>"
+  papers_title: Representative papers
+  papers:
+  - 10.1126/science.abm5134
+  - 10.1038/s41467-024-44927-7
+  - 10.1021/jacs.4c01702
+  - 10.1126/sciadv.ads4925
+  more_title: More related papers
+  more_papers:
+  - 10.1016/j.actamat.2026.122634
+  - 10.1039/d3mh00716b
+  - 10.1038/s41467-025-58594-9
+  - 10.1016/j.jeurceramsoc.2023.02.025
+  - 10.1002/adfm.202312746
+  - 10.1021/acsami.7b18206
+  - 10.1021/acsaelm.9b00146
+  - 10.1103/PhysRevB.95.014111
+  - 10.1039/c7tc00974g
+  - 10.1016/j.jmmm.2022.170297
+  - 10.1007/s11434-014-0628-4
+  - 10.7693/wl20160601
+  - 10.1103/l2t3-n7r1
+  - 10.1063/5.0174252
+  - 10.1038/s41467-023-44036-x
+  - 10.1038/s41467-025-66697-6
+  - 10.1063/5.0294176
+  - 10.1103/physrevb.102.041203
+  - 10.1002/adts.201900029
+  - 10.1039/d0ra09228b
+  - 10.1063/5.0191917
+  - 10.1063/5.0276143
+- id: energy-materials
+  number: '03'
+  title: Energy Materials
+  summary: We use theory and simulation to explore materials for thermoelectric conversion, catalysis,
+    energy storage, and energy harvesting. A central theme is the relation between local structure, lattice
+    dynamics, transport, and functional response.
+  bullets:
+  - Thermoelectrics with low thermal conductivity and favorable electronic structure.
+  - Negative thermal expansion and thermal transport controlled by phonons.
+  - Polar, defective, surface, and interface effects in energy-related processes.
+  questions_title: Key questions
+  questions:
+  - Which bonding, band-structure, and phonon features give low thermal conductivity and high thermoelectric
+    efficiency?
+  - Which local structures and lattice dynamics drive negative or near-zero thermal expansion, and can
+    it be combined with low thermal conductivity?
+  - How can polarization and surfaces be used to boost catalytic activity?
+  themes:
+  - title: Thermal transport and thermoelectrics
+    text: We connect chemical bonding and lattice dynamics with heat flow. In the PbSe/PbTe monolayer
+      heterostructure, weak, polar-covalent Pb–Se and Pb–Te bonds with occupied antibonding states lead
+      to ultralow lattice thermal conductivity, which we compute including three- and four-phonon scattering.
+      With experimental groups, we have also studied band engineering in bulk thermoelectrics, such as
+      the alignment of nested conduction bands in Pb<sub>7</sub>Bi<sub>4</sub>Se<sub>13</sub> and triple
+      doping in Cu<sub>2</sub>SnSe<sub>3</sub>.
+  - title: Anomalous thermal expansion
+    text: In Cd<sub>2</sub>Re<sub>2</sub>O<sub>7</sub>-based oxides, synchrotron measurements and phonon
+      calculations together show that soft acoustic phonons with large negative Grüneisen parameters,
+      along with locally ordered Re–Re dimers, give both negative or zero thermal expansion and ultralow
+      thermal conductivity (0.38–0.56 W m<sup>−1</sup> K<sup>−1</sup>). In PbTiO<sub>3</sub>-based ferroelectrics,
+      we have studied how mixed anions such as sulfur enhance negative thermal expansion.
+  - title: Polarization-enhanced catalysis
+    text: Our DFT+U calculations show that hydroxyl groups adsorbed on BiFeO<sub>3</sub> reverse its surface
+      polarization and lower the free-energy cost of hydrogen and oxygen evolution. The computed OER overpotential
+      drops from 0.81 to 0.64 V, consistent with the lower overpotential measured after electrolysis on
+      BiFeO<sub>3</sub>/nickel-foam electrodes.
+  figures:
+  - image: /images/research/cd2re2o7-phonons-actamat2024.webp
+    alt: Experimental inelastic X-ray scattering and calculated phonon dispersions of cubic Cd2Re2O7,
+      calculated phonons and density of states of the tetragonal phase, and Grüneisen parameters.
+    width: '753'
+    height: '967'
+    style: 'flex-grow: 0.78'
+    caption: "Phonons behind anomalous thermal expansion and ultralow thermal conductivity in Cd<sub>2</sub>Re<sub>2</sub>O<sub>7</sub>:\
+      \ (a) synchrotron inelastic X-ray scattering (symbols) compared with calculated phonon dispersions,\
+      \ (b) calculated phonons and atom-projected DOS of the tetragonal phase, (c) Grüneisen parameters\
+      \ with strongly negative values for soft acoustic modes.\n            Fig. 6 from F. Qin <em>et\
+      \ al.</em>, <em>Acta Mater.</em> <strong>264</strong>, 119544 (2024).\n            <a href=\"https://doi.org/10.1016/j.actamat.2023.119544\"\
+      \ rel=\"noopener\" target=\"_blank\">doi:10.1016/j.actamat.2023.119544</a>"
+  - image: /images/research/bfo-catalysis-dft-acsnano2023.webp
+    alt: DFT+U slab models of BiFeO3 without and with adsorbed OH, and Gibbs free-energy diagrams for
+      hydrogen and oxygen evolution.
+    width: '755'
+    height: '628'
+    style: 'flex-grow: 1.2'
+    caption: "Polarization and catalysis on BiFeO<sub>3</sub>: (a) DFT+U slab models of the pristine surface\
+      \ and with two adsorbed OH groups, which reverse the out-of-plane polarization; (b) Gibbs free-energy\
+      \ diagrams for the hydrogen (HER) and oxygen (OER) evolution reactions.\n            Fig. 6 from\
+      \ F.-S. Li <em>et al.</em>, <em>ACS Nano</em> <strong>17</strong>, 16274–16286 (2023).\n       \
+      \     <a href=\"https://doi.org/10.1021/acsnano.3c06371\" rel=\"noopener\" target=\"_blank\">doi:10.1021/acsnano.3c06371</a>"
+  papers_title: Representative papers
+  papers:
+  - 10.1016/j.actamat.2023.119544
+  - 10.1021/acsnano.3c06371
+  - 10.20517/jmi.2025.62
+  - 10.1039/d4mh00795f
+  more_title: More related papers
+  more_papers:
+  - 10.1088/0256-307x/43/8/080803
+  - 10.1016/j.scriptamat.2026.117396
+  - 10.1016/j.ceramint.2025.09.061
+  - 10.1002/ece2.70125
+  - 10.1038/s41467-021-25119-z
+  - 10.1002/aenm.202100661
+  - 10.1038/s41467-025-64925-7
+  - 10.1021/acs.chemmater.1c01619
+  - 10.1021/acs.chemmater.2c00076
+  - 10.1039/d5mh00251f

@@ -1,15 +1,16 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ if .Title }}{{ .Title }} | {{ end }}{{ site.Title }}</title>
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
-  <link rel="manifest" href="/images/favicon/site.webmanifest">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>{{ if .Title }}{{ .Title }} | {{ end }}{{ site.Title }}</title>
+<link href="{{ site.Data.copy._default_baseof.copy_href_images_favicon_apple_touch_icon_png }}" rel="apple-touch-icon" sizes="180x180"/>
+<link href="{{ site.Data.copy._default_baseof.copy_href_images_favicon_favicon_32x32_png }}" rel="icon" sizes="32x32" type="image/png"/>
+<link href="{{ site.Data.copy._default_baseof.copy_href_images_favicon_favicon_16x16_png }}" rel="icon" sizes="16x16" type="image/png"/>
+<link href="{{ site.Data.copy._default_baseof.copy_href_images_favicon_site_webmanifest }}" rel="manifest"/>
   {{ $css := resources.Get "css/style.css" | minify | fingerprint }}
-  <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+  <link href="{{ $css.RelPermalink }}" rel="stylesheet"/>
 </head>
 <body>
   {{ partial "header.html" . }}
@@ -17,9 +18,8 @@
     {{ block "main" . }}{{ end }}
   </main>
   {{ partial "footer.html" . }}
-  <script data-goatcounter="https://ymatterlab.goatcounter.com/count"
-          async src="https://gc.zgo.at/count.js"></script>
-  <script>
+  <script async="" data-goatcounter="https://ymatterlab.goatcounter.com/count" src="https://gc.zgo.at/count.js"></script>
+<script>
   (function () {
     const countElement = document.querySelector("[data-goatcounter-total]");
 

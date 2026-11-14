@@ -1,41 +1,40 @@
 {{ define "main" }}
 <article class="page-header">
-  <h1>{{ .Title }}</h1>
+<h1>{{ .Title }}</h1>
 </article>
-
 <section class="research-page">
-  <section class="research-section" aria-labelledby="positions-title">
-    <div class="research-section-heading">
-      <p class="eyebrow">Open positions</p>
-      <h2 id="positions-title">Current Opportunities</h2>
-      <p>Current postdoctoral, PhD, and visiting researcher opportunities in Y-Matter Lab.</p>
-    </div>
+<section aria-labelledby="positions-title" class="research-section">
+<div class="research-section-heading">
+<p class="eyebrow">{{ site.Data.copy.join_list.copy_open_positions | markdownify }}</p>
+<h2 id="positions-title">{{ site.Data.copy.join_list.copy_current_opportunities | markdownify }}</h2>
+<p>{{ site.Data.copy.join_list.copy_current_postdoctoral_phd_and_visiting_researcher_opportunities_in | markdownify }}</p>
+</div>
 
     {{ with .Params.positions }}
     <div class="research-line-list">
       {{ range . }}
       <article class="research-line join-position">
-        <div class="research-line-body">
-          <h3>{{ .title }}</h3>
-          <p class="join-position-meta">
+<div class="research-line-body">
+<h3>{{ .title }}</h3>
+<p class="join-position-meta">
             {{ with .type }}<span>{{ . }}</span>{{ end }}
             {{ with .location }}<span>{{ . }}</span>{{ end }}
-            {{ with .deadline }}<span>Deadline: {{ . }}</span>{{ end }}
+            {{ with .deadline }}<span>{{ site.Data.copy.join_list.deadline }} {{ . }}</span>{{ end }}
           </p>
           {{ with .description }}<p>{{ . | markdownify }}</p>{{ end }}
-          {{ with .funding }}<p class="join-funding"><strong>Funding:</strong> {{ . | markdownify }}</p>{{ end }}
+          {{ with .funding }}<p class="join-funding"><strong>{{ site.Data.copy.join_list.copy_funding | markdownify }}</strong> {{ . | markdownify }}</p>{{ end }}
           {{ with .qualifications }}
           <div class="join-apply join-qualifications">
-            <h4>Expected qualifications and skills</h4>
+<h4>{{ site.Data.copy.join_list.copy_expected_qualifications_and_skills | markdownify }}</h4>
             {{ with .required }}
-            <p><strong>Required</strong></p>
-            <ul>
+            <p>{{ site.Data.copy.join_list.copy_required | markdownify }}</p>
+<ul>
               {{ range . }}<li>{{ . | markdownify }}</li>{{ end }}
             </ul>
             {{ end }}
             {{ with .desirable }}
-            <p><strong>Desirable</strong></p>
-            <ul>
+            <p>{{ site.Data.copy.join_list.copy_desirable | markdownify }}</p>
+<ul>
               {{ range . }}<li>{{ . | markdownify }}</li>{{ end }}
             </ul>
             {{ end }}
@@ -43,7 +42,7 @@
           {{ end }}
           {{ with .how_to_apply }}
           <div class="join-apply">
-            <h4>How to apply</h4>
+<h4>{{ site.Data.copy.join_list.copy_how_to_apply | markdownify }}</h4>
             {{ with .intro }}<p>{{ . | markdownify }}</p>{{ end }}
             {{ with .steps }}
             <ol>
@@ -58,53 +57,49 @@
             {{ end }}
           </div>
           {{ end }}
-          {{ with .link }}<a href="{{ . }}" target="_blank" rel="noopener">Official job offer</a>{{ end }}
+          {{ with .link }}<a href="{{ . }}" rel="noopener" target="_blank">{{ site.Data.copy.join_list.copy_official_job_offer | markdownify }}</a>{{ end }}
         </div>
-      </article>
+</article>
       {{ end }}
     </div>
     {{ else }}
     <div class="research-focus-box">
-      <p>There are no advertised openings at the moment. Motivated candidates are always welcome to get in touch, and new positions will be posted here.</p>
-    </div>
+<p>{{ site.Data.copy.join_list.copy_there_are_no_advertised_openings_at_the_moment_motivated_candidat | markdownify }}</p>
+</div>
     {{ end }}
   </section>
-
-  <section class="research-section" aria-labelledby="prospective-title">
-    <div class="research-section-heading">
-      <p class="eyebrow">Prospective applicants</p>
-      <h2 id="prospective-title">Joining Through External Fellowships</h2>
-      <p>Researchers interested in joining the group with their own funding are encouraged to contact us well in advance of the call deadline so we can prepare a competitive application together.</p>
-    </div>
-
-    <div class="research-method-grid join-fellowship-grid">
+<section aria-labelledby="prospective-title" class="research-section">
+<div class="research-section-heading">
+<p class="eyebrow">{{ site.Data.copy.join_list.copy_prospective_applicants | markdownify }}</p>
+<h2 id="prospective-title">{{ site.Data.copy.join_list.copy_joining_through_external_fellowships | markdownify }}</h2>
+<p>{{ site.Data.copy.join_list.copy_researchers_interested_in_joining_the_group_with_their_own_fundin | markdownify }}</p>
+</div>
+<div class="research-method-grid join-fellowship-grid">
       {{ range .Params.fellowships }}
       <article>
-        <h3>{{ .name }}</h3>
-        <p>{{ .text }}</p>
-        {{ with .link }}<p><a href="{{ . }}" target="_blank" rel="noopener">Program website</a></p>{{ end }}
+<h3>{{ .name }}</h3>
+<p>{{ .text }}</p>
+        {{ with .link }}<p><a href="{{ . }}" rel="noopener" target="_blank">{{ site.Data.copy.join_list.copy_program_website | markdownify }}</a></p>{{ end }}
       </article>
       {{ end }}
     </div>
-
-    <div class="research-focus-box">
-      <h3>General enquiries</h3>
-      <p>If a specific call or open position lists its own application requirements (see <em>How to apply</em> under each opening above), please follow those. Otherwise, when you write to us, please include:</p>
-      <ul>
-        <li>A CV with a publication list.</li>
-        <li>A short statement of your research interests and how they connect to our <a href="{{ "/research/" | relURL }}">research lines</a>.</li>
-        <li>The fellowship or program you plan to apply for and its deadline.</li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="research-student-callout" aria-labelledby="join-contact-title">
-    <div>
-      <p class="eyebrow">Contact</p>
-      <h2 id="join-contact-title">{{ site.Params.pi_name }}, PI of {{ site.Params.lab_name }}</h2>
-      <p>Email: <a href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a><br>{{ site.Params.affiliation }}</p>
-    </div>
-    <a class="button" href="mailto:{{ site.Params.email }}?subject={{ "Joining Y-Matter Lab" | urlquery }}">Email the PI</a>
-  </section>
+<div class="research-focus-box">
+<h3>{{ site.Data.copy.join_list.copy_general_enquiries | markdownify }}</h3>
+<p>{{ site.Data.copy.join_list.copy_if_a_specific_call_or_open_position_lists_its_own_application_req | markdownify }}</p>
+<ul>
+<li>{{ site.Data.copy.join_list.copy_a_cv_with_a_publication_list | markdownify }}</li>
+<li>{{ site.Data.copy.join_list.research_statement }} <a href="{{ site.Data.copy.join_list.path_research | relURL }}">{{ site.Data.copy.join_list.copy_research_lines | markdownify }}</a>.</li>
+<li>{{ site.Data.copy.join_list.copy_the_fellowship_or_program_you_plan_to_apply_for_and_its_deadline | markdownify }}</li>
+</ul>
+</div>
+</section>
+<section aria-labelledby="join-contact-title" class="research-student-callout">
+<div>
+<p class="eyebrow">{{ site.Data.copy.join_list.copy_contact | markdownify }}</p>
+<h2 id="join-contact-title">{{ site.Params.pi_name }}{{ site.Data.copy.join_list.pi_of }} {{ site.Params.lab_name }}</h2>
+<p>{{ site.Data.copy.join_list.email }} <a href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a><br/>{{ site.Params.affiliation }}</p>
+</div>
+<a class="button" href="mailto:{{ site.Params.email }}?subject={{ "Joining Y-Matter Lab" | urlquery }}">{{ site.Data.copy.join_list.copy_email_the_pi | markdownify }}</a>
+</section>
 </section>
 {{ end }}

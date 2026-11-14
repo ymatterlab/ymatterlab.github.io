@@ -1,499 +1,101 @@
 {{ define "main" }}
 <article class="page-header">
-  <h1>{{ .Title }}</h1>
+<h1>{{ .Title }}</h1>
 </article>
-
-<nav class="page-subnav" aria-label="On this page" data-subnav>
-  <span class="page-subnav-label">On this page</span>
-  <ul>
-    <li><a href="#overview">Overview</a></li>
-    <li><a href="#quantum-materials">Quantum</a></li>
-    <li><a href="#information-materials">Information</a></li>
-    <li><a href="#energy-materials">Energy</a></li>
-    <li><a href="#methods">Methods &amp; Tools</a></li>
-    <li><a href="#selected-publications">Publications</a></li>
-  </ul>
+<nav aria-label="{{ site.Data.copy.research_list.copy_aria_label_on_this_page }}" class="page-subnav" data-subnav="">
+<span class="page-subnav-label">{{ site.Data.copy.research_list.copy_on_this_page | markdownify }}</span>
+<ul>
+<li>{{ site.Data.copy.research_list.copy_overview | markdownify }}</li>
+<li>{{ site.Data.copy.research_list.copy_quantum | markdownify }}</li>
+<li>{{ site.Data.copy.research_list.copy_information | markdownify }}</li>
+<li>{{ site.Data.copy.research_list.copy_energy | markdownify }}</li>
+<li>{{ site.Data.copy.research_list.copy_methods_tools | markdownify }}</li>
+<li>{{ site.Data.copy.research_list.copy_publications | markdownify }}</li>
+</ul>
 </nav>
-
 <section class="research-page">
-  <section class="research-intro" id="overview">
-    <div>
-      <p class="eyebrow">Computational materials science</p>
-      <h2>From microscopic mechanisms to materials design</h2>
-      <p>
-        Y-Matter Lab studies how atomic structure, electronic states, magnetism, lattice dynamics, defects, and interfaces give rise to useful material properties. We combine first-principles calculations, atomistic simulations, and machine learning to understand existing materials and identify promising new candidates.
-      </p>
-    </div>
-
-    <aside class="research-focus-box" aria-label="Research focus">
-      <h3>We are especially interested in</h3>
-      <ul>
-        <li>Information materials with ferroelectric, ferromagnetic, or multiferroic properties.</li>
-        <li>Energy materials for energy conversion, energy recovery and storage.</li>
-        <li>Quantum materials with intriguing quantum phenomena espeically superconductivity and magnetism.</li>
-        <li>Computational workflows that connect theory, data, and experiment.</li>
-      </ul>
-    </aside>
-  </section>
-
-  <section class="research-section" aria-labelledby="materials-title">
-    <div class="research-section-heading">
-      <p class="eyebrow">Materials</p>
-      <h2 id="materials-title">Major Research Lines</h2>
-      <p>
-        These lines are connected to reveal design principles that can guide new experiments and new materials.
-      </p>
-    </div>
-
-    <ol class="rl-index" aria-label="Research lines">
-      <li><a href="#quantum-materials"><span class="rl-num">01</span><strong>Quantum Materials</strong><span>Hydride superconductors &middot; quantum anharmonicity &middot; polar metals &middot; oxide interfaces</span></a></li>
-      <li><a href="#information-materials"><span class="rl-num">02</span><strong>Information Materials</strong><span>Atomic-scale ferroelectrics &middot; tunnel junctions &middot; chemical design of ferroic films</span></a></li>
-      <li><a href="#energy-materials"><span class="rl-num">03</span><strong>Energy Materials</strong><span>Thermal transport &middot; anomalous thermal expansion &middot; catalysis</span></a></li>
-    </ol>
-
-    <!-- ===================== 01 Quantum Materials ===================== -->
-    <article class="rl" id="quantum-materials">
-      <header class="rl-head">
-        <div class="rl-summary">
-          <span class="rl-num">01</span>
-          <h3>Quantum Materials</h3>
-          <p>
-            We study superconductors, hydrides, two-dimensional systems, polar metals, magnetic materials, and oxide interfaces where electronic, structural, magnetic, and vibrational degrees of freedom are strongly coupled.
-          </p>
-          <ul>
-            <li>Electron-phonon coupling, anharmonicity, and superconductivity.</li>
-            <li>Pressure, strain, dimensionality, and chemical tuning of quantum phases.</li>
-            <li>Microscopic mechanisms behind emergent electronic and magnetic responses.</li>
-          </ul>
-        </div>
-        <aside class="rl-questions" aria-label="Key questions">
-          <h4>Key questions</h4>
-          <ul>
-            <li>Can conventional superconductors reach high T<sub>c</sub> without extreme pressure, and which chemistries make this possible?</li>
-            <li>How does quantum nuclear motion change stability and pairing in light-element compounds?</li>
-            <li>Which new electronic phases appear at oxide interfaces, or when polarity coexists with metallicity?</li>
-          </ul>
-        </aside>
-      </header>
-
-      <div class="rl-themes">
-        <section class="rl-theme">
-          <h4>Hydride superconductors at ambient pressure</h4>
-          <p>A central theme is conventional, phonon-mediated superconductivity in hydrides at or near ambient pressure. With collaborators, we combine machine learning with high-throughput <em>ab initio</em> calculations to map large materials spaces: one search of more than 150&nbsp;000 compounds found about 50 hydrides with predicted T<sub>c</sub> above 20&nbsp;K. Screening the thermodynamically stable cubic hydrides of the GNoME database, we identified 25 superconductors with T<sub>c</sub> above 4.2&nbsp;K, the highest being 17&nbsp;K in LiZrH<sub>6</sub>Ru. We also test claims critically: our crystal structure searches for the Lu&ndash;N&ndash;H system find no stable phase with high-temperature superconductivity near ambient pressure.</p>
-        </section>
-        <section class="rl-theme">
-          <h4>Quantum anharmonic effects</h4>
-          <p>High-throughput screens usually work in the harmonic approximation. Because hydrogen is so light, ionic quantum and anharmonic effects can change both dynamical stability and T<sub>c</sub>. Including them, we predict that RbPH<sub>3</sub> is thermodynamically stable at about 30&nbsp;GPa in a perovskite structure and stays dynamically stable down to ambient pressure, with a predicted T<sub>c</sub> around 100&nbsp;K. We treat these effects with the stochastic self-consistent harmonic approximation (SSCHA), accelerated by machine-learned interatomic potentials, for example in LaBeH<sub>8</sub> and metal-stuffed B&ndash;C clathrates, and we are building crystal structure prediction schemes that include anharmonic lattice dynamics.</p>
-        </section>
-        <section class="rl-theme">
-          <h4>Polar metals and oxide interfaces</h4>
-          <p>We design polar metals such as BiPbTi<sub>2</sub>O<sub>6</sub>, in which polar displacements coexist with metallic conduction and can be switched through interfacial coupling to a ferroelectric. We also study emergent magnetism and Berry-curvature effects at oxide interfaces.</p>
-        </section>
-      </div>
-
-      <div class="rl-figures">
-        <figure class="research-figure research-figure-image" style="flex-grow: 1.58">
-          <a href="{{ "/images/research/hydride-screening-rbph3-adfm2024-commt2025.webp" | relURL }}" target="_blank" rel="noopener">
-            <img src="{{ "/images/research/hydride-screening-rbph3-adfm2024-commt2025.webp" | relURL }}" width="1600" height="1013" loading="lazy" alt="Left: heat map of predicted critical temperature versus distance to the convex hull for screened hydrides. Right: harmonic and SSCHA phonon band structures of RbPH3 at 0 and 25 GPa.">
-          </a>
-          <figcaption>
-            (1) Machine-learning-assisted screening of ambient-pressure hydride superconductors: predicted T<sub>c</sub> versus distance to the convex hull and hydrogen contribution to the density of states.
-            Fig. 2 from T. F. T. Cerqueira <em>et al.</em>, <em>Adv. Funct. Mater.</em> <strong>34</strong>, 2404043 (2024), open access.
-            <a href="https://doi.org/10.1002/adfm.202404043" target="_blank" rel="noopener">doi:10.1002/adfm.202404043</a>.
-            (2) Harmonic (DFPT) versus SSCHA phonons of RbPH<sub>3</sub> at 0 and 25&nbsp;GPa: quantum anharmonic effects remove the harmonic instabilities.
-            Fig. 3 from &#272;. Dangi&#263; <em>et al.</em>, <em>Comput. Mater. Today</em> <strong>8</strong>, 100043 (2025), CC BY-NC 4.0; figure taken from the preprint
-            <a href="https://arxiv.org/abs/2411.03822" target="_blank" rel="noopener">arXiv:2411.03822</a>.
-            <a href="https://doi.org/10.1016/j.commt.2025.100043" target="_blank" rel="noopener">doi:10.1016/j.commt.2025.100043</a>
-          </figcaption>
-        </figure>
-        <figure class="research-figure research-figure-image" style="flex-grow: 0.84">
-          <a href="{{ "/images/research/gnome-hydride-workflow-commsphys2026.webp" | relURL }}" target="_blank" rel="noopener">
-            <img src="{{ "/images/research/gnome-hydride-workflow-commsphys2026.webp" | relURL }}" width="737" height="879" loading="lazy" alt="Flowchart of the screening of cubic hydrides from the GNoME database using spin-polarized DFT, an ALIGNN machine-learning model, and DFPT calculations of Tc.">
-          </a>
-          <figcaption>
-            Workflow for screening thermodynamically stable cubic hydrides in the GNoME database: high-throughput DFT, an ALIGNN machine-learning model of T<sub>c</sub>, and DFPT calculations. Numbers give the hydrides kept at each step.
-            Fig. 1 from A. Sanna <em>et al.</em>, <em>Commun. Phys.</em> <strong>9</strong>, 94 (2026), CC BY 4.0.
-            <a href="https://doi.org/10.1038/s42005-026-02552-4" target="_blank" rel="noopener">doi:10.1038/s42005-026-02552-4</a>
-          </figcaption>
-        </figure>
-      </div>
-
-      <div class="rl-papers">
-        <h4>Representative papers</h4>
-        {{ partial "paper-list.html" (dict "dois" (slice
-          "10.1002/adfm.202404043"
-          "10.1016/j.commt.2025.100043"
-          "10.1038/s42005-026-02552-4"
-          "10.1103/fcrd-8zzf"
-          "10.1038/s43246-019-0005-6"
-        )) }}
-        <details class="research-more-papers">
-          <summary>More related papers</summary>
-          {{ partial "paper-list.html" (dict "dois" (slice
-            "10.1038/s43246-024-00500-9"
-            "10.1016/j.mtphys.2025.101939"
-            "10.1038/s41524-025-01816-x"
-            "10.1103/gwc3-myp7"
-            "10.1103/g518-sjsf"
-            "10.21468/scipostphys.20.6.170"
-            "10.1039/d6tc01827k"
-            "10.1039/d5tc02828k"
-            "10.1016/j.commt.2026.100052"
-            "10.1038/s41467-025-63702-w"
-            "10.1038/s41524-024-01214-9"
-            "10.1038/s41467-023-40240-x"
-            "10.1103/PhysRevB.102.144418"
-            "10.1063/1.5035133"
-            "10.1088/1361-648X/ab31e0"
-            "10.1016/j.apmt.2021.101101"
-            "10.1021/acsnano.0c10200"
-            "10.1088/1402-4896/acd7b3"
-            "10.1002/adma.201602281"
-            "10.1002/aelm.202000803"
-            "10.1021/acsphotonics.7b01339"
-            "10.1103/PhysRevB.92.115304"
-            "10.1103/PhysRevB.93.214427"
-            "10.1021/acs.jpclett.2c00384"
-            "10.20517/microstructures.2024.129"
-          )) }}
-        </details>
-      </div>
-    </article>
-
-    <!-- ===================== 02 Information Materials ===================== -->
-    <article class="rl" id="information-materials">
-      <header class="rl-head">
-        <div class="rl-summary">
-          <span class="rl-num">02</span>
-          <h3>Information Materials</h3>
-          <p>
-            We investigate ferroelectric, ferromagnetic, piezoelectric, and multiferroic materials for electronics and spintronics. Much of this work focuses on how polarization, magnetism, defects, and interfaces can be controlled.
-          </p>
-          <ul>
-            <li>Ferroelectric switching, tunnel junctions, and photovoltaic response.</li>
-            <li>Multiferroics, magnetoelectric coupling, and magnetic anisotropy.</li>
-            <li>Complex oxide thin films, heterostructures, vacancies, and interfacial reconstruction.</li>
-          </ul>
-        </div>
-        <aside class="rl-questions" aria-label="Key questions">
-          <h4>Key questions</h4>
-          <ul>
-            <li>How thin can a ferroelectric become and still switch reliably?</li>
-            <li>How do defects, chemical substitution, and interfaces control polarization, magnetism, and their coupling?</li>
-            <li>Which material designs lead to multi-level, low-power memory and optoelectronic devices?</li>
-          </ul>
-        </aside>
-      </header>
-
-      <div class="rl-themes">
-        <section class="rl-theme">
-          <h4>Atomic-scale ferroelectrics and tunnel junctions</h4>
-          <p>Much of this work is done with experimental groups who grow and measure thin films, while we build first-principles models of structure, polarization, and electronic states. In Sm-substituted layered bismuth oxide, a ferroelectric hysteresis loop is observed down to about 1&nbsp;nm, and first-principles calculations point to a lone-pair-driven ferroelectric. Tunnel junctions built on this material keep a tunnelling electroresistance of 7&nbsp;&times;&nbsp;10<sup>5</sup> at 1&nbsp;nm thickness and support up to 32 resistance states. Our DFT+U calculations of the interface show how switching the polarization turns the interfacial layers of the Nb:SrTiO<sub>3</sub> electrode between metallic and insulating, which explains the large resistance contrast.</p>
-        </section>
-        <section class="rl-theme">
-          <h4>Chemical design of ferroic films</h4>
-          <p>Inequivalent cation substitution, oxygen vacancies, and anion (sulfur) substitution are used to tune polarization, band gap, and magnetic order. Examples include enhanced ferroelectric photovoltaic responses in double-perovskite films, robust ferroelectricity through polarization rotation in sulfurized BiFeO<sub>3</sub>, and stronger magnetic ordering in super-tetragonal BiFeO<sub>3</sub>.</p>
-        </section>
-        <section class="rl-theme">
-          <h4>Theory-led device concepts</h4>
-          <p>On the theory side, we have proposed a monolayer two-dimensional ferroelectric tunnel junction based on doped SnSe, and predicted robust ferroelectricity in the nitride perovskite LaWN<sub>3</sub>.</p>
-        </section>
-      </div>
-
-      <div class="rl-figures">
-        <figure class="research-figure research-figure-image" style="flex-grow: 1.66">
-          <a href="{{ "/images/research/bismuth-oxide-dft-stem-science2023.webp" | relURL }}" target="_blank" rel="noopener">
-            <img src="{{ "/images/research/bismuth-oxide-dft-stem-science2023.webp" | relURL }}" width="1180" height="711" loading="lazy" alt="DFT energy versus polar displacement, electron localization functions of ferroelectric and paraelectric Bi6O9, the DFT-predicted structure of Sm-substituted Bi6O9, and HAADF-STEM images.">
-          </a>
-          <figcaption>
-            Structure of Sm-substituted layered bismuth oxide confirmed by DFT and HAADF-STEM: (A) DFT energy versus polar displacement, (B) electron localization function of the ferroelectric and paraelectric phases, (C) DFT-predicted ferroelectric structure, (D) HAADF-STEM images compared with simulations.
-            Fig. 5 from Q. Yang <em>et al.</em>, <em>Science</em> <strong>379</strong>, 1218&ndash;1224 (2023).
-            <a href="https://doi.org/10.1126/science.abm5134" target="_blank" rel="noopener">doi:10.1126/science.abm5134</a>
-          </figcaption>
-        </figure>
-        <figure class="research-figure research-figure-image" style="flex-grow: 1.29">
-          <a href="{{ "/images/research/ftj-ter-origin-dft-ncomms2024.webp" | relURL }}" target="_blank" rel="noopener">
-            <img src="{{ "/images/research/ftj-ter-origin-dft-ncomms2024.webp" | relURL }}" width="1118" height="870" loading="lazy" alt="Energy-band diagrams of low- and high-resistance states, fitted current-voltage curves, and DFT+U projected density of states of interface Ti 3d orbitals for two polarization directions.">
-          </a>
-          <figcaption>
-            Origin of the giant tunnelling electroresistance: band diagrams of the low- and high-resistance states, fits to measured I&ndash;V curves, and DFT+U projected density of states of interface Ti 3d orbitals for the two polarization directions.
-            Fig. 3 from Y. Jia <em>et al.</em>, <em>Nat. Commun.</em> <strong>15</strong>, 693 (2024), CC BY 4.0.
-            <a href="https://doi.org/10.1038/s41467-024-44927-7" target="_blank" rel="noopener">doi:10.1038/s41467-024-44927-7</a>
-          </figcaption>
-        </figure>
-      </div>
-
-      <div class="rl-papers">
-        <h4>Representative papers</h4>
-        {{ partial "paper-list.html" (dict "dois" (slice
-          "10.1126/science.abm5134"
-          "10.1038/s41467-024-44927-7"
-          "10.1021/jacs.4c01702"
-          "10.1126/sciadv.ads4925"
-        )) }}
-        <details class="research-more-papers">
-          <summary>More related papers</summary>
-          {{ partial "paper-list.html" (dict "dois" (slice
-            "10.1016/j.actamat.2026.122634"
-            "10.1039/d3mh00716b"
-            "10.1038/s41467-025-58594-9"
-            "10.1016/j.jeurceramsoc.2023.02.025"
-            "10.1002/adfm.202312746"
-            "10.1021/acsami.7b18206"
-            "10.1021/acsaelm.9b00146"
-            "10.1103/PhysRevB.95.014111"
-            "10.1039/c7tc00974g"
-            "10.1016/j.jmmm.2022.170297"
-            "10.1007/s11434-014-0628-4"
-            "10.7693/wl20160601"
-            "10.1103/l2t3-n7r1"
-            "10.1063/5.0174252"
-            "10.1038/s41467-023-44036-x"
-            "10.1038/s41467-025-66697-6"
-            "10.1063/5.0294176"
-            "10.1103/physrevb.102.041203"
-            "10.1002/adts.201900029"
-            "10.1039/d0ra09228b"
-            "10.1063/5.0191917"
-            "10.1063/5.0276143"
-          )) }}
-        </details>
-      </div>
-    </article>
-
-    <!-- ===================== 03 Energy Materials ===================== -->
-    <article class="rl" id="energy-materials">
-      <header class="rl-head">
-        <div class="rl-summary">
-          <span class="rl-num">03</span>
-          <h3>Energy Materials</h3>
-          <p>
-            We use theory and simulation to explore materials for thermoelectric conversion, catalysis, energy storage, and energy harvesting. A central theme is the relation between local structure, lattice dynamics, transport, and functional response.
-          </p>
-          <ul>
-            <li>Thermoelectrics with low thermal conductivity and favorable electronic structure.</li>
-            <li>Negative thermal expansion and thermal transport controlled by phonons.</li>
-            <li>Polar, defective, surface, and interface effects in energy-related processes.</li>
-          </ul>
-        </div>
-        <aside class="rl-questions" aria-label="Key questions">
-          <h4>Key questions</h4>
-          <ul>
-            <li>Which bonding, band-structure, and phonon features give low thermal conductivity and high thermoelectric efficiency?</li>
-            <li>Which local structures and lattice dynamics drive negative or near-zero thermal expansion, and can it be combined with low thermal conductivity?</li>
-            <li>How can polarization and surfaces be used to boost catalytic activity?</li>
-          </ul>
-        </aside>
-      </header>
-
-      <div class="rl-themes">
-        <section class="rl-theme">
-          <h4>Thermal transport and thermoelectrics</h4>
-          <p>We connect chemical bonding and lattice dynamics with heat flow. In the PbSe/PbTe monolayer heterostructure, weak, polar-covalent Pb&ndash;Se and Pb&ndash;Te bonds with occupied antibonding states lead to ultralow lattice thermal conductivity, which we compute including three- and four-phonon scattering. With experimental groups, we have also studied band engineering in bulk thermoelectrics, such as the alignment of nested conduction bands in Pb<sub>7</sub>Bi<sub>4</sub>Se<sub>13</sub> and triple doping in Cu<sub>2</sub>SnSe<sub>3</sub>.</p>
-        </section>
-        <section class="rl-theme">
-          <h4>Anomalous thermal expansion</h4>
-          <p>In Cd<sub>2</sub>Re<sub>2</sub>O<sub>7</sub>-based oxides, synchrotron measurements and phonon calculations together show that soft acoustic phonons with large negative Gr&uuml;neisen parameters, along with locally ordered Re&ndash;Re dimers, give both negative or zero thermal expansion and ultralow thermal conductivity (0.38&ndash;0.56&nbsp;W&nbsp;m<sup>&minus;1</sup>&nbsp;K<sup>&minus;1</sup>). In PbTiO<sub>3</sub>-based ferroelectrics, we have studied how mixed anions such as sulfur enhance negative thermal expansion.</p>
-        </section>
-        <section class="rl-theme">
-          <h4>Polarization-enhanced catalysis</h4>
-          <p>Our DFT+U calculations show that hydroxyl groups adsorbed on BiFeO<sub>3</sub> reverse its surface polarization and lower the free-energy cost of hydrogen and oxygen evolution. The computed OER overpotential drops from 0.81 to 0.64&nbsp;V, consistent with the lower overpotential measured after electrolysis on BiFeO<sub>3</sub>/nickel-foam electrodes.</p>
-        </section>
-      </div>
-
-      <div class="rl-figures">
-        <figure class="research-figure research-figure-image" style="flex-grow: 0.78">
-          <a href="{{ "/images/research/cd2re2o7-phonons-actamat2024.webp" | relURL }}" target="_blank" rel="noopener">
-            <img src="{{ "/images/research/cd2re2o7-phonons-actamat2024.webp" | relURL }}" width="753" height="967" loading="lazy" alt="Experimental inelastic X-ray scattering and calculated phonon dispersions of cubic Cd2Re2O7, calculated phonons and density of states of the tetragonal phase, and Grüneisen parameters.">
-          </a>
-          <figcaption>
-            Phonons behind anomalous thermal expansion and ultralow thermal conductivity in Cd<sub>2</sub>Re<sub>2</sub>O<sub>7</sub>: (a) synchrotron inelastic X-ray scattering (symbols) compared with calculated phonon dispersions, (b) calculated phonons and atom-projected DOS of the tetragonal phase, (c) Gr&uuml;neisen parameters with strongly negative values for soft acoustic modes.
-            Fig. 6 from F. Qin <em>et al.</em>, <em>Acta Mater.</em> <strong>264</strong>, 119544 (2024).
-            <a href="https://doi.org/10.1016/j.actamat.2023.119544" target="_blank" rel="noopener">doi:10.1016/j.actamat.2023.119544</a>
-          </figcaption>
-        </figure>
-        <figure class="research-figure research-figure-image" style="flex-grow: 1.2">
-          <a href="{{ "/images/research/bfo-catalysis-dft-acsnano2023.webp" | relURL }}" target="_blank" rel="noopener">
-            <img src="{{ "/images/research/bfo-catalysis-dft-acsnano2023.webp" | relURL }}" width="755" height="628" loading="lazy" alt="DFT+U slab models of BiFeO3 without and with adsorbed OH, and Gibbs free-energy diagrams for hydrogen and oxygen evolution.">
-          </a>
-          <figcaption>
-            Polarization and catalysis on BiFeO<sub>3</sub>: (a) DFT+U slab models of the pristine surface and with two adsorbed OH groups, which reverse the out-of-plane polarization; (b) Gibbs free-energy diagrams for the hydrogen (HER) and oxygen (OER) evolution reactions.
-            Fig. 6 from F.-S. Li <em>et al.</em>, <em>ACS Nano</em> <strong>17</strong>, 16274&ndash;16286 (2023).
-            <a href="https://doi.org/10.1021/acsnano.3c06371" target="_blank" rel="noopener">doi:10.1021/acsnano.3c06371</a>
-          </figcaption>
-        </figure>
-      </div>
-
-      <div class="rl-papers">
-        <h4>Representative papers</h4>
-        {{ partial "paper-list.html" (dict "dois" (slice
-          "10.1016/j.actamat.2023.119544"
-          "10.1021/acsnano.3c06371"
-          "10.20517/jmi.2025.62"
-          "10.1039/d4mh00795f"
-        )) }}
-        <details class="research-more-papers">
-          <summary>More related papers</summary>
-          {{ partial "paper-list.html" (dict "dois" (slice
-            "10.1088/0256-307x/43/8/080803"
-            "10.1016/j.scriptamat.2026.117396"
-            "10.1016/j.ceramint.2025.09.061"
-            "10.1002/ece2.70125"
-            "10.1038/s41467-021-25119-z"
-            "10.1002/aenm.202100661"
-            "10.1038/s41467-025-64925-7"
-            "10.1021/acs.chemmater.1c01619"
-            "10.1021/acs.chemmater.2c00076"
-            "10.1039/d5mh00251f"
-          )) }}
-        </details>
-      </div>
-    </article>
-  </section>
-
-  <!-- ===================== Methods ===================== -->
-  <section class="research-section" id="methods" aria-labelledby="methods-title">
-    <div class="research-section-heading">
-      <p class="eyebrow">Methods</p>
-      <h2 id="methods-title">How We Work</h2>
-    </div>
-
-    <div class="research-method-grid">
-      <article>
-        <h3>First-Principles and Atomistic Simulations</h3>
-        <p>
-          Density functional theory, phonon calculations, lattice dynamics, molecular dynamics, and finite-temperature simulations connect composition and structure with stability, transport, phase transitions, and electron-phonon physics.
-        </p>
-      </article>
-
-      <article>
-        <h3>Materials Informatics</h3>
-        <p>
-          Machine learning and data-driven workflows help us search large materials spaces, build structure-property models, and prioritize candidates for detailed study, especially when available data are limited.
-        </p>
-      </article>
-
-      <article>
-        <h3>Theory-Experiment Integration</h3>
-        <p>
-          Computation is used to interpret measurements, test mechanisms, and suggest new compositions, strain states, defects, interfaces, and growth conditions for experimental collaborators.
-        </p>
-      </article>
-    </div>
-
-    <div class="research-subsection" id="methods-tools">
-      <div class="research-subsection-heading">
-        <p class="eyebrow">Methods &amp; Tools</p>
-        <h3>Codes, Workflows, and Computing</h3>
-        <p>
-          The tools we use most often, grouped by task. Tools tagged <span class="tool-badge">we contribute</span> are codes and methods our group has helped develop.
-        </p>
-      </div>
-
-      <div class="research-tool-grid">
-        <article>
-          <h3>Ab initio codes</h3>
-          <p>Density functional theory with VASP and Quantum ESPRESSO, plus WIEN2k and Elk for all-electron calculations. Phonons and thermal transport with phonopy and phono3py. Electron&ndash;phonon superconductivity with EPW, Migdal&ndash;Eliashberg theory, and superconducting DFT. Quantum transport with DFT plus non-equilibrium Green&rsquo;s functions (QuantumATK), and chemical bonding with LOBSTER.</p>
-          <ul class="tool-list">
-            <li>
-              <a href="https://sscha.eu/" target="_blank" rel="noopener"><strong>SSCHA</strong></a> <span class="tool-badge">we contribute</span>
-              <span>The stochastic self-consistent harmonic approximation, for ionic quantum and anharmonic effects on structure, phonons, and superconductivity.</span>
-            </li>
-            <li>
-              <strong>OSEP</strong> <span class="tool-badge">we contribute</span>
-              <span>The orbital selective external potential method, which shifts selected orbitals to switch off specific hybridizations and identify the mechanism behind a property, such as lone-pair-driven ferroelectricity or magnetic anisotropy
-                (<a href="https://doi.org/10.1007/s11434-014-0628-4" target="_blank" rel="noopener">review</a>,
-                <a href="https://doi.org/10.1002/adts.201900029" target="_blank" rel="noopener">lone pairs</a>,
-                <a href="https://doi.org/10.1016/j.physe.2020.114424" target="_blank" rel="noopener">magnetic anisotropy</a>).</span>
-            </li>
-          </ul>
-        </article>
-
-        <article>
-          <h3>Crystal structure prediction</h3>
-          <p>Global structure searches with CALYPSO, CrySPY, USPEX, MAGUS, minima hopping, and genetic algorithms, used to find ground states of new compounds, phases under pressure, and substituted or defective structures.</p>
-          <ul class="tool-list">
-            <li>
-              <strong>Anharmonic structure prediction</strong>
-              <span>Iterative-learning searches that rank candidates by their SSCHA free energy, so that quantum and anharmonic effects enter the phase diagram
-                (<a href="https://doi.org/10.1103/fcrd-8zzf" target="_blank" rel="noopener">Phys. Rev. B 2026</a>).</span>
-            </li>
-          </ul>
-        </article>
-
-        <article>
-          <h3>Computational workflow</h3>
-          <p>High-throughput workflows that screen databases of 10<sup>5</sup>&ndash;10<sup>6</sup> compounds, built on pymatgen and ASE, and run on supercomputers including the EuroHPC system LUMI and the DIPC Supercomputing Center.</p>
-          <ul class="tool-list">
-            <li>
-              <a href="https://github.com/Quantum-Accelerators/quacc" target="_blank" rel="noopener"><strong>QuAcc</strong></a> <span class="tool-badge">we contribute</span>
-              <span>The Quantum Accelerator, a workflow library for high-throughput atomistic simulations
-                (<a href="https://doi.org/10.48550/arXiv.2609.33823" target="_blank" rel="noopener">paper</a>).</span>
-            </li>
-            <li>
-              <a href="https://github.com/SMTG-Bham/sumo" target="_blank" rel="noopener"><strong>sumo</strong></a> <span class="tool-badge">we contribute</span>
-              <span>A toolkit for analysing and plotting results of ab initio calculations, such as band structures, densities of states, and phonons.</span>
-            </li>
-          </ul>
-        </article>
-
-        <article>
-          <h3>Machine learning</h3>
-          <p>We use machine learning both to predict properties and to design materials, and we train interatomic potentials that make expensive simulations affordable.</p>
-          <ul class="tool-list">
-            <li>
-              <strong>Forward prediction</strong>
-              <span>Models that map composition and structure to properties for fast screening, such as graph neural networks (ALIGNN) that predict electron&ndash;phonon coupling and T<sub>c</sub> across large materials databases.</span>
-            </li>
-            <li>
-              <strong>Inverse design</strong>
-              <span>Working backwards from a target property to candidate compositions and structures, which are then checked with <em>ab initio</em> calculations and, with collaborators, in experiment.</span>
-            </li>
-            <li>
-              <strong>Training MLIPs</strong>
-              <span>Machine-learning interatomic potentials trained on DFT data, from moment tensor potentials to fine-tuned atomistic foundation models such as MatterSim, used for SSCHA calculations, molecular dynamics, and large structure searches.</span>
-            </li>
-          </ul>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== Selected publications ===================== -->
-  <section class="research-section" id="selected-publications" aria-labelledby="selected-pubs-title">
-    <div class="research-section-heading section-heading">
-      <div>
-        <p class="eyebrow">Publications</p>
-        <h2 id="selected-pubs-title">Selected Publications</h2>
-      </div>
-      <a href="{{ "/publications/" | relURL }}">Full publication list</a>
-    </div>
-    {{ partial "paper-list.html" (dict "class" "publication-list selected-publication-list" "dois" (slice
-      "10.1126/science.abm5134"
-      "10.1038/s41467-024-44927-7"
-      "10.1038/s41467-025-58594-9"
-      "10.1126/sciadv.ads4925"
-      "10.1021/jacs.4c01702"
-      "10.1002/adfm.202404043"
-      "10.1016/j.commt.2025.100043"
-      "10.1038/s42005-026-02552-4"
-      "10.1038/s43246-019-0005-6"
-      "10.1016/j.actamat.2023.119544"
-    )) }}
-  </section>
-
-  <section class="research-student-callout">
-    <div>
-      <p class="eyebrow">For prospective students</p>
-      <h2>What You Can Learn Here</h2>
-      <p>
-        Students can build skills in quantum-mechanical materials modeling, scientific programming, data analysis, machine learning, and physical interpretation. Projects are often collaborative, with room to move from careful mechanism-building to exploratory materials discovery.
-      </p>
-    </div>
-    <a class="button" href="{{ "/contact/" | relURL }}">Contact the Lab</a>
-  </section>
+<section class="research-intro" id="overview">
+<div>
+<p class="eyebrow">{{ site.Data.copy.research_list.copy_computational_materials_science | markdownify }}</p>
+<h2>{{ site.Data.copy.research_list.copy_from_microscopic_mechanisms_to_materials_design | markdownify }}</h2>
+<p>{{ site.Data.copy.research_list.copy_y_matter_lab_studies_how_atomic_structure_electronic_states_magne | markdownify }}</p>
+</div>
+<aside aria-label="{{ site.Data.copy.research_list.copy_aria_label_research_focus }}" class="research-focus-box">
+<h3>{{ site.Data.copy.research_list.copy_we_are_especially_interested_in | markdownify }}</h3>
+<ul>
+<li>{{ site.Data.copy.research_list.copy_information_materials_with_ferroelectric_ferromagnetic_or_multife | markdownify }}</li>
+<li>{{ site.Data.copy.research_list.copy_energy_materials_for_energy_conversion_energy_recovery_and_storag | markdownify }}</li>
+<li>{{ site.Data.copy.research_list.copy_quantum_materials_with_intriguing_quantum_phenomena_espeically_su | markdownify }}</li>
+<li>{{ site.Data.copy.research_list.copy_computational_workflows_that_connect_theory_data_and_experiment | markdownify }}</li>
+</ul>
+</aside>
 </section>
+<section aria-labelledby="materials-title" class="research-section">
+<div class="research-section-heading">
+<p class="eyebrow">{{ site.Data.copy.research_list.copy_materials | markdownify }}</p>
+<h2 id="materials-title">{{ site.Data.copy.research_list.copy_major_research_lines | markdownify }}</h2>
+<p>{{ site.Data.copy.research_list.copy_these_lines_are_connected_to_reveal_design_principles_that_can_gu | markdownify }}</p>
+</div>
+<ol aria-label="{{ site.Data.copy.research_list.copy_aria_label_research_lines }}" class="rl-index">
+<li>{{ site.Data.copy.research_list.copy_01quantum_materialshydride_superconductors_quantum_anharmonicity_ | markdownify }}</li>
+<li>{{ site.Data.copy.research_list.copy_02information_materialsatomic_scale_ferroelectrics_tunnel_junctio | markdownify }}</li>
+<li>{{ site.Data.copy.research_list.copy_03energy_materialsthermal_transport_anomalous_thermal_expansion_c | markdownify }}</li>
+</ol>
 
+    {{ range site.Data.research_lines }}
+    {{ partial "research-line.html" . }}
+    {{ end }}
+  </section>
+<section aria-labelledby="methods-title" class="research-section" id="methods">
+<div class="research-section-heading">
+<p class="eyebrow">{{ site.Data.copy.research_list.copy_methods | markdownify }}</p>
+<h2 id="methods-title">{{ site.Data.copy.research_list.copy_how_we_work | markdownify }}</h2>
+</div>
+<div class="research-method-grid">
+{{ range site.Data.copy.research_list.methods }}
+<article>
+<h3>{{ .title }}</h3>
+<p>{{ .text | markdownify }}</p>
+{{ with .items }}<ul class="tool-list">{{ range . }}<li>{{ . | markdownify }}</li>{{ end }}</ul>{{ end }}
+</article>
+{{ end }}
+</div>
+<div class="research-subsection" id="methods-tools">
+<div class="research-subsection-heading">
+<p class="eyebrow">{{ site.Data.copy.research_list.copy_methods_tools_2 | markdownify }}</p>
+<h3>{{ site.Data.copy.research_list.copy_codes_workflows_and_computing | markdownify }}</h3>
+<p>{{ site.Data.copy.research_list.copy_the_tools_we_use_most_often_grouped_by_task_tools_tagged_we_contr | markdownify }}</p>
+</div>
+<div class="research-tool-grid">
+{{ range site.Data.copy.research_list.tool_categories }}
+<article>
+<h3>{{ .title }}</h3>
+<p>{{ .text | markdownify }}</p>
+{{ with .items }}<ul class="tool-list">{{ range . }}<li>{{ . | markdownify }}</li>{{ end }}</ul>{{ end }}
+</article>
+{{ end }}
+</div>
+</div>
+</section>
+<section aria-labelledby="selected-pubs-title" class="research-section" id="selected-publications">
+<div class="research-section-heading section-heading">
+<div>
+<p class="eyebrow">{{ site.Data.copy.research_list.copy_publications_2 | markdownify }}</p>
+<h2 id="selected-pubs-title">{{ site.Data.copy.research_list.copy_selected_publications | markdownify }}</h2>
+</div>
+<a href="{{ site.Data.copy.research_list.path_publications | relURL }}">{{ site.Data.copy.research_list.copy_full_publication_list | markdownify }}</a>
+</div>
+    {{ partial "paper-list.html" (dict "class" "publication-list selected-publication-list" "dois" site.Data.copy.research_list.papers_0) }}
+  </section>
+<section class="research-student-callout">
+<div>
+<p class="eyebrow">{{ site.Data.copy.research_list.copy_for_prospective_students | markdownify }}</p>
+<h2>{{ site.Data.copy.research_list.copy_what_you_can_learn_here | markdownify }}</h2>
+<p>{{ site.Data.copy.research_list.copy_students_can_build_skills_in_quantum_mechanical_materials_modelin | markdownify }}</p>
+</div>
+<a class="button" href="{{ site.Data.copy.research_list.path_contact | relURL }}">{{ site.Data.copy.research_list.copy_contact_the_lab | markdownify }}</a>
+</section>
+</section>
 <script>
 (function () {
   const nav = document.querySelector("[data-subnav]");

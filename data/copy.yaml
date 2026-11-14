@@ -1,0 +1,296 @@
+research_list:
+  papers_0:
+  - 10.1126/science.abm5134
+  - 10.1038/s41467-024-44927-7
+  - 10.1038/s41467-025-58594-9
+  - 10.1126/sciadv.ads4925
+  - 10.1021/jacs.4c01702
+  - 10.1002/adfm.202404043
+  - 10.1016/j.commt.2025.100043
+  - 10.1038/s42005-026-02552-4
+  - 10.1038/s43246-019-0005-6
+  - 10.1016/j.actamat.2023.119544
+  path_publications: /publications/
+  path_contact: /contact/
+  copy_aria_label_on_this_page: On this page
+  copy_aria_label_research_focus: Research focus
+  copy_aria_label_research_lines: Research lines
+  copy_on_this_page: On this page
+  copy_overview: <a href="#overview">Overview</a>
+  copy_quantum: <a href="#quantum-materials">Quantum</a>
+  copy_information: <a href="#information-materials">Information</a>
+  copy_energy: <a href="#energy-materials">Energy</a>
+  copy_methods_tools: <a href="#methods">Methods & Tools</a>
+  copy_publications: <a href="#selected-publications">Publications</a>
+  copy_computational_materials_science: Computational materials science
+  copy_from_microscopic_mechanisms_to_materials_design: From microscopic mechanisms to materials design
+  copy_y_matter_lab_studies_how_atomic_structure_electronic_states_magne: Y-Matter Lab studies how atomic
+    structure, electronic states, magnetism, lattice dynamics, defects, and interfaces give rise to useful
+    material properties. We combine first-principles calculations, atomistic simulations, and machine
+    learning to understand existing materials and identify promising new candidates.
+  copy_we_are_especially_interested_in: We are especially interested in
+  copy_information_materials_with_ferroelectric_ferromagnetic_or_multife: Information materials with ferroelectric,
+    ferromagnetic, or multiferroic properties.
+  copy_energy_materials_for_energy_conversion_energy_recovery_and_storag: Energy materials for energy
+    conversion, energy recovery and storage.
+  copy_quantum_materials_with_intriguing_quantum_phenomena_espeically_su: Quantum materials with intriguing
+    quantum phenomena espeically superconductivity and magnetism.
+  copy_computational_workflows_that_connect_theory_data_and_experiment: Computational workflows that connect
+    theory, data, and experiment.
+  copy_materials: Materials
+  copy_major_research_lines: Major Research Lines
+  copy_these_lines_are_connected_to_reveal_design_principles_that_can_gu: These lines are connected to
+    reveal design principles that can guide new experiments and new materials.
+  copy_01quantum_materialshydride_superconductors_quantum_anharmonicity_: <a href="#quantum-materials"><span
+    class="rl-num">01</span><strong>Quantum Materials</strong><span>Hydride superconductors · quantum
+    anharmonicity · polar metals · oxide interfaces</span></a>
+  copy_01: '01'
+  copy_quantum_materials: Quantum Materials
+  copy_02information_materialsatomic_scale_ferroelectrics_tunnel_junctio: <a href="#information-materials"><span
+    class="rl-num">02</span><strong>Information Materials</strong><span>Atomic-scale ferroelectrics ·
+    tunnel junctions · chemical design of ferroic films</span></a>
+  copy_02: '02'
+  copy_information_materials: Information Materials
+  copy_03energy_materialsthermal_transport_anomalous_thermal_expansion_c: <a href="#energy-materials"><span
+    class="rl-num">03</span><strong>Energy Materials</strong><span>Thermal transport · anomalous thermal
+    expansion · catalysis</span></a>
+  copy_03: '03'
+  copy_energy_materials: Energy Materials
+  copy_methods: Methods
+  copy_how_we_work: How We Work
+  copy_methods_tools_2: Methods & Tools
+  copy_codes_workflows_and_computing: Codes, Workflows, and Computing
+  copy_the_tools_we_use_most_often_grouped_by_task_tools_tagged_we_contr: The tools we use most often,
+    grouped by task. Tools tagged <span class="tool-badge">we contribute</span> are codes and methods
+    our group has helped develop.
+  copy_computational_workflow: Computational workflow
+  copy_c: c
+  copy_publications_2: Publications
+  copy_selected_publications: Selected Publications
+  copy_full_publication_list: Full publication list
+  copy_for_prospective_students: For prospective students
+  copy_what_you_can_learn_here: What You Can Learn Here
+  copy_students_can_build_skills_in_quantum_mechanical_materials_modelin: Students can build skills in
+    quantum-mechanical materials modeling, scientific programming, data analysis, machine learning, and
+    physical interpretation. Projects are often collaborative, with room to move from careful mechanism-building
+    to exploratory materials discovery.
+  copy_contact_the_lab: Contact the Lab
+  methods:
+  - title: First-Principles and Atomistic Simulations
+    text: Density functional theory, phonon calculations, lattice dynamics, molecular dynamics, and finite-temperature
+      simulations connect composition and structure with stability, transport, phase transitions, and
+      electron-phonon physics.
+  - title: Materials Informatics
+    text: Machine learning and data-driven workflows help us search large materials spaces, build structure-property
+      models, and prioritize candidates for detailed study, especially when available data are limited.
+  - title: Theory-Experiment Integration
+    text: Computation is used to interpret measurements, test mechanisms, and suggest new compositions,
+      strain states, defects, interfaces, and growth conditions for experimental collaborators.
+  tool_categories:
+  - title: Ab initio codes
+    text: Density functional theory with VASP and Quantum ESPRESSO, plus WIEN2k and Elk for all-electron
+      calculations. Phonons and thermal transport with phonopy and phono3py. Electron–phonon superconductivity
+      with EPW, Migdal–Eliashberg theory, and superconducting DFT. Quantum transport with DFT plus non-equilibrium
+      Green’s functions (QuantumATK), and chemical bonding with LOBSTER.
+    items:
+    - '<a href="https://sscha.eu/" rel="noopener" target="_blank"><strong>SSCHA</strong></a> <span class="tool-badge">we
+      contribute</span>
+
+      <span>The stochastic self-consistent harmonic approximation, for ionic quantum and anharmonic effects
+      on structure, phonons, and superconductivity.</span>'
+    - "<strong>OSEP</strong> <span class=\"tool-badge\">we contribute</span>\n<span>The orbital selective\
+      \ external potential method, which shifts selected orbitals to switch off specific hybridizations\
+      \ and identify the mechanism behind a property, such as lone-pair-driven ferroelectricity or magnetic\
+      \ anisotropy\n                (<a href=\"https://doi.org/10.1007/s11434-014-0628-4\" rel=\"noopener\"\
+      \ target=\"_blank\">review</a>,\n                <a href=\"https://doi.org/10.1002/adts.201900029\"\
+      \ rel=\"noopener\" target=\"_blank\">lone pairs</a>,\n                <a href=\"https://doi.org/10.1016/j.physe.2020.114424\"\
+      \ rel=\"noopener\" target=\"_blank\">magnetic anisotropy</a>).</span>"
+  - title: Crystal structure prediction
+    text: Global structure searches with CALYPSO, CrySPY, USPEX, MAGUS, minima hopping, and genetic algorithms,
+      used to find ground states of new compounds, phases under pressure, and substituted or defective
+      structures.
+    items:
+    - "<strong>Anharmonic structure prediction</strong>\n<span>Iterative-learning searches that rank candidates\
+      \ by their SSCHA free energy, so that quantum and anharmonic effects enter the phase diagram\n \
+      \               (<a href=\"https://doi.org/10.1103/fcrd-8zzf\" rel=\"noopener\" target=\"_blank\"\
+      >Phys. Rev. B 2026</a>).</span>"
+  - title: Computational workflow
+    text: High-throughput workflows that screen databases of 10<sup>5</sup>–10<sup>6</sup> compounds,
+      built on pymatgen and ASE, and run on supercomputers including the EuroHPC system LUMI and the DIPC
+      Supercomputing Center.
+    items:
+    - "<a href=\"https://github.com/Quantum-Accelerators/quacc\" rel=\"noopener\" target=\"_blank\"><strong>QuAcc</strong></a>\
+      \ <span class=\"tool-badge\">we contribute</span>\n<span>The Quantum Accelerator, a workflow library\
+      \ for high-throughput atomistic simulations\n                (<a href=\"https://doi.org/10.48550/arXiv.2609.33823\"\
+      \ rel=\"noopener\" target=\"_blank\">paper</a>).</span>"
+    - '<a href="https://github.com/SMTG-Bham/sumo" rel="noopener" target="_blank"><strong>sumo</strong></a>
+      <span class="tool-badge">we contribute</span>
+
+      <span>A toolkit for analysing and plotting results of ab initio calculations, such as band structures,
+      densities of states, and phonons.</span>'
+  - title: Machine learning
+    text: We use machine learning both to predict properties and to design materials, and we train interatomic
+      potentials that make expensive simulations affordable.
+    items:
+    - '<strong>Forward prediction</strong>
+
+      <span>Models that map composition and structure to properties for fast screening, such as graph
+      neural networks (ALIGNN) that predict electron–phonon coupling and T<sub>c</sub> across large materials
+      databases.</span>'
+    - '<strong>Inverse design</strong>
+
+      <span>Working backwards from a target property to candidate compositions and structures, which are
+      then checked with <em>ab initio</em> calculations and, with collaborators, in experiment.</span>'
+    - '<strong>Training MLIPs</strong>
+
+      <span>Machine-learning interatomic potentials trained on DFT data, from moment tensor potentials
+      to fine-tuned atomistic foundation models such as MatterSim, used for SSCHA calculations, molecular
+      dynamics, and large structure searches.</span>'
+join_list:
+  path_research: /research/
+  copy_open_positions: Open positions
+  copy_current_opportunities: Current Opportunities
+  copy_current_postdoctoral_phd_and_visiting_researcher_opportunities_in: Current postdoctoral, PhD, and
+    visiting researcher opportunities in Y-Matter Lab.
+  copy_funding: 'Funding:'
+  copy_expected_qualifications_and_skills: Expected qualifications and skills
+  copy_required: <strong>Required</strong>
+  copy_desirable: <strong>Desirable</strong>
+  copy_how_to_apply: How to apply
+  copy_official_job_offer: Official job offer
+  copy_there_are_no_advertised_openings_at_the_moment_motivated_candidat: There are no advertised openings
+    at the moment. Motivated candidates are always welcome to get in touch, and new positions will be
+    posted here.
+  copy_prospective_applicants: Prospective applicants
+  copy_joining_through_external_fellowships: Joining Through External Fellowships
+  copy_researchers_interested_in_joining_the_group_with_their_own_fundin: Researchers interested in joining
+    the group with their own funding are encouraged to contact us well in advance of the call deadline
+    so we can prepare a competitive application together.
+  copy_program_website: Program website
+  copy_general_enquiries: General enquiries
+  copy_if_a_specific_call_or_open_position_lists_its_own_application_req: 'If a specific call or open
+    position lists its own application requirements (see <em>How to apply</em> under each opening above),
+    please follow those. Otherwise, when you write to us, please include:'
+  copy_a_cv_with_a_publication_list: A CV with a publication list.
+  copy_research_lines: research lines
+  copy_the_fellowship_or_program_you_plan_to_apply_for_and_its_deadline: The fellowship or program you
+    plan to apply for and its deadline.
+  copy_contact: Contact
+  copy_email_the_pi: Email the PI
+  deadline: 'Deadline:'
+  email: 'Email:'
+  research_statement: A short statement of your research interests and how they connect to our
+  pi_of: ', PI of'
+_default_list:
+  filters:
+  - key: pi
+    label: PI
+  - key: postdoc
+    label: Postdocs
+  - key: students
+    label: Students
+  - key: visiting-scholar
+    label: Visiting Scholars
+  - key: visiting-student
+    label: Visiting Students
+  - key: alumni
+    label: Alumni
+  copy_aria_label_people_filters: People filters
+  copy_aria_label_people_directory: People directory
+  copy_aria_label_profile_links: Profile links
+  copy_aria_label_personal_website: Personal website
+  copy_aria_label_github: GitHub
+  copy_aria_label_google_scholar: Google Scholar
+  copy_aria_label_orcid: ORCID
+  copy_aria_label_researchgate: ResearchGate
+  copy_aria_label_full_publication_list: Full publication list
+  copy_aria_label_map_to_the_inma_office_at_calle_de_pedro_cerbuna_12: Map to the INMA office at Calle
+    de Pedro Cerbuna 12
+  copy_title_inma_office_at_calle_de_pedro_cerbuna_12_on_google_maps: INMA office at Calle de Pedro Cerbuna
+    12 on Google Maps
+  copy_href_https_www_google_com_search_q_weather_zaragoza: https://www.google.com/search?q=weather+Zaragoza
+  copy_our_team_is_based_in_zaragoza_and_san_sebasti_n_each_current_memb: Our team is based in <strong>Zaragoza</strong>
+    and <strong>San Sebastián</strong>. Each current member’s location is highlighted below. Some members
+    also belong to <a href="https://cfm.ehu.es/errealab/" rel="noopener" target="_blank">Errea Lab</a>.
+  copy_current_members: Current members
+  copy_r: R
+  copy_g: G
+  copy_doi: DOI
+  copy_full_free_text: Full free text
+  copy_publications_will_appear_here_soon: Publications will appear here soon.
+  copy_pi: 'PI:'
+  copy_email: 'Email:'
+  copy_affiliation: 'Affiliation:'
+  copy_address: 'Address:'
+  copy_open_address_of_inma_in_google_maps: Open address of INMA in Google Maps
+  copy_funny_tips: Funny Tips
+  copy_sunglasses_check_for_zaragoza: Sunglasses Check for Zaragoza
+  copy_full_forecast: Full forecast
+  copy_to_check_if_you_need_sunglasses_and_sunscreen_when_you_visit_us_c: To check if you need sunglasses
+    and sunscreen when you visit us, check if it is sunny in Zaragoza.
+  copy_loading_live_weather_near_inma: Loading live weather near INMA&#46;&#46;&#46;
+  based_in: Based in
+  bibliography_summary: publications imported from the group bibliography.
+  volume: Vol.
+  number: No.
+  full_text_via: Full free text via
+_default_baseof:
+  copy_href_images_favicon_apple_touch_icon_png: /images/favicon/apple-touch-icon.png
+  copy_href_images_favicon_favicon_32x32_png: /images/favicon/favicon-32x32.png
+  copy_href_images_favicon_favicon_16x16_png: /images/favicon/favicon-16x16.png
+  copy_href_images_favicon_site_webmanifest: /images/favicon/site.webmanifest
+news_list:
+  filters:
+  - key: announcements
+    label: Announcements
+  - key: honors
+    label: Honors
+  - key: output
+    label: Output
+  - key: life
+    label: Life
+  copy_aria_label_news_filters: News filters
+  copy_aria_label_news_timeline: News timeline
+  copy_aria_label_news_keywords: News keywords
+  copy_all: All
+  copy_news_will_appear_here_soon: News will appear here soon.
+partials_footer:
+  path_disclaimer: /disclaimer/
+  copy_disclaimer: Disclaimer
+  copy_visits_loading: 'Visits: <span data-goatcounter-total="">loading</span>'
+partials_header:
+  path_: /
+  path_images_logo_ymatterlab_log_v5_svg: /images/logo/YMatterLab-log-v5.svg
+weather:
+  clear: Clear
+  mainly_clear: Mainly clear
+  partly_cloudy: Partly cloudy
+  cloudy: Cloudy
+  fog: Fog
+  light_drizzle: Light drizzle
+  drizzle: Drizzle
+  heavy_drizzle: Heavy drizzle
+  freezing_drizzle: Freezing drizzle
+  light_rain: Light rain
+  rain: Rain
+  heavy_rain: Heavy rain
+  freezing_rain: Freezing rain
+  light_snow: Light snow
+  snow: Snow
+  heavy_snow: Heavy snow
+  snow_grains: Snow grains
+  rain_showers: Rain showers
+  heavy_showers: Heavy showers
+  snow_showers: Snow showers
+  thunderstorm: Thunderstorm
+  thunderstorm_with_hail: Thunderstorm with hail
+  weather_update: Weather update
+  today: Today
+  weather_request_failed: Weather request failed
+  grab_your_sunglasses_and_sunscreen_for_your_visit_to_inma: Grab your sunglasses and sunscreen for your
+    visit to INMA.
+  you_may_skip_the_sunscreen_today_but_this_is_zaragoza_where_the_sun_usually_comes_back_fast: You may
+    skip the sunscreen today, but this is Zaragoza where the sun usually comes back fast.
+  sunglasses_recommended: Sunglasses recommended
+  sunglasses_optional: Sunglasses optional
+  unavailable: Live weather is hiding behind a cloud. Try the full forecast link before you visit.

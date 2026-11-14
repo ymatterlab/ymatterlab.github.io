@@ -1,31 +1,21 @@
 {{ define "main" }}
 <article class="page-header">
-  <h1>{{ .Title }}</h1>
-  <!-- {{ with .Content }}<div class="page-intro">{{ . }}</div>{{ end }} -->
+<h1>{{ .Title }}</h1>
 </article>
 
 {{ if eq .Section "people" }}
-{{ $filters := slice
-  (dict "key" "pi" "label" "PI")
-  (dict "key" "postdoc" "label" "Postdocs")
-  (dict "key" "students" "label" "Students")
-  (dict "key" "visiting-scholar" "label" "Visiting Scholars")
-  (dict "key" "visiting-student" "label" "Visiting Students")
-  (dict "key" "alumni" "label" "Alumni")
-}}
+{{ $filters := site.Data.copy._default_list.filters }}
 
 <section class="publication-overview people-overview">
-  <p>Our team is based in <strong>Zaragoza</strong> and <strong>San Sebastián</strong>. Each current member’s location is highlighted below. Some members also belong to <a href="https://cfm.ehu.es/errealab/" target="_blank" rel="noopener">Errea Lab</a>.</p>
+<p>{{ site.Data.copy._default_list.copy_our_team_is_based_in_zaragoza_and_san_sebasti_n_each_current_memb | markdownify }}</p>
 </section>
-
-<section class="people-tools" aria-label="People filters">
-  <button class="people-filter is-active" type="button" data-people-filter="current">Current members</button>
+<section aria-label="{{ site.Data.copy._default_list.copy_aria_label_people_filters }}" class="people-tools">
+<button class="people-filter is-active" data-people-filter="current" type="button">{{ site.Data.copy._default_list.copy_current_members | markdownify }}</button>
   {{ range $filters }}
-  <button class="people-filter" type="button" data-people-filter="{{ .key }}">{{ .label }}</button>
+  <button class="people-filter" data-people-filter="{{ .key }}" type="button">{{ .label }}</button>
   {{ end }}
 </section>
-
-<section class="grid two-up" aria-label="People directory">
+<section aria-label="{{ site.Data.copy._default_list.copy_aria_label_people_directory }}" class="grid two-up">
   {{ range site.Data.people }}
   {{ $personName := .name }}
   {{ $personGroup := default "" .group }}
@@ -49,20 +39,20 @@
       {{ $personGroup = "students" }}
     {{ end }}
   {{ end }}
-  <article class="person-card" data-person-card data-person-group="{{ $personGroup }}"{{ if eq $personGroup "alumni" }} hidden{{ end }}>
-    <details class="person-details">
-      <summary class="person-card-header">
+  <article class="person-card" data-person-card="" data-person-group="{{ $personGroup }}" {{ if eq $personGroup "alumni" }} hidden{{ end }}>
+<details class="person-details">
+<summary class="person-card-header">
         {{ with .photo }}
-        <img class="person-photo" src="{{ . | relURL }}" alt="{{ $personName }}">
+        <img alt="{{ $personName }}" class="person-photo" src="{{ . | relURL }}"/>
         {{ else }}
-        <span class="person-photo person-photo-placeholder" aria-hidden="true">{{ substr $personName 0 1 }}</span>
+        <span aria-hidden="true" class="person-photo person-photo-placeholder">{{ substr $personName 0 1 }}</span>
         {{ end }}
 
         <div>
-          <h2>{{ $personName }}</h2>
+<h2>{{ $personName }}</h2>
 
           {{ with .location }}
-          <p class="person-location">Based in {{ . }}</p>
+          <p class="person-location">{{ site.Data.copy._default_list.based_in }} {{ . }}</p>
           {{ end }}
 
           {{ with .role }}
@@ -75,76 +65,75 @@
 
           {{ with .email }}
           <p class="person-email">
-            <a href="mailto:{{ . }}">{{ . }}</a>
-          </p>
+<a href="mailto:{{ . }}">{{ . }}</a>
+</p>
           {{ end }}
 
           {{ if or .website .github .scholar .orcid .researchgate }}
-          <div class="person-profile-links" aria-label="Profile links">
+          <div aria-label="{{ site.Data.copy._default_list.copy_aria_label_profile_links }}" class="person-profile-links">
             {{ with .website }}
-            <a class="person-icon-link" href="{{ . }}" target="_blank" rel="noopener" aria-label="Personal website">
-              <svg class="profile-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <circle cx="12" cy="12" r="9"></circle>
-                <path d="M3 12h18"></path>
-                <path d="M12 3c2.1 2.5 3.2 5.5 3.2 9S14.1 18.5 12 21"></path>
-                <path d="M12 3c-2.1 2.5-3.2 5.5-3.2 9s1.1 6.5 3.2 9"></path>
-              </svg>
-            </a>
+            <a aria-label="{{ site.Data.copy._default_list.copy_aria_label_personal_website }}" class="person-icon-link" href="{{ . }}" rel="noopener" target="_blank">
+<svg aria-hidden="true" class="profile-icon" focusable="false" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="9"></circle>
+<path d="M3 12h18"></path>
+<path d="M12 3c2.1 2.5 3.2 5.5 3.2 9S14.1 18.5 12 21"></path>
+<path d="M12 3c-2.1 2.5-3.2 5.5-3.2 9s1.1 6.5 3.2 9"></path>
+</svg>
+</a>
             {{ end }}
 
             {{ with .github }}
-            <a class="person-icon-link" href="{{ . }}" target="_blank" rel="noopener" aria-label="GitHub">
-              <svg class="profile-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <path d="M9 19c-4.5 1.5-4.5-2.5-6.3-3"></path>
-                <path d="M15 22v-3.9a3.4 3.4 0 0 0-1-2.6c3.3-.4 6.8-1.7 6.8-7.5a5.8 5.8 0 0 0-1.6-4 5.4 5.4 0 0 0-.1-4S17.8-.4 15 1.5a13.4 13.4 0 0 0-6 0C6.2-.4 4.9 0 4.9 0a5.4 5.4 0 0 0-.1 4 5.8 5.8 0 0 0-1.6 4c0 5.8 3.5 7.1 6.8 7.5a3.4 3.4 0 0 0-1 2.6V22"></path>
-              </svg>
-            </a>
+            <a aria-label="{{ site.Data.copy._default_list.copy_aria_label_github }}" class="person-icon-link" href="{{ . }}" rel="noopener" target="_blank">
+<svg aria-hidden="true" class="profile-icon" focusable="false" viewbox="0 0 24 24">
+<path d="M9 19c-4.5 1.5-4.5-2.5-6.3-3"></path>
+<path d="M15 22v-3.9a3.4 3.4 0 0 0-1-2.6c3.3-.4 6.8-1.7 6.8-7.5a5.8 5.8 0 0 0-1.6-4 5.4 5.4 0 0 0-.1-4S17.8-.4 15 1.5a13.4 13.4 0 0 0-6 0C6.2-.4 4.9 0 4.9 0a5.4 5.4 0 0 0-.1 4 5.8 5.8 0 0 0-1.6 4c0 5.8 3.5 7.1 6.8 7.5a3.4 3.4 0 0 0-1 2.6V22"></path>
+</svg>
+</a>
             {{ end }}
 
             {{ with .scholar }}
-            <a class="person-icon-link" href="{{ . }}" target="_blank" rel="noopener" aria-label="Google Scholar">
-              <svg class="profile-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <path d="M12 3 2.8 10.1 12 17.2l9.2-7.1L12 3Z"></path>
-                <path d="M6.5 12.9v4.2c0 1.5 2.4 2.9 5.5 2.9s5.5-1.4 5.5-2.9v-4.2L12 17.2l-5.5-4.3Z"></path>
-                <path d="M19.5 11.4v4.1"></path>
-              </svg>
-            </a>
+            <a aria-label="{{ site.Data.copy._default_list.copy_aria_label_google_scholar }}" class="person-icon-link" href="{{ . }}" rel="noopener" target="_blank">
+<svg aria-hidden="true" class="profile-icon" focusable="false" viewbox="0 0 24 24">
+<path d="M12 3 2.8 10.1 12 17.2l9.2-7.1L12 3Z"></path>
+<path d="M6.5 12.9v4.2c0 1.5 2.4 2.9 5.5 2.9s5.5-1.4 5.5-2.9v-4.2L12 17.2l-5.5-4.3Z"></path>
+<path d="M19.5 11.4v4.1"></path>
+</svg>
+</a>
             {{ end }}
 
             {{ with .orcid }}
-            <a class="person-icon-link orcid-link" href="{{ . }}" target="_blank" rel="noopener" aria-label="ORCID">
-              <svg class="profile-icon orcid-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <circle cx="12" cy="12" r="9"></circle>
-                <path d="M9 8.5v7"></path>
-                <path d="M11.4 15.5h1.7c2 0 3.4-1.4 3.4-3.5s-1.4-3.5-3.4-3.5h-1.7v7Z"></path>
-                <circle cx="9" cy="6.2" r="0.4"></circle>
-              </svg>
-            </a>
+            <a aria-label="{{ site.Data.copy._default_list.copy_aria_label_orcid }}" class="person-icon-link orcid-link" href="{{ . }}" rel="noopener" target="_blank">
+<svg aria-hidden="true" class="profile-icon orcid-icon" focusable="false" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="9"></circle>
+<path d="M9 8.5v7"></path>
+<path d="M11.4 15.5h1.7c2 0 3.4-1.4 3.4-3.5s-1.4-3.5-3.4-3.5h-1.7v7Z"></path>
+<circle cx="9" cy="6.2" r="0.4"></circle>
+</svg>
+</a>
             {{ end }}
 
             {{ with .researchgate }}
-            <a class="person-icon-link researchgate-link" href="{{ . }}" target="_blank" rel="noopener" aria-label="ResearchGate">
-              <svg class="profile-icon researchgate-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <text class="researchgate-r" x="4.2" y="16.8">R</text>
-                <text class="researchgate-g" x="13.1" y="10.2">G</text>
-              </svg>
-            </a>
+            <a aria-label="{{ site.Data.copy._default_list.copy_aria_label_researchgate }}" class="person-icon-link researchgate-link" href="{{ . }}" rel="noopener" target="_blank">
+<svg aria-hidden="true" class="profile-icon researchgate-icon" focusable="false" viewbox="0 0 24 24">
+<text class="researchgate-r" x="4.2" y="16.8">{{ site.Data.copy._default_list.copy_r | markdownify }}</text>
+<text class="researchgate-g" x="13.1" y="10.2">{{ site.Data.copy._default_list.copy_g | markdownify }}</text>
+</svg>
+</a>
             {{ end }}
           </div>
           {{ end }}
         </div>
-      </summary>
+</summary>
 
       {{ with .bio }}
       <div class="person-bio">
-        <p>{{ . }}</p>
-      </div>
+<p>{{ . }}</p>
+</div>
       {{ end }}
     </details>
-  </article>
+</article>
   {{ end }}
 </section>
-
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   const filterButtons = Array.from(document.querySelectorAll("[data-people-filter]"));
@@ -173,38 +162,32 @@ document.addEventListener("DOMContentLoaded", function () {
 {{ else if eq .Section "publications" }}
 {{ $pubs := sort site.Data.publications "sort_date" "desc" }}
 <section class="publication-overview">
-  <p><strong>{{ len $pubs }}</strong> publications imported from the group bibliography.</p>
+<p><strong>{{ len $pubs }}</strong> {{ site.Data.copy._default_list.bibliography_summary }}</p>
 </section>
-
-<section class="publication-catalog" aria-label="Full publication list">
-  <ol class="publication-list full-publication-list">
+<section aria-label="{{ site.Data.copy._default_list.copy_aria_label_full_publication_list }}" class="publication-catalog">
+<ol class="publication-list full-publication-list">
     {{ range $pubs }}
     <li class="publication-item">
-      <article class="publication-entry">
-        <div class="publication-year-pill">{{ .year }}</div>
-
-        <div class="publication-body">
-          <div class="publication-title-row">
-            <h2>{{ .title }}</h2>
+<article class="publication-entry">
+<div class="publication-year-pill">{{ .year }}</div>
+<div class="publication-body">
+<div class="publication-title-row">
+<h2>{{ .title }}</h2>
 
             {{ with .doi }}
             <div class="publication-altmetric">
-              <div class="altmetric-embed"
-                   data-badge-popover="right"
-                   data-doi="{{ . }}">
-              </div>
-            </div>
+<div class="altmetric-embed" data-badge-popover="right" data-doi="{{ . }}">
+</div>
+</div>
             {{ end }}
           </div>
-
-          <p class="publication-authors">
+<p class="publication-authors">
             {{ replace .authors "Yue-Wen Fang" "<strong>Yue-Wen Fang</strong>" | safeHTML }}
           </p>
-
-          <p class="publication-meta">
+<p class="publication-meta">
             {{ with .journal }}<span>{{ . }}</span>{{ end }}
-            {{ with .volume }}<span>Vol. {{ . }}</span>{{ end }}
-            {{ with .number }}<span>No. {{ . }}</span>{{ end }}
+            {{ with .volume }}<span>{{ site.Data.copy._default_list.volume }} {{ . }}</span>{{ end }}
+            {{ with .number }}<span>{{ site.Data.copy._default_list.number }} {{ . }}</span>{{ end }}
             {{ with .pages }}<span>{{ . }}</span>{{ end }}
           </p>
 
@@ -216,79 +199,55 @@ document.addEventListener("DOMContentLoaded", function () {
           {{ if or $doiURL .free_full_text_url }}
           <div class="publication-actions">
             {{ with $doiURL }}
-            <a href="{{ . }}" target="_blank" rel="noopener">DOI</a>
+            <a href="{{ . }}" rel="noopener" target="_blank">{{ site.Data.copy._default_list.copy_doi | markdownify }}</a>
             {{ end }}
 
             {{ $freeSource := .free_full_text_source }}
             {{ with .free_full_text_url }}
-            <a href="{{ . }}"
-               target="_blank"
-               rel="noopener"
-               {{ with $freeSource }}title="Full free text via {{ . }}"{{ end }}>
-              Full free text
-            </a>
+            <a {{ with $freeSource }}title="{{ site.Data.copy._default_list.full_text_via }} {{ . }}"{{ end }} href="{{ . }}" rel="noopener" target="_blank">{{ site.Data.copy._default_list.copy_full_free_text | markdownify }}</a>
             {{ end }}
           </div>
           {{ end }}
         </div>
-      </article>
-    </li>
+</article>
+</li>
     {{ else }}
-    <li>Publications will appear here soon.</li>
+    <li>{{ site.Data.copy._default_list.copy_publications_will_appear_here_soon | markdownify }}</li>
     {{ end }}
   </ol>
 </section>
-
-<script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>
+<script async="" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>
 
 {{ else if eq .Section "contact" }}
 {{ $mapsQuery := site.Params.address | urlquery }}
 {{ $mapsLink := printf "https://www.google.com/maps/search/?api=1&query=%s" $mapsQuery }}
 {{ $mapsEmbed := printf "https://www.google.com/maps?q=%s&output=embed" $mapsQuery }}
 <section class="card contact-card">
-  <div class="contact-details">
-    <p><strong>PI:</strong> {{ site.Params.pi_name }}</p>
-    <p><strong>Email:</strong> <a href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a></p>
-    <p><strong>Affiliation:</strong> {{ site.Params.affiliation }}</p>
-    <p><strong>Address:</strong> {{ site.Params.address }}</p>
-  </div>
-
-  <aside class="contact-map" aria-label="Map to the INMA office at Calle de Pedro Cerbuna 12">
-    <iframe
-      title="INMA office at Calle de Pedro Cerbuna 12 on Google Maps"
-      src="{{ $mapsEmbed | safeURL }}"
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
-    <a href="{{ $mapsLink | safeURL }}" target="_blank" rel="noopener">
-      Open address of INMA in Google Maps
-    </a>
-  </aside>
+<div class="contact-details">
+<p><strong>{{ site.Data.copy._default_list.copy_pi | markdownify }}</strong> {{ site.Params.pi_name }}</p>
+<p><strong>{{ site.Data.copy._default_list.copy_email | markdownify }}</strong> <a href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a></p>
+<p><strong>{{ site.Data.copy._default_list.copy_affiliation | markdownify }}</strong> {{ site.Params.affiliation }}</p>
+<p><strong>{{ site.Data.copy._default_list.copy_address | markdownify }}</strong> {{ site.Params.address }}</p>
+</div>
+<aside aria-label="{{ site.Data.copy._default_list.copy_aria_label_map_to_the_inma_office_at_calle_de_pedro_cerbuna_12 }}" class="contact-map">
+<iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="{{ $mapsEmbed | safeURL }}" title="{{ site.Data.copy._default_list.copy_title_inma_office_at_calle_de_pedro_cerbuna_12_on_google_maps }}">
+</iframe>
+<a href="{{ $mapsLink | safeURL }}" rel="noopener" target="_blank">{{ site.Data.copy._default_list.copy_open_address_of_inma_in_google_maps | markdownify }}</a>
+</aside>
 </section>
-
-<section class="card weather-card" aria-labelledby="weather-title">
-  <div class="weather-card-heading">
-    <div>
-      <p class="eyebrow">Funny Tips</p>
-      <h2 id="weather-title">Sunglasses Check for Zaragoza</h2>
-    </div>
-    <a href="https://www.google.com/search?q=weather+Zaragoza" target="_blank" rel="noopener">
-      Full forecast
-    </a>
-  </div>
-
-  <p class="weather-tip">
-    To check if you need sunglasses and sunscreen when you visit us, check if it is sunny in Zaragoza.
-  </p>
-
-  <div class="weather-widget"
-       data-weather-widget
-       data-latitude="41.6488"
-       data-longitude="-0.8891">
-    <p class="weather-loading">Loading live weather near INMA...</p>
-  </div>
+<section aria-labelledby="weather-title" class="card weather-card">
+<div class="weather-card-heading">
+<div>
+<p class="eyebrow">{{ site.Data.copy._default_list.copy_funny_tips | markdownify }}</p>
+<h2 id="weather-title">{{ site.Data.copy._default_list.copy_sunglasses_check_for_zaragoza | markdownify }}</h2>
+</div>
+<a href="{{ site.Data.copy._default_list.copy_href_https_www_google_com_search_q_weather_zaragoza }}" rel="noopener" target="_blank">{{ site.Data.copy._default_list.copy_full_forecast | markdownify }}</a>
+</div>
+<p class="weather-tip">{{ site.Data.copy._default_list.copy_to_check_if_you_need_sunglasses_and_sunscreen_when_you_visit_us_c | markdownify }}</p>
+<div class="weather-widget" data-latitude="41.6488" data-longitude="-0.8891" data-weather-widget="">
+<p class="weather-loading">{{ site.Data.copy._default_list.copy_loading_live_weather_near_inma | markdownify }}</p>
+</div>
 </section>
-
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   const widget = document.querySelector("[data-weather-widget]");
@@ -308,39 +267,40 @@ document.addEventListener("DOMContentLoaded", function () {
     forecast_days: "4"
   });
 
+  const weatherCopy = {{ site.Data.copy.weather | jsonify | safeJS }};
   const weatherLabels = {
-    0: "Clear",
-    1: "Mainly clear",
-    2: "Partly cloudy",
-    3: "Cloudy",
-    45: "Fog",
-    48: "Fog",
-    51: "Light drizzle",
-    53: "Drizzle",
-    55: "Heavy drizzle",
-    56: "Freezing drizzle",
-    57: "Freezing drizzle",
-    61: "Light rain",
-    63: "Rain",
-    65: "Heavy rain",
-    66: "Freezing rain",
-    67: "Freezing rain",
-    71: "Light snow",
-    73: "Snow",
-    75: "Heavy snow",
-    77: "Snow grains",
-    80: "Rain showers",
-    81: "Rain showers",
-    82: "Heavy showers",
-    85: "Snow showers",
-    86: "Snow showers",
-    95: "Thunderstorm",
-    96: "Thunderstorm with hail",
-    99: "Thunderstorm with hail"
+    0: weatherCopy.clear,
+    1: weatherCopy.mainly_clear,
+    2: weatherCopy.partly_cloudy,
+    3: weatherCopy.cloudy,
+    45: weatherCopy.fog,
+    48: weatherCopy.fog,
+    51: weatherCopy.light_drizzle,
+    53: weatherCopy.drizzle,
+    55: weatherCopy.heavy_drizzle,
+    56: weatherCopy.freezing_drizzle,
+    57: weatherCopy.freezing_drizzle,
+    61: weatherCopy.light_rain,
+    63: weatherCopy.rain,
+    65: weatherCopy.heavy_rain,
+    66: weatherCopy.freezing_rain,
+    67: weatherCopy.freezing_rain,
+    71: weatherCopy.light_snow,
+    73: weatherCopy.snow,
+    75: weatherCopy.heavy_snow,
+    77: weatherCopy.snow_grains,
+    80: weatherCopy.rain_showers,
+    81: weatherCopy.rain_showers,
+    82: weatherCopy.heavy_showers,
+    85: weatherCopy.snow_showers,
+    86: weatherCopy.snow_showers,
+    95: weatherCopy.thunderstorm,
+    96: weatherCopy.thunderstorm_with_hail,
+    99: weatherCopy.thunderstorm_with_hail
   };
 
   function describeWeather(code) {
-    return weatherLabels[code] || "Weather update";
+    return weatherLabels[code] || weatherCopy.weather_update;
   }
 
   function isSunny(code, precipitation, probability) {
@@ -351,7 +311,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function formatDay(date, index) {
     if (index === 0) {
-      return "Today";
+      return weatherCopy.today;
     }
     return new Intl.DateTimeFormat("en", { weekday: "short" }).format(new Date(`${date}T12:00:00`));
   }
@@ -359,7 +319,7 @@ document.addEventListener("DOMContentLoaded", function () {
   fetch(endpoint)
     .then(function (response) {
       if (!response.ok) {
-        throw new Error("Weather request failed");
+        throw new Error(weatherCopy.weather_request_failed);
       }
       return response.json();
     })
@@ -372,8 +332,8 @@ document.addEventListener("DOMContentLoaded", function () {
         daily.precipitation_probability_max[0] || 0
       );
       const currentAdvice = currentSunny
-        ? "Grab your sunglasses and sunscreen for your visit to INMA."
-        : "You may skip the sunscreen today, but this is Zaragoza where the sun usually comes back fast.";
+        ? weatherCopy.grab_your_sunglasses_and_sunscreen_for_your_visit_to_inma
+        : weatherCopy.you_may_skip_the_sunscreen_today_but_this_is_zaragoza_where_the_sun_usually_comes_back_fast;
 
       const dayCards = daily.time.slice(1, 4).map(function (date, index) {
         const dayIndex = index + 1;
@@ -395,7 +355,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       widget.innerHTML = `
         <div class="weather-now ${currentSunny ? "is-sunny" : ""}">
-          <span class="weather-status">${currentSunny ? "Sunglasses recommended" : "Sunglasses optional"}</span>
+          <span class="weather-status">${currentSunny ? weatherCopy.sunglasses_recommended : weatherCopy.sunglasses_optional}</span>
           <div>
             <strong>${Math.round(current.temperature_2m)} °C</strong>
             <p>${describeWeather(current.weather_code)}. ${currentAdvice}</p>
@@ -409,7 +369,7 @@ document.addEventListener("DOMContentLoaded", function () {
     .catch(function () {
       widget.innerHTML = `
         <p class="weather-loading">
-          Live weather is hiding behind a cloud. Try the full forecast link before you visit.
+          ${weatherCopy.unavailable}
         </p>
       `;
     });

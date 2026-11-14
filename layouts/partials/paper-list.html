@@ -14,9 +14,9 @@
       {{- if eq (lower (printf "%v" .doi)) $want }}
         {{- $found = true }}
   <li>
-    <a href="{{ .doi_url | default (printf "https://doi.org/%s" .doi) }}" target="_blank" rel="noopener">{{ .title | htmlUnescape }}</a>
-    <span>{{ .journal | htmlUnescape }} ({{ .year }})</span>
-  </li>
+<a href="{{ .doi_url | default (printf "https://doi.org/%s" .doi) }}" rel="noopener" target="_blank">{{ .title | htmlUnescape }}</a>
+<span>{{ .journal | htmlUnescape }} ({{ .year }})</span>
+</li>
       {{- end }}
     {{- end }}
   {{- end }}

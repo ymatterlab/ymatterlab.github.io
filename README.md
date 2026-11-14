@@ -42,3 +42,24 @@ If you are not a member but believe you have a relevant contribution, feel free 
 5. **Submit a Pull Request (PR)**
    - Provide a clear description of what you changed and why.
    - Reference any related issues if applicable.
+## Content and local preview
+
+Use Hugo (the deployment workflow pins 0.128.0) and Python with PyYAML installed.
+Run `make serve` and open http://localhost:1313, or build with `hugo --minify`.
+Work on `develop` or a feature branch; `main` deploys production.
+
+- Home: `content/_index.md` front matter contains the hero, featured papers, labels,
+  links, sponsor images and captions. Shared lab identity and research-area cards
+  remain in `config.yaml`.
+- Research: `data/copy.yaml` → `research_list` contains overview, methods, tools,
+  navigation and callout text. `data/research_lines.yaml` contains the three locked
+  research lines, figures, captions and DOI selections. Preserve their wording and order.
+- Other page labels and shared interface copy: `data/copy.yaml`, grouped by layout.
+  Rich copy supports Markdown and inline HTML for scientific subscripts and citations.
+- News: `content/news/*.md`; people: `data/people.yaml`; opportunities and fellowships:
+  `content/join/_index.md`; remaining page prose: `content/<page>/_index.md`.
+- Publications: add DOIs in `pubsrc/publications.dois.txt`, run `make pubs`, and commit
+  the generated bibliography and cache. See `pubsrc/README.md`; never edit the generated YAML.
+
+Never stage `my-publicatins/` or other private source material. Keep that directory
+in your checkout's `.git/info/exclude` and check `git status` before committing.

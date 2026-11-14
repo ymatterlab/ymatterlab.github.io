@@ -1,0 +1,30 @@
+<article class="rl" id="{{ .id }}">
+  <header class="rl-head">
+    <div class="rl-summary">
+      <span class="rl-num">{{ .number }}</span>
+      <h3>{{ .title }}</h3>
+      <p>{{ .summary | markdownify }}</p>
+      <ul>{{ range .bullets }}<li>{{ . | markdownify }}</li>{{ end }}</ul>
+    </div>
+    <aside class="rl-questions" aria-label="{{ .questions_title }}">
+      <h4>{{ .questions_title }}</h4>
+      <ul>{{ range .questions }}<li>{{ . | markdownify }}</li>{{ end }}</ul>
+    </aside>
+  </header>
+  <div class="rl-themes">
+    {{ range .themes }}<section class="rl-theme"><h4>{{ .title }}</h4><p>{{ .text | markdownify }}</p></section>{{ end }}
+  </div>
+  <div class="rl-figures">
+    {{ range .figures }}
+    <figure class="research-figure research-figure-image" style="{{ .style | safeCSS }}">
+      <a href="{{ .image | relURL }}" target="_blank" rel="noopener"><img src="{{ .image | relURL }}" width="{{ .width }}" height="{{ .height }}" loading="lazy" alt="{{ .alt }}"></a>
+      <figcaption>{{ .caption | markdownify }}</figcaption>
+    </figure>
+    {{ end }}
+  </div>
+  <div class="rl-papers">
+    <h4>{{ .papers_title }}</h4>
+    {{ partial "paper-list.html" (dict "dois" .papers) }}
+    <details class="research-more-papers"><summary>{{ .more_title }}</summary>{{ partial "paper-list.html" (dict "dois" .more_papers) }}</details>
+  </div>
+</article>
