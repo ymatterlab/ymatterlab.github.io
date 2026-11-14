@@ -16,8 +16,6 @@
 }
 .skip-link:focus { transform: translateY(0); }
 .tool-list a { text-decoration: underline; text-underline-offset: .15em; }
-.person-contacts { margin-top: .75rem; }
-.person-contacts .person-email { margin-top: 0; }
 [data-rotation-toggle] {
   margin-top: .5rem;
   padding: .4rem .8rem;

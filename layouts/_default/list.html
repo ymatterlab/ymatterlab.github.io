@@ -4,243 +4,213 @@
 </article>
 
 {{ if eq .Section "people" }}
-{{ $filters := site.Data.copy._default_list.filters }}
+{{ $copy := site.Data.copy._default_list }}
+{{ $filters := $copy.filters }}
+{{ $current := slice }}
+{{ $alumni := slice }}
+{{ range site.Data.people }}
+  {{ if eq (partial "person-group.html" .) "alumni" }}{{ $alumni = $alumni | append . }}{{ else }}{{ $current = $current | append . }}{{ end }}
+{{ end }}
 
 <section class="publication-overview people-overview">
-<p>{{ site.Data.copy._default_list.copy_people_member_note | markdownify }}</p>
-<p>{{ site.Data.copy._default_list.copy_our_team_is_based_in_zaragoza_and_san_sebasti_n_each_current_memb | markdownify }}</p>
+<p class="people-maintenance">{{ $copy.copy_people_member_note | markdownify }}</p>
+<p>{{ $copy.copy_our_team_is_based_in_zaragoza_and_san_sebasti_n_each_current_memb | markdownify }}</p>
 </section>
-<section aria-label="{{ site.Data.copy._default_list.copy_aria_label_people_filters }}" class="people-tools">
-<button aria-pressed="true" class="people-filter is-active" data-people-filter="current" type="button">{{ site.Data.copy._default_list.copy_current_members | markdownify }}</button>
-  {{ range $filters }}
-  <button aria-pressed="false" class="people-filter" data-people-filter="{{ .key }}" type="button">{{ .label }}</button>
-  {{ end }}
-</section>
-<section aria-label="{{ site.Data.copy._default_list.copy_aria_label_people_directory }}" class="grid two-up">
-  {{ range site.Data.people }}
-  {{ $personName := .name }}
-  {{ $personGroup := default "" .group }}
-  {{ if not $personGroup }}
-    {{ $role := lower (default "" .role) }}
-    {{ if in $role "principal investigator" }}
-      {{ $personGroup = "pi" }}
-    {{ else if in $role "postdoc" }}
-      {{ $personGroup = "postdoc" }}
-    {{ else if in $role "visiting" }}
-      {{ if in $role "scholar" }}
-        {{ $personGroup = "visiting-scholar" }}
-      {{ else }}
-        {{ $personGroup = "visiting-student" }}
-      {{ end }}
-    {{ else if in $role "alumni" }}
-      {{ $personGroup = "alumni" }}
-    {{ else if or (in $role "student") (in $role "phd") }}
-      {{ $personGroup = "students" }}
-    {{ else }}
-      {{ $personGroup = "students" }}
-    {{ end }}
-  {{ end }}
-  <article class="person-card" data-person-card="" data-person-group="{{ $personGroup }}" {{ if eq $personGroup "alumni" }} hidden{{ end }}>
-<details class="person-details">
-<summary class="person-card-header">
-        {{ with .photo }}
-        <img alt="{{ $personName }}" class="person-photo" src="{{ . | relURL }}"/>
-        {{ else }}
-        <span aria-hidden="true" class="person-photo person-photo-placeholder">{{ substr $personName 0 1 }}</span>
-        {{ end }}
 
-        <div>
-<h2>{{ $personName }}</h2>
-
-          {{ with .location }}
-          <p class="person-location">{{ site.Data.copy._default_list.based_in }} {{ . }}</p>
-          {{ end }}
-
-
-
-          {{ with .time }}
-          <p class="person-time">{{ . }}</p>
-          {{ end }}
-
-
-        </div>
-</summary>
-
-      {{ with .bio }}
-      <div class="person-bio">
-<p>{{ . }}</p>
+<section aria-labelledby="current-heading" class="people-section">
+<div class="people-section-heading">
+<h2 id="current-heading">{{ $copy.copy_current_members | markdownify }}</h2>
+{{/* Filters only work with JavaScript, so they stay hidden until the script runs. */}}
+<div aria-label="{{ $copy.copy_aria_label_people_filters }}" class="people-tools" role="group" data-people-tools hidden>
+<button aria-pressed="true" class="people-filter is-active" data-people-filter="current" type="button">{{ $copy.copy_all }}</button>
+{{ range $filters }}
+  {{ $key := .key }}
+  {{ $n := 0 }}
+  {{ range $current }}{{ if eq (partial "person-group.html" .) $key }}{{ $n = add $n 1 }}{{ end }}{{ end }}
+  {{ if gt $n 0 }}<button aria-pressed="false" class="people-filter" data-people-filter="{{ .key }}" type="button">{{ .label }}</button>{{ end }}
+{{ end }}
 </div>
-      {{ end }}
-    </details>
-<div class="person-contacts">
-          {{ with .role }}
-          <p class="muted">{{ . | markdownify }}</p>
-          {{ end }}
-          {{ with .email }}
-          <p class="person-email">
-<a href="mailto:{{ . }}">{{ . }}</a>
-</p>
-          {{ end }}
-
-          {{ if or .website .github .scholar .orcid .researchgate }}
-          <div aria-label="{{ site.Data.copy._default_list.copy_aria_label_profile_links }}" class="person-profile-links" role="group">
-            {{ with .website }}
-            <a aria-label="{{ site.Data.copy._default_list.copy_aria_label_personal_website }}" class="person-icon-link" href="{{ . }}" rel="noopener" target="_blank">
-<svg aria-hidden="true" class="profile-icon" focusable="false" viewBox="0 0 24 24">
-<circle cx="12" cy="12" r="9"></circle>
-<path d="M3 12h18"></path>
-<path d="M12 3c2.1 2.5 3.2 5.5 3.2 9S14.1 18.5 12 21"></path>
-<path d="M12 3c-2.1 2.5-3.2 5.5-3.2 9s1.1 6.5 3.2 9"></path>
-</svg>
-</a>
-            {{ end }}
-
-            {{ with .github }}
-            <a aria-label="{{ site.Data.copy._default_list.copy_aria_label_github }}" class="person-icon-link" href="{{ . }}" rel="noopener" target="_blank">
-<svg aria-hidden="true" class="profile-icon" focusable="false" viewBox="0 0 24 24">
-<path d="M9 19c-4.5 1.5-4.5-2.5-6.3-3"></path>
-<path d="M15 22v-3.9a3.4 3.4 0 0 0-1-2.6c3.3-.4 6.8-1.7 6.8-7.5a5.8 5.8 0 0 0-1.6-4 5.4 5.4 0 0 0-.1-4S17.8-.4 15 1.5a13.4 13.4 0 0 0-6 0C6.2-.4 4.9 0 4.9 0a5.4 5.4 0 0 0-.1 4 5.8 5.8 0 0 0-1.6 4c0 5.8 3.5 7.1 6.8 7.5a3.4 3.4 0 0 0-1 2.6V22"></path>
-</svg>
-</a>
-            {{ end }}
-
-            {{ with .scholar }}
-            <a aria-label="{{ site.Data.copy._default_list.copy_aria_label_google_scholar }}" class="person-icon-link" href="{{ . }}" rel="noopener" target="_blank">
-<svg aria-hidden="true" class="profile-icon" focusable="false" viewBox="0 0 24 24">
-<path d="M12 3 2.8 10.1 12 17.2l9.2-7.1L12 3Z"></path>
-<path d="M6.5 12.9v4.2c0 1.5 2.4 2.9 5.5 2.9s5.5-1.4 5.5-2.9v-4.2L12 17.2l-5.5-4.3Z"></path>
-<path d="M19.5 11.4v4.1"></path>
-</svg>
-</a>
-            {{ end }}
-
-            {{ with .orcid }}
-            <a aria-label="{{ site.Data.copy._default_list.copy_aria_label_orcid }}" class="person-icon-link orcid-link" href="{{ . }}" rel="noopener" target="_blank">
-<svg aria-hidden="true" class="profile-icon orcid-icon" focusable="false" viewBox="0 0 24 24">
-<circle cx="12" cy="12" r="9"></circle>
-<path d="M9 8.5v7"></path>
-<path d="M11.4 15.5h1.7c2 0 3.4-1.4 3.4-3.5s-1.4-3.5-3.4-3.5h-1.7v7Z"></path>
-<circle cx="9" cy="6.2" r="0.4"></circle>
-</svg>
-</a>
-            {{ end }}
-
-            {{ with .researchgate }}
-            <a aria-label="{{ site.Data.copy._default_list.copy_aria_label_researchgate }}" class="person-icon-link researchgate-link" href="{{ . }}" rel="noopener" target="_blank">
-<svg aria-hidden="true" class="profile-icon researchgate-icon" focusable="false" viewBox="0 0 24 24">
-<path d="M5 18V7h4a3 3 0 0 1 0 6H5m4 0 4 5M20 5a3 3 0 1 0 0 5V8h-2"></path>
-</svg>
-</a>
-            {{ end }}
-          </div>
-          {{ end }}
 </div>
-</article>
-  {{ end }}
+<div class="people-grid" data-current-grid>
+{{ range $current }}{{ partial "person-card.html" . }}{{ end }}
+</div>
 </section>
+
+{{ with $alumni }}
+<section aria-labelledby="alumni-heading" class="people-section people-alumni">
+<div class="people-section-heading">
+<h2 id="alumni-heading">{{ $copy.copy_alumni | markdownify }}</h2>
+</div>
+<div class="people-grid">
+{{ range . }}{{ partial "person-card.html" . }}{{ end }}
+</div>
+</section>
+{{ end }}
+
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-  const filterButtons = Array.from(document.querySelectorAll("[data-people-filter]"));
-  const cards = Array.from(document.querySelectorAll("[data-person-card]"));
-
-  function setFilter(filter) {
-    filterButtons.forEach(function (button) {
-      button.classList.toggle("is-active", button.dataset.peopleFilter === filter);
-      button.setAttribute("aria-pressed", String(button.dataset.peopleFilter === filter));
-    });
-
-    cards.forEach(function (card) {
-      card.hidden = filter === "current"
-        ? card.dataset.personGroup === "alumni"
-        : card.dataset.personGroup !== filter;
-    });
-  }
-
-  filterButtons.forEach(function (button) {
+(function () {
+  const tools = document.querySelector("[data-people-tools]");
+  if (!tools) return;
+  const buttons = Array.from(tools.querySelectorAll("[data-people-filter]"));
+  const cards = Array.from(document.querySelectorAll("[data-current-grid] [data-person-card]"));
+  tools.hidden = false;
+  buttons.forEach(function (button) {
     button.addEventListener("click", function () {
-      setFilter(button.dataset.peopleFilter);
+      const filter = button.dataset.peopleFilter;
+      buttons.forEach(function (b) {
+        const on = b === button;
+        b.classList.toggle("is-active", on);
+        b.setAttribute("aria-pressed", String(on));
+      });
+      cards.forEach(function (card) {
+        card.hidden = filter !== "current" && card.dataset.personGroup !== filter;
+      });
     });
   });
-});
+})();
 </script>
 
 {{ else if eq .Section "publications" }}
+{{ $copy := site.Data.copy._default_list }}
 {{ $pubs := sort site.Data.publications "sort_date" "desc" }}
+{{ $years := slice }}
+{{ range $pubs }}{{ if not (in $years .year) }}{{ $years = $years | append .year }}{{ end }}{{ end }}
 <section class="publication-overview">
-<p><strong>{{ len $pubs }}</strong> {{ site.Data.copy._default_list.bibliography_summary }}</p>
+<p><strong>{{ len $pubs }}</strong> {{ $copy.bibliography_summary }}{{ with $years }} · {{ index . (sub (len .) 1) }}–{{ index . 0 }}{{ end }}</p>
 </section>
-<section aria-label="{{ site.Data.copy._default_list.copy_aria_label_full_publication_list }}" class="publication-catalog">
-<ol class="publication-list full-publication-list">
-    {{ range $pubs }}
-    <li class="publication-item">
-<article class="publication-entry">
-<div class="publication-year-pill">{{ .year }}</div>
-<div class="publication-body">
-<div class="publication-title-row">
-<h2>{{ .title }}</h2>
 
-            {{ with .doi }}
-            <div class="publication-altmetric">
-<div class="altmetric-embed" data-badge-popover="right" data-doi="{{ . }}">
+<div class="pub-tools">
+{{/* Search needs JavaScript, so it stays hidden until the script runs; year links are plain anchors. */}}
+<div class="pub-search" data-pub-search hidden>
+<label for="pub-search-input">{{ $copy.copy_search_publications }}</label>
+<input id="pub-search-input" type="search" autocomplete="off" spellcheck="false" aria-describedby="pub-search-status"/>
+<p class="pub-search-status" id="pub-search-status" aria-live="polite"></p>
 </div>
+<nav aria-label="{{ $copy.copy_jump_to_year }}" class="pub-years">
+<span class="pub-years-label">{{ $copy.copy_jump_to_year }}</span>
+<ul>{{ range $years }}<li><a href="#year-{{ . }}">{{ . }}</a></li>{{ end }}</ul>
+</nav>
 </div>
-            {{ end }}
-          </div>
-<p class="publication-authors">
-            {{ replace .authors "Yue-Wen Fang" "<strong>Yue-Wen Fang</strong>" | safeHTML }}
-          </p>
-<p class="publication-meta">
-            {{ with .journal }}<span>{{ . }}</span>{{ end }}
-            {{ with .volume }}<span>{{ site.Data.copy._default_list.volume }} {{ . }}</span>{{ end }}
-            {{ with .number }}<span>{{ site.Data.copy._default_list.number }} {{ . }}</span>{{ end }}
-            {{ with .pages }}<span>{{ . }}</span>{{ end }}
-          </p>
 
-          {{ $doiURL := .doi_url }}
-          {{ if and (not $doiURL) .doi }}
-            {{ $doiURL = printf "https://doi.org/%s" .doi }}
-          {{ end }}
-
-          {{ if or $doiURL .free_full_text_url }}
-          <div class="publication-actions">
-            {{ with $doiURL }}
-            <a href="{{ . }}" rel="noopener" target="_blank">{{ site.Data.copy._default_list.copy_doi | markdownify }}</a>
-            {{ end }}
-
-            {{ $freeSource := .free_full_text_source }}
-            {{ with .free_full_text_url }}
-            <a {{ with $freeSource }}title="{{ site.Data.copy._default_list.full_text_via }} {{ . }}"{{ end }} href="{{ . }}" rel="noopener" target="_blank">{{ site.Data.copy._default_list.copy_full_free_text | markdownify }}</a>
-            {{ end }}
-          </div>
-          {{ end }}
-        </div>
-</article>
+<div class="pub-catalog" data-pub-catalog>
+{{ range $years }}
+{{ $year := . }}
+<section aria-labelledby="year-{{ $year }}" class="pub-year" data-pub-year>
+<h2 id="year-{{ $year }}">{{ $year }}</h2>
+<ol class="pub-list">
+{{ range where $pubs "year" $year }}
+<li class="pub-item" data-pub-item>
+<h3 class="pub-title">{{ .title }}</h3>
+<p class="pub-authors">{{ replace .authors "Yue-Wen Fang" "<strong>Yue-Wen Fang</strong>" | safeHTML }}</p>
+<p class="pub-meta">
+{{ with .journal }}<em>{{ . }}</em>{{ end }}
+{{ with .volume }}<span>{{ $copy.volume }} {{ . }}</span>{{ end }}
+{{ with .number }}<span>{{ $copy.number }} {{ . }}</span>{{ end }}
+{{ with .pages }}<span>{{ . }}</span>{{ end }}
+<span>({{ .year }})</span>
+</p>
+{{ $doiURL := .doi_url }}
+{{ if and (not $doiURL) .doi }}{{ $doiURL = printf "https://doi.org/%s" .doi }}{{ end }}
+<div class="pub-links">
+{{ with $doiURL }}<a href="{{ . }}" rel="noopener" target="_blank">{{ $copy.copy_doi | markdownify }}</a>{{ else }}{{ with .link }}<a href="{{ . }}" rel="noopener" target="_blank">{{ $copy.copy_link }}</a>{{ end }}{{ end }}
+{{ $freeSource := .free_full_text_source }}
+{{ with .free_full_text_url }}<a {{ with $freeSource }}title="{{ $copy.full_text_via }} {{ . }}"{{ end }} href="{{ . }}" rel="noopener" target="_blank">{{ $copy.copy_full_free_text | markdownify }}</a>{{ end }}
+{{ with .doi }}<div class="altmetric-embed" data-badge-type="2" data-hide-no-mentions="true" data-doi="{{ . }}"></div>{{ end }}
+</div>
 </li>
-    {{ else }}
-    <li>{{ site.Data.copy._default_list.copy_publications_will_appear_here_soon | markdownify }}</li>
-    {{ end }}
-  </ol>
+{{ end }}
+</ol>
 </section>
+{{ else }}
+<p>{{ $copy.copy_publications_will_appear_here_soon | markdownify }}</p>
+{{ end }}
+<p class="pub-no-matches" data-pub-empty hidden>{{ $copy.copy_no_matching_publications }}</p>
+</div>
+<script>
+(function () {
+  const box = document.querySelector("[data-pub-search]");
+  const catalog = document.querySelector("[data-pub-catalog]");
+  if (!box || !catalog) return;
+  const input = box.querySelector("input");
+  const status = box.querySelector(".pub-search-status");
+  const empty = catalog.querySelector("[data-pub-empty]");
+  const template = {{ $copy.copy_search_status | jsonify | safeJS }};
+  const fold = function (text) {
+    return text.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+  };
+  const items = Array.from(catalog.querySelectorAll("[data-pub-item]")).map(function (item) {
+    return {
+      el: item,
+      text: fold(item.querySelector(".pub-title").textContent + " " + item.querySelector(".pub-authors").textContent)
+    };
+  });
+  const years = Array.from(catalog.querySelectorAll("[data-pub-year]"));
+  box.hidden = false;
+
+  function apply() {
+    const terms = fold(input.value).split(/\s+/).filter(Boolean);
+    let shown = 0;
+    items.forEach(function (item) {
+      const match = terms.every(function (t) { return item.text.includes(t); });
+      item.el.hidden = !match;
+      if (match) shown += 1;
+    });
+    years.forEach(function (section) {
+      section.hidden = !section.querySelector("[data-pub-item]:not([hidden])");
+    });
+    empty.hidden = shown > 0;
+    status.textContent = terms.length
+      ? template.replace("{shown}", shown).replace("{total}", items.length)
+      : "";
+  }
+  input.addEventListener("input", apply);
+})();
+</script>
 <script async="" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>
 
 {{ else if eq .Section "contact" }}
+{{ $copy := site.Data.copy._default_list }}
 {{ $mapsQuery := site.Params.address | urlquery }}
 {{ $mapsLink := printf "https://www.google.com/maps/search/?api=1&query=%s" $mapsQuery }}
 {{ $mapsEmbed := printf "https://www.google.com/maps?q=%s&output=embed" $mapsQuery }}
 <section class="card contact-card">
-<div class="contact-details">
-<p><strong>{{ site.Data.copy._default_list.copy_pi | markdownify }}</strong> {{ site.Params.pi_name }}</p>
-<p><strong>{{ site.Data.copy._default_list.copy_email | markdownify }}</strong> <a href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a></p>
-<p><strong>{{ site.Data.copy._default_list.copy_affiliation | markdownify }}</strong> {{ site.Params.affiliation }}</p>
-<p><strong>{{ site.Data.copy._default_list.copy_address | markdownify }}</strong> {{ site.Params.address }}</p>
+<dl class="contact-details">
+<div><dt>{{ $copy.copy_pi | markdownify }}</dt><dd>{{ site.Params.pi_name }}</dd></div>
+<div><dt>{{ $copy.copy_email | markdownify }}</dt><dd><a href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a></dd></div>
+<div><dt>{{ $copy.copy_affiliation | markdownify }}</dt><dd>{{ site.Params.affiliation }}</dd></div>
+<div><dt>{{ $copy.copy_address | markdownify }}</dt><dd>{{ site.Params.address }}</dd></div>
+</dl>
+<div class="contact-actions">
+<a class="button" href="mailto:{{ site.Params.email }}">{{ $copy.copy_email_us }}</a>
+<a class="button button-secondary" href="{{ $mapsLink | safeURL }}" rel="noopener" target="_blank">{{ $copy.copy_open_address_of_inma_in_google_maps | markdownify }}</a>
+{{/* The embedded map is a third-party frame that can fail silently, so it loads only on request. */}}
+<button class="button button-secondary" type="button" data-map-toggle data-map-src="{{ $mapsEmbed }}" aria-controls="contact-map" aria-expanded="false" hidden>{{ $copy.copy_show_map }}</button>
 </div>
-<aside aria-label="{{ site.Data.copy._default_list.copy_aria_label_map_to_the_inma_office_at_calle_de_pedro_cerbuna_12 }}" class="contact-map">
-<iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="{{ $mapsEmbed | safeURL }}" title="{{ site.Data.copy._default_list.copy_title_inma_office_at_calle_de_pedro_cerbuna_12_on_google_maps }}">
-</iframe>
-<a href="{{ $mapsLink | safeURL }}" rel="noopener" target="_blank">{{ site.Data.copy._default_list.copy_open_address_of_inma_in_google_maps | markdownify }}</a>
-</aside>
+<div class="contact-map" id="contact-map" hidden></div>
 </section>
-<section aria-labelledby="weather-title" class="card weather-card">
+<script>
+(function () {
+  const toggle = document.querySelector("[data-map-toggle]");
+  const box = document.getElementById("contact-map");
+  if (!toggle || !box) return;
+  toggle.hidden = false;
+  toggle.addEventListener("click", function () {
+    if (!box.firstChild) {
+      const frame = document.createElement("iframe");
+      frame.src = toggle.dataset.mapSrc;
+      frame.title = {{ $copy.copy_title_inma_office_at_calle_de_pedro_cerbuna_12_on_google_maps | jsonify | safeJS }};
+      frame.loading = "lazy";
+      frame.referrerPolicy = "no-referrer-when-downgrade";
+      box.appendChild(frame);
+    }
+    box.hidden = !box.hidden;
+    toggle.setAttribute("aria-expanded", String(!box.hidden));
+    toggle.textContent = box.hidden ? {{ $copy.copy_show_map | jsonify | safeJS }} : {{ $copy.copy_hide_map | jsonify | safeJS }};
+  });
+})();
+</script>
+{{/* Live weather is optional: the panel stays hidden unless the forecast actually loads. */}}
+<section aria-labelledby="weather-title" class="card weather-card" data-weather-section hidden>
 <div class="weather-card-heading">
 <div>
 <p class="eyebrow">{{ site.Data.copy._default_list.copy_funny_tips | markdownify }}</p>
@@ -249,14 +219,13 @@ document.addEventListener("DOMContentLoaded", function () {
 <a href="{{ site.Data.copy._default_list.copy_href_https_www_google_com_search_q_weather_zaragoza }}" rel="noopener" target="_blank">{{ site.Data.copy._default_list.copy_full_forecast | markdownify }}</a>
 </div>
 <p class="weather-tip">{{ site.Data.copy._default_list.copy_to_check_if_you_need_sunglasses_and_sunscreen_when_you_visit_us_c | markdownify }}</p>
-<div class="weather-widget" data-latitude="41.6488" data-longitude="-0.8891" data-weather-widget="">
-<p class="weather-loading">{{ site.Data.copy._default_list.copy_loading_live_weather_near_inma | markdownify }}</p>
-</div>
+<div class="weather-widget" data-latitude="41.6488" data-longitude="-0.8891" data-weather-widget=""></div>
 </section>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   const widget = document.querySelector("[data-weather-widget]");
-  if (!widget) {
+  const section = document.querySelector("[data-weather-section]");
+  if (!widget || !section) {
     return;
   }
 
@@ -321,7 +290,10 @@ document.addEventListener("DOMContentLoaded", function () {
     return new Intl.DateTimeFormat("en", { weekday: "short" }).format(new Date(`${date}T12:00:00`));
   }
 
-  fetch(endpoint)
+  const controller = new AbortController();
+  const timer = setTimeout(function () { controller.abort(); }, 8000);
+
+  fetch(endpoint, { signal: controller.signal })
     .then(function (response) {
       if (!response.ok) {
         throw new Error(weatherCopy.weather_request_failed);
@@ -358,6 +330,9 @@ document.addEventListener("DOMContentLoaded", function () {
         `;
       }).join("");
 
+      if (!current || !daily || !Array.isArray(daily.time)) {
+        throw new Error(weatherCopy.weather_request_failed);
+      }
       widget.innerHTML = `
         <div class="weather-now ${currentSunny ? "is-sunny" : ""}">
           <span class="weather-status">${currentSunny ? weatherCopy.sunglasses_recommended : weatherCopy.sunglasses_optional}</span>
@@ -370,13 +345,13 @@ document.addEventListener("DOMContentLoaded", function () {
           ${dayCards}
         </div>
       `;
+      section.hidden = false;
     })
     .catch(function () {
-      widget.innerHTML = `
-        <p class="weather-loading">
-          ${weatherCopy.unavailable}
-        </p>
-      `;
+      section.hidden = true;
+    })
+    .finally(function () {
+      clearTimeout(timer);
     });
 });
 </script>

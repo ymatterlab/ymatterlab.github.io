@@ -1,293 +1,370 @@
 {{ define "main" }}
+{{ $c := site.Home.Params.copy }}
 
+{{/* 1. Hero: research statement first, lab name as a small label. */}}
 <section class="hero">
 <div class="hero-copy">
-<p class="eyebrow">{{ site.Params.affiliation }}</p>
-<h1>{{ site.Params.lab_name }}</h1>
-<p class="lead">
-<strong>{{ site.Home.Params.hero_text }}</strong>
-</p>
-<p class="lead">
-      {{ site.Home.Params.hero_subtext }}
-    </p>
-<div aria-label="{{ site.Home.Params.copy.copy_aria_label_primary_pages }}" class="button-row" role="group">
-<a class="button" href="{{ site.Home.Params.copy.path_research | relURL }}">{{ site.Home.Params.copy.copy_research | markdownify }}</a>
-<a class="button button-secondary" href="{{ site.Home.Params.copy.path_people | relURL }}">{{ site.Home.Params.copy.copy_people | markdownify }}</a>
-<a class="button button-secondary" href="{{ site.Home.Params.copy.path_publications | relURL }}">{{ site.Home.Params.copy.copy_publications | markdownify }}</a>
+<p class="hero-kicker"><strong>{{ site.Params.lab_name }}</strong> <span>{{ site.Params.affiliation }}</span></p>
+<h1>{{ site.Home.Params.hero_headline }}</h1>
+<p class="lead">{{ site.Home.Params.hero_subtext }}</p>
+<div aria-label="{{ $c.copy_aria_label_primary_pages }}" class="button-row" role="group">
+<a class="button" href="{{ $c.path_research | relURL }}">{{ $c.copy_research | markdownify }}</a>
+<a class="button button-secondary" href="{{ $c.path_publications | relURL }}">{{ $c.copy_publications | markdownify }}</a>
 </div>
 </div>
-<div class="hero-visual">
-<div aria-label="{{ site.Home.Params.copy.copy_aria_label_rotating_cubic_pbtio3_perovskite_structure }}" class="crystal-viewer" role="img" id="perovskite-viewer">
-<div aria-hidden="true" class="viewer-fallback" data-viewer-fallback="">
-<span class="atom atom-sr atom-corner-1"></span>
-<span class="atom atom-sr atom-corner-2"></span>
-<span class="atom atom-sr atom-corner-3"></span>
-<span class="atom atom-sr atom-corner-4"></span>
-<span class="atom atom-ti atom-center"></span>
-<span class="atom atom-o atom-face-1"></span>
-<span class="atom atom-o atom-face-2"></span>
-<span class="atom atom-o atom-face-3"></span>
-</div>
+<figure class="hero-visual">
+<div class="crystal-viewer" data-crystal data-state="static" role="img" aria-label="{{ $c.copy_structure_description }}">
+<img class="crystal-static" src="{{ "/images/structures/srtio3-supercell.svg" | relURL }}" alt="" width="440" height="435" decoding="async"/>
+<div class="crystal-canvas" id="perovskite-viewer" aria-hidden="true"></div>
 </div>
 <button type="button" data-rotation-toggle hidden>{{ site.Data.copy.accessibility.pause }}</button>
-<p class="structure-caption">{{ site.Home.Params.copy.copy_srtio3_perovskite_cubic_abo3_structure | markdownify }}</p>
-</div>
+<figcaption class="structure-caption">{{ $c.copy_structure_caption | markdownify }}</figcaption>
+</figure>
 </section>
 
-{{ $topicAnchors := site.Home.Params.copy.topicAnchors }}
+{{/* 2. Research directions. */}}
+{{ $topicAnchors := $c.topicAnchors }}
+{{ $directions := index site.Params.research_groups 0 }}
 <section aria-labelledby="areas-heading" class="home-block">
 <div class="home-block-heading">
 <div>
-<p class="eyebrow">{{ site.Home.Params.copy.copy_what_we_do | markdownify }}</p>
-<h2 id="areas-heading">{{ site.Home.Params.copy.copy_research_areas | markdownify }}</h2>
+<p class="eyebrow">{{ $c.copy_what_we_do | markdownify }}</p>
+<h2 id="areas-heading">{{ $c.copy_research_areas | markdownify }}</h2>
 </div>
-<a href="{{ site.Home.Params.copy.path_research | relURL }}">{{ site.Home.Params.copy.copy_explore_our_research | markdownify }}</a>
+<a href="{{ $c.path_research | relURL }}">{{ $c.copy_explore_our_research | markdownify }}</a>
 </div>
-<div class="home-research">
-    {{ range site.Params.research_groups }}
-    <article class="research-group-card">
-<div class="research-group-heading">
-<h3>{{ .title }}</h3>
-<a href="{{ site.Home.Params.copy.path_research | relURL }}">{{ site.Home.Params.copy.copy_learn_more | markdownify }}</a>
-</div>
-<div class="research-topic-grid">
-        {{ range .items }}
-        {{ $anchor := index $topicAnchors .title | default "overview" }}
-        <a class="research-topic-card" href="{{ printf "/research/#%s" $anchor | relURL }}">
-<h4>{{ .title }}</h4>
-<p>{{ .text }}</p>
+<ol class="direction-list">
+  {{ range $i, $item := $directions.items }}
+  {{ $anchor := index $topicAnchors $item.title | default "overview" }}
+  <li>
+<a class="direction" href="{{ printf "/research/#%s" $anchor | relURL }}">
+<span class="direction-num">{{ printf "%02d" (add $i 1) }}</span>
+<h3>{{ $item.title }}</h3>
+<p>{{ $item.text }}</p>
 </a>
-        {{ end }}
-      </div>
-</article>
-    {{ end }}
-  </div>
+</li>
+  {{ end }}
+</ol>
 </section>
 
-{{ $featured := site.Home.Params.copy.featured }}
-
+{{/* 3. Featured work: one representative panel per paper. */}}
 <section aria-labelledby="featured-work-heading" class="home-block featured-work">
 <div class="home-block-heading">
 <div>
-<p class="eyebrow">{{ site.Home.Params.copy.copy_highlights | markdownify }}</p>
-<h2 id="featured-work-heading">{{ site.Home.Params.copy.copy_featured_work | markdownify }}</h2>
+<p class="eyebrow">{{ $c.copy_highlights | markdownify }}</p>
+<h2 id="featured-work-heading">{{ $c.copy_featured_work | markdownify }}</h2>
 </div>
-<a href="{{ site.Home.Params.copy.path_research | relURL }}">{{ site.Home.Params.copy.copy_all_research | markdownify }}</a>
+<a href="{{ $c.path_research | relURL }}">{{ $c.copy_all_research | markdownify }}</a>
 </div>
 <div class="featured-grid">
-    {{ range $featured }}
-    <article class="featured-card">
-<a class="featured-thumb" href="{{ printf "/research/#%s" .anchor | relURL }}">
+  {{ range $c.featured }}
+  <article class="featured-card">
+<figure class="featured-figure">
+<div class="featured-image">
+{{ if .panel }}
+<img alt="{{ .panel_alt }}" loading="lazy" src="{{ printf "/images/research/panels/%s.webp" .panel | relURL }}"/>
+{{ else }}
 <img alt="{{ .alt }}" loading="lazy" src="{{ printf "/images/research/thumbs/%s.webp" .img | relURL }}"/>
-</a>
+{{ end }}
+</div>
+{{ with .credit }}<figcaption>{{ . | markdownify }}</figcaption>{{ end }}
+</figure>
 <div class="featured-body">
 <p class="featured-line">{{ .line }}</p>
 <h3>{{ .title }}</h3>
 <p>{{ .text }}</p>
-<a class="featured-cite" href="https://doi.org/{{ .doi }}" rel="noopener" target="_blank">{{ .cite }}</a>
-        {{ if .doi2 }}<a class="featured-cite featured-cite-extra" href="https://doi.org/{{ .doi2 }}" rel="noopener" target="_blank">{{ .cite2 }}</a>{{ end }}
-      </div>
+<div class="featured-links">
+<a class="featured-research" href="{{ printf "/research/#%s" .anchor | relURL }}">{{ $c.copy_research_context | markdownify }}</a>
+<p class="featured-papers"><span>{{ $c.copy_papers }}</span>
+<a class="featured-cite" href="https://doi.org/{{ .doi }}" rel="noopener" target="_blank">{{ .cite }}<span class="visually-hidden"> {{ $c.copy_opens_publication }}</span></a>
+{{ if .doi2 }}<a class="featured-cite" href="https://doi.org/{{ .doi2 }}" rel="noopener" target="_blank">{{ .cite2 }}<span class="visually-hidden"> {{ $c.copy_opens_publication }}</span></a>{{ end }}
+</p>
+</div>
+</div>
 </article>
-    {{ end }}
-  </div>
+  {{ end }}
+</div>
 </section>
-<div class="home-split">
-<section aria-labelledby="latest-pubs-heading" class="publication-preview">
+
+{{/* 4. Methods & open science. */}}
+{{ $methods := index site.Params.research_groups 1 }}
+<section aria-labelledby="methods-heading" class="home-block">
 <div class="home-block-heading">
 <div>
-<p class="eyebrow">{{ site.Home.Params.copy.copy_recent_output | markdownify }}</p>
-<h2 id="latest-pubs-heading">{{ site.Home.Params.copy.copy_latest_publications | markdownify }}</h2>
+<p class="eyebrow">{{ $c.copy_how_we_work | markdownify }}</p>
+<h2 id="methods-heading">{{ $c.copy_methods_open_science | markdownify }}</h2>
 </div>
-<a href="{{ site.Home.Params.copy.path_publications | relURL }}">{{ site.Home.Params.copy.copy_view_all | markdownify }}</a>
+<a href="{{ $c.path_research_methods | relURL }}">{{ $c.copy_methods_and_tools | markdownify }}</a>
+</div>
+<div class="methods-split">
+<div>
+<h3 class="methods-subhead">{{ $c.copy_approaches | markdownify }}</h3>
+<dl class="methods-list">
+  {{ range $methods.items }}
+  <div><dt>{{ .title }}</dt><dd>{{ .text }}</dd></div>
+  {{ end }}
+</dl>
+</div>
+<div>
+<h3 class="methods-subhead">{{ $c.copy_open_source_codes | markdownify }}</h3>
+<ul class="code-list">
+  {{ range $c.open_source }}
+  <li><a href="{{ .url }}" rel="noopener" target="_blank">{{ .name }}</a> <span>{{ .text }}</span></li>
+  {{ end }}
+</ul>
+</div>
+</div>
+</section>
+
+{{/* 5. Recent publications and news. */}}
+<div class="home-block home-split">
+<section aria-labelledby="latest-pubs-heading">
+<div class="home-block-heading">
+<div>
+<p class="eyebrow">{{ $c.copy_recent_output | markdownify }}</p>
+<h2 id="latest-pubs-heading">{{ $c.copy_latest_publications | markdownify }}</h2>
+</div>
+<a href="{{ $c.path_publications | relURL }}">{{ $c.copy_view_all | markdownify }}</a>
 </div>
 <ul class="publication-list">
-      {{ range first 3 site.Data.publications }}
-      <li>
+    {{ range first 3 site.Data.publications }}
+    <li>
 <strong>{{ .title }}</strong>
 <span>{{ .authors }}</span>
 <em>{{ .journal }} ({{ .year }})</em>
-        {{ if .doi_url }}<a href="{{ .doi_url }}" rel="noopener" target="_blank">{{ site.Home.Params.copy.copy_doi | markdownify }}</a>{{ else if .link }}<a href="{{ .link }}" rel="noopener" target="_blank">{{ site.Home.Params.copy.copy_link | markdownify }}</a>{{ end }}
-      </li>
-      {{ else }}
-      <li>{{ site.Home.Params.copy.copy_publications_will_appear_here_soon | markdownify }}</li>
-      {{ end }}
-    </ul>
+      {{ if .doi_url }}<a href="{{ .doi_url }}" rel="noopener" target="_blank">{{ $c.copy_doi | markdownify }}</a>{{ else if .link }}<a href="{{ .link }}" rel="noopener" target="_blank">{{ $c.copy_link | markdownify }}</a>{{ end }}
+    </li>
+    {{ else }}
+    <li>{{ $c.copy_publications_will_appear_here_soon | markdownify }}</li>
+    {{ end }}
+</ul>
 </section>
-<aside aria-label="{{ site.Home.Params.copy.copy_aria_label_about_the_lab_and_latest_news }}" class="home-aside">
-<section class="panel">
-<h2>{{ site.Home.Params.copy.copy_about_the_lab | markdownify }}</h2>
-<p>{{ site.Home.Params.copy.copy_we_develop_computational_approaches_to_understand_and_design_func | markdownify }}</p>
-</section>
-<section class="panel home-news">
-<div class="section-heading">
-<h2>{{ site.Home.Params.copy.copy_latest_news | markdownify }}</h2>
-<a href="{{ site.Home.Params.copy.path_news | relURL }}">{{ site.Home.Params.copy.copy_all_news | markdownify }}</a>
+<section aria-labelledby="latest-news-heading" class="home-news">
+<div class="home-block-heading">
+<div>
+<p class="eyebrow">{{ $c.copy_news | markdownify }}</p>
+<h2 id="latest-news-heading">{{ $c.copy_latest_news | markdownify }}</h2>
+</div>
+<a href="{{ $c.path_news | relURL }}">{{ $c.copy_all_news | markdownify }}</a>
 </div>
 <ul class="home-news-list">
-        {{ range first 3 (where site.RegularPages "Section" "news").ByDate.Reverse }}
-        <li>
+    {{ range first 3 (where site.RegularPages "Section" "news").ByDate.Reverse }}
+    <li>
 <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2006" }}</time>
 <a href="{{ .RelPermalink }}">{{ .Title }}</a>
 </li>
-        {{ else }}
-        <li>{{ site.Home.Params.copy.copy_news_will_appear_here_soon | markdownify }}</li>
-        {{ end }}
-      </ul>
-</section>
-<section class="panel link-panel">
-<h2>{{ site.Home.Params.copy.copy_explore | markdownify }}</h2>
-<ul class="section-links">
-<li><a href="{{ site.Home.Params.copy.path_research | relURL }}">{{ site.Home.Params.copy.copy_research_directions | markdownify }}</a></li>
-<li><a href="{{ site.Home.Params.copy.path_people | relURL }}">{{ site.Home.Params.copy.copy_group_members | markdownify }}</a></li>
-<li><a href="{{ site.Home.Params.copy.path_publications | relURL }}">{{ site.Home.Params.copy.copy_publications | markdownify }}</a></li>
-<li><a href="{{ site.Home.Params.copy.path_contact | relURL }}">{{ site.Home.Params.copy.copy_contact | markdownify }}</a></li>
+    {{ else }}
+    <li>{{ $c.copy_news_will_appear_here_soon | markdownify }}</li>
+    {{ end }}
 </ul>
 </section>
-</aside>
 </div>
-<section aria-labelledby="research-sponsors-heading" class="research-sponsors">
-<h2 id="research-sponsors-heading">{{ site.Home.Params.copy.copy_research_sponsors | markdownify }}</h2>
-<p>{{ site.Home.Params.copy.copy_we_sincerely_acknowledge_the_generous_financial_and_computational | markdownify }}</p>
-<div class="sponsor-logo-grid">
-<a aria-label="{{ site.Home.Params.copy.copy_aria_label_visit_csic }}" class="sponsor-logo sponsor-logo-wide" href="{{ site.Home.Params.copy.copy_href_https_www_csic_es_en }}" rel="noopener" target="_blank">
-<img alt="{{ site.Home.Params.copy.copy_alt_mciu_csic }}" src="{{ site.Home.Params.copy.path_images_sponsors_mciu_csic_png | relURL }}"/>
-</a>
-<a aria-label="{{ site.Home.Params.copy.copy_aria_label_visit_dipc }}" class="sponsor-logo sponsor-logo-wide" href="{{ site.Home.Params.copy.copy_href_https_dipc_ehu_eus_es }}" rel="noopener" target="_blank">
-<img alt="{{ site.Home.Params.copy.copy_alt_dipc }}" src="{{ site.Home.Params.copy.path_images_sponsors_dipc_png | relURL }}"/>
-</a>
-<a aria-label="{{ site.Home.Params.copy.copy_aria_label_visit_inma }}" class="sponsor-logo sponsor-logo-wide" href="{{ site.Home.Params.copy.copy_href_https_inma_unizar_csic_es }}" rel="noopener" target="_blank">
-<img alt="{{ site.Home.Params.copy.copy_alt_inma_instituto_de_nanociencia_y_materiales_de_arag_n_excelencia_s }}" src="{{ site.Home.Params.copy.path_images_sponsors_inma_severo_ochoa_png | relURL }}"/>
-</a>
-<a aria-label="{{ site.Home.Params.copy.copy_aria_label_visit_ikur }}" class="sponsor-logo" href="{{ site.Home.Params.copy.copy_href_https_ikur_euskadi_eus_en }}" rel="noopener" target="_blank">
-<img alt="{{ site.Home.Params.copy.copy_alt_ikur }}" src="{{ site.Home.Params.copy.path_images_sponsors_ikur_jpeg | relURL }}"/>
-</a>
-<a aria-label="{{ site.Home.Params.copy.copy_aria_label_visit_eurohpc_joint_undertaking }}" class="sponsor-logo" href="{{ site.Home.Params.copy.copy_href_https_www_eurohpc_ju_europa_eu_index_en }}" rel="noopener" target="_blank">
-<img alt="{{ site.Home.Params.copy.copy_alt_eurohpc_joint_undertaking }}" src="{{ site.Home.Params.copy.path_images_sponsors_eurohpc_png | relURL }}"/>
-</a>
-<a aria-label="{{ site.Home.Params.copy.copy_aria_label_visit_aei }}" class="sponsor-logo sponsor-logo-wide" href="{{ site.Home.Params.copy.copy_href_https_www_aei_gob_es_en }}" rel="noopener" target="_blank">
-<img alt="{{ site.Home.Params.copy.copy_alt_miciu_aei }}" src="{{ site.Home.Params.copy.path_images_sponsors_miciu_aei_jpg | relURL }}"/>
-</a>
-</div>
-<p class="sponsor-note">{{ site.Home.Params.copy.copy_pid2025_173011na_i00_funded_by_miciu_aei_10_13039_501100011033 | markdownify }}</p>
-</section>
-<script src="https://3Dmol.org/build/3Dmol-min.js"></script>
+
+{{/* 6. Join us, then sponsors. */}}
+{{ $join := site.GetPage "/join" }}
+<section aria-labelledby="join-heading" class="home-join">
+<div>
+<p class="eyebrow">{{ $c.copy_opportunities | markdownify }}</p>
+<h2 id="join-heading">{{ $c.copy_join_us | markdownify }}</h2>
+{{ $openPositions := slice }}
+{{ range $join.Params.positions }}
+  {{ $status := partial "position-status.html" . }}
+  {{ if $status.open }}{{ $openPositions = $openPositions | append (dict "p" . "s" $status) }}{{ end }}
+{{ end }}
+{{ with $openPositions }}
+<p class="home-join-positions" data-home-positions><strong>{{ $c.copy_open_positions }}</strong>
+{{ range $i, $o := . }}<span data-home-position{{ with $o.s.end }} data-deadline-end="{{ .Format "2006-01-02T15:04:05Z07:00" }}"{{ end }}>{{ if $i }}; {{ end }}{{ $o.p.title }}{{ with $o.s.end }} ({{ $c.copy_deadline }} {{ .Format "2 January 2006" }}){{ end }}</span>{{ end }}.</p>
+{{ end }}
+<p data-home-no-positions{{ if $openPositions }} hidden{{ end }}>{{ site.Data.copy.join_list.copy_there_are_no_advertised_openings_at_the_moment_motivated_candidat | markdownify }}</p>
+{{ if $openPositions }}
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-  const viewerElement = document.getElementById("perovskite-viewer");
-  if (!viewerElement || !window.$3Dmol) {
-    return;
-  }
-
-  const fallback = viewerElement.querySelector("[data-viewer-fallback]");
-  if (fallback) {
-    fallback.remove();
-  }
-
-  const viewer = $3Dmol.createViewer("perovskite-viewer", {
-    backgroundColor: "#f6f8f5"
+/* A build can be older than a deadline: drop positions that have closed since. */
+(function () {
+  const list = document.querySelector("[data-home-positions]");
+  if (!list) return;
+  list.querySelectorAll("[data-home-position][data-deadline-end]").forEach(function (item) {
+    if (Date.now() > Date.parse(item.dataset.deadlineEnd)) item.remove();
   });
-
-  const a = 3.905;
-  const cells = 2;
-  const atoms = [];
-  const seen = new Set();
-
-  function addAtom(element, x, y, z) {
-    const key = `${element}:${x.toFixed(3)}:${y.toFixed(3)}:${z.toFixed(3)}`;
-    if (seen.has(key)) {
-      return;
-    }
-    seen.add(key);
-    atoms.push(`${element} ${x.toFixed(3)} ${y.toFixed(3)} ${z.toFixed(3)}`);
+  if (!list.querySelector("[data-home-position]")) {
+    list.remove();
+    document.querySelector("[data-home-no-positions]").hidden = false;
   }
+})();
+</script>
+{{ end }}
+<p>{{ site.Data.copy.join_list.copy_researchers_interested_in_joining_the_group_with_their_own_fundin | markdownify }}</p>
+</div>
+<a class="button" href="{{ $c.path_join | relURL }}">{{ $c.copy_see_opportunities | markdownify }}</a>
+</section>
 
-  for (let i = 0; i <= cells; i++) {
-    for (let j = 0; j <= cells; j++) {
-      for (let k = 0; k <= cells; k++) {
-        addAtom("Sr", i * a, j * a, k * a);
-      }
-    }
-  }
-
-  for (let i = 0; i < cells; i++) {
-    for (let j = 0; j < cells; j++) {
-      for (let k = 0; k < cells; k++) {
-        addAtom("Ti", (i + 0.5) * a, (j + 0.5) * a, (k + 0.5) * a);
-        addAtom("O", (i + 0.5) * a, (j + 0.5) * a, k * a);
-        addAtom("O", (i + 0.5) * a, j * a, (k + 0.5) * a);
-        addAtom("O", i * a, (j + 0.5) * a, (k + 0.5) * a);
-      }
-    }
-  }
-
-  const xyz = [atoms.length, "SrTiO3 cubic perovskite supercell", ...atoms].join("\n");
-
-  viewer.addModel(xyz, "xyz");
-
-  viewer.setStyle({elem: "Sr"}, {
-    sphere: {radius: 0.52, color: "#2f9e44"}
-  });
-
-  viewer.setStyle({elem: "Ti"}, {
-    sphere: {radius: 0.34, color: "#2563eb"}
-  });
-
-  viewer.setStyle({elem: "O"}, {
-    sphere: {radius: 0.28, color: "#dc2626"}
-  });
-
-  const length = a * cells;
-  const edgeColor = "#94a3b8";
-  const corners = [
-    [0, 0, 0], [length, 0, 0], [0, length, 0], [0, 0, length],
-    [length, length, 0], [length, 0, length], [0, length, length],
-    [length, length, length]
-  ];
-  const edges = [
-    [0, 1], [0, 2], [0, 3], [1, 4], [1, 5], [2, 4],
-    [2, 6], [3, 5], [3, 6], [4, 7], [5, 7], [6, 7]
-  ];
-
-  edges.forEach(function ([startIndex, endIndex]) {
-    const start = corners[startIndex];
-    const end = corners[endIndex];
-    viewer.addLine({
-      start: {x: start[0], y: start[1], z: start[2]},
-      end: {x: end[0], y: end[1], z: end[2]},
-      color: edgeColor,
-      linewidth: 2
-    });
-  });
-
-  viewer.zoomTo();
-  viewer.rotate(18, "x");
-  viewer.rotate(28, "y");
-  viewer.render();
-
-  const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+<section aria-labelledby="research-sponsors-heading" class="research-sponsors">
+<h2 id="research-sponsors-heading">{{ $c.copy_research_sponsors | markdownify }}</h2>
+<p>{{ $c.copy_we_sincerely_acknowledge_the_generous_financial_and_computational | markdownify }}</p>
+<div class="sponsor-logo-grid">
+<a aria-label="{{ $c.copy_aria_label_visit_csic }}" class="sponsor-logo sponsor-logo-wide" href="{{ $c.copy_href_https_www_csic_es_en }}" rel="noopener" target="_blank">
+<img alt="{{ $c.copy_alt_mciu_csic }}" src="{{ $c.path_images_sponsors_mciu_csic_png | relURL }}"/>
+</a>
+<a aria-label="{{ $c.copy_aria_label_visit_dipc }}" class="sponsor-logo sponsor-logo-wide" href="{{ $c.copy_href_https_dipc_ehu_eus_es }}" rel="noopener" target="_blank">
+<img alt="{{ $c.copy_alt_dipc }}" src="{{ $c.path_images_sponsors_dipc_png | relURL }}"/>
+</a>
+<a aria-label="{{ $c.copy_aria_label_visit_inma }}" class="sponsor-logo sponsor-logo-wide" href="{{ $c.copy_href_https_inma_unizar_csic_es }}" rel="noopener" target="_blank">
+<img alt="{{ $c.copy_alt_inma_instituto_de_nanociencia_y_materiales_de_arag_n_excelencia_s }}" src="{{ $c.path_images_sponsors_inma_severo_ochoa_png | relURL }}"/>
+</a>
+<a aria-label="{{ $c.copy_aria_label_visit_ikur }}" class="sponsor-logo" href="{{ $c.copy_href_https_ikur_euskadi_eus_en }}" rel="noopener" target="_blank">
+<img alt="{{ $c.copy_alt_ikur }}" src="{{ $c.path_images_sponsors_ikur_jpeg | relURL }}"/>
+</a>
+<a aria-label="{{ $c.copy_aria_label_visit_eurohpc_joint_undertaking }}" class="sponsor-logo" href="{{ $c.copy_href_https_www_eurohpc_ju_europa_eu_index_en }}" rel="noopener" target="_blank">
+<img alt="{{ $c.copy_alt_eurohpc_joint_undertaking }}" src="{{ $c.path_images_sponsors_eurohpc_png | relURL }}"/>
+</a>
+<a aria-label="{{ $c.copy_aria_label_visit_aei }}" class="sponsor-logo sponsor-logo-wide" href="{{ $c.copy_href_https_www_aei_gob_es_en }}" rel="noopener" target="_blank">
+<img alt="{{ $c.copy_alt_miciu_aei }}" src="{{ $c.path_images_sponsors_miciu_aei_jpg | relURL }}"/>
+</a>
+</div>
+<p class="sponsor-note">{{ $c.copy_pid2025_173011na_i00_funded_by_miciu_aei_10_13039_501100011033 | markdownify }}</p>
+</section>
+<script>
+/* SrTiO3 hero viewer.
+   The static SVG (rendered from the same data/structures/srtio3.yaml) is shown first.
+   3Dmol is only loaded when WebGL is available, and the canvas only replaces the SVG
+   after a successful first render. Any failure leaves the SVG in place. */
+(function () {
+  const root = document.querySelector("[data-crystal]");
+  if (!root) return;
+  const host = root.querySelector(".crystal-canvas");
   const toggle = document.querySelector("[data-rotation-toggle]");
+  const structure = {{ site.Data.structures.srtio3 | jsonify | safeJS }};
   const labels = {{ site.Data.copy.accessibility | jsonify | safeJS }};
-  let paused = motion.matches;
+  const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let viewer = null;
   let frame = null;
+  let paused = motion.matches;
 
-  function updateRotation() {
+  function stop() {
     if (frame !== null) cancelAnimationFrame(frame);
     frame = null;
+  }
+
+  function useStatic(reason, error) {
+    stop();
+    viewer = null;
+    host.replaceChildren();
+    root.dataset.state = "static";
+    root.dataset.fallback = reason;
+    toggle.hidden = true;
+    if (error) console.info("Crystal viewer: showing static image (" + reason + ").", error);
+  }
+
+  function webglAvailable() {
+    try {
+      const canvas = document.createElement("canvas");
+      return Boolean(window.WebGLRenderingContext &&
+        (canvas.getContext("webgl2") || canvas.getContext("webgl")));
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function buildXYZ() {
+    const a = structure.lattice_a;
+    const cells = structure.cells;
+    const atoms = [];
+    const seen = new Set();
+    function add(element, x, y, z) {
+      const key = element + ":" + x.toFixed(3) + ":" + y.toFixed(3) + ":" + z.toFixed(3);
+      if (seen.has(key)) return;
+      seen.add(key);
+      atoms.push(element + " " + x.toFixed(3) + " " + y.toFixed(3) + " " + z.toFixed(3));
+    }
+    for (let i = 0; i <= cells; i++)
+      for (let j = 0; j <= cells; j++)
+        for (let k = 0; k <= cells; k++) add("Sr", i * a, j * a, k * a);
+    for (let i = 0; i < cells; i++)
+      for (let j = 0; j < cells; j++)
+        for (let k = 0; k < cells; k++) {
+          add("Ti", (i + 0.5) * a, (j + 0.5) * a, (k + 0.5) * a);
+          add("O", (i + 0.5) * a, (j + 0.5) * a, k * a);
+          add("O", (i + 0.5) * a, j * a, (k + 0.5) * a);
+          add("O", i * a, (j + 0.5) * a, (k + 0.5) * a);
+        }
+    return [atoms.length, structure.name].concat(atoms).join("\n");
+  }
+
+  function updateRotation() {
+    stop();
+    if (!viewer) return;
     toggle.textContent = paused ? labels.resume : labels.pause;
     if (!paused && !document.hidden) frame = requestAnimationFrame(animate);
   }
-  toggle.hidden = false;
-  toggle.addEventListener("click", function () { paused = !paused; updateRotation(); });
-  motion.addEventListener("change", function () { paused = motion.matches; updateRotation(); });
-  document.addEventListener("visibilitychange", updateRotation);
 
   function animate() {
-    viewer.rotate(0.45, "y");
+    viewer.rotate(structure.spin_step, "y");
     viewer.render();
     frame = requestAnimationFrame(animate);
   }
 
-  updateRotation();
-});
+  function init() {
+    try {
+      if (!window.$3Dmol) throw new Error("3Dmol did not load");
+      viewer = $3Dmol.createViewer(host, { backgroundColor: "white", backgroundAlpha: 0 });
+      if (!viewer) throw new Error("createViewer returned nothing");
+
+      viewer.addModel(buildXYZ(), "xyz");
+      Object.keys(structure.elements).forEach(function (element) {
+        const spec = structure.elements[element];
+        viewer.setStyle({ elem: element }, { sphere: { radius: spec.radius, color: spec.color } });
+      });
+
+      const L = structure.lattice_a * structure.cells;
+      const corners = [[0, 0, 0], [L, 0, 0], [0, L, 0], [0, 0, L],
+        [L, L, 0], [L, 0, L], [0, L, L], [L, L, L]];
+      [[0, 1], [0, 2], [0, 3], [1, 4], [1, 5], [2, 4],
+        [2, 6], [3, 5], [3, 6], [4, 7], [5, 7], [6, 7]].forEach(function (edge) {
+        const s = corners[edge[0]], e = corners[edge[1]];
+        viewer.addLine({ start: { x: s[0], y: s[1], z: s[2] }, end: { x: e[0], y: e[1], z: e[2] },
+          color: structure.edge_color, linewidth: 2 });
+      });
+
+      viewer.zoomTo();
+      viewer.rotate(structure.view.rotate_x, "x");
+      viewer.rotate(structure.view.rotate_y, "y");
+      viewer.render();
+
+      const canvas = host.querySelector("canvas");
+      if (!canvas || !canvas.width || !canvas.height) throw new Error("no canvas after render");
+      canvas.addEventListener("webglcontextlost", function (event) {
+        event.preventDefault();
+        useStatic("context-lost");
+      });
+    } catch (error) {
+      useStatic("init-error", error);
+      return;
+    }
+
+    root.dataset.state = "interactive";
+    delete root.dataset.fallback;
+    toggle.hidden = false;
+    toggle.addEventListener("click", function () { paused = !paused; updateRotation(); });
+    motion.addEventListener("change", function () { paused = motion.matches; updateRotation(); });
+    document.addEventListener("visibilitychange", updateRotation);
+    updateRotation();
+  }
+
+  if (!webglAvailable()) {
+    root.dataset.fallback = "no-webgl";
+    return;
+  }
+
+  function load() {
+    const script = document.createElement("script");
+    script.src = "https://3Dmol.org/build/3Dmol-min.js";
+    script.async = true;
+    script.onload = init;
+    script.onerror = function () { useStatic("script-error", new Error("3Dmol script failed to load")); };
+    document.head.appendChild(script);
+  }
+
+  if (document.readyState === "complete") load();
+  else window.addEventListener("load", load, { once: true });
+})();
 </script>
 {{ end }}

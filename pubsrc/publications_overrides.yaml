@@ -2,3 +2,35 @@
 # Example:
 # 10.1002/chin.201631291:
 #   hide: true          # ChemInform abstract, duplicate of the real paper
+
+# --- Full-free-text link corrections (checked 2026-11-14) ---------------------
+# Unpaywall pointed these Nature-family links at "<id>_reference.pdf" instead of
+# the article; the article itself is open access (CC licence in Crossref).
+10.1038/s42005-026-02552-4:
+  free_full_text_url: "https://www.nature.com/articles/s42005-026-02552-4"
+10.1038/s41467-025-66697-6:
+  free_full_text_url: "https://www.nature.com/articles/s41467-025-66697-6"
+
+# Listed as "Open access at journal", but the journal PDF returns 401
+# (not free; OpenAlex: bronze, no licence). Use the author's preprint instead.
+10.1103/physrevb.108.064517:
+  free_full_text_url: "https://arxiv.org/pdf/2305.06751"
+  free_full_text_source: arXiv
+10.1103/physrevb.93.214427:
+  free_full_text_url: "https://arxiv.org/pdf/1607.02808"
+  free_full_text_source: arXiv
+10.1103/physrevb.102.041203:
+  free_full_text_url: "https://www.osti.gov/servlets/purl/1801560"
+  free_full_text_source: Office of Scientific and Technical Information
+
+# Journal version is not open access (OpenAlex: published version closed; IOP
+# standard licence). Link the matching arXiv preprint instead.
+10.1088/0256-307x/43/8/080803:
+  free_full_text_url: "https://arxiv.org/pdf/2603.16477"
+  free_full_text_source: arXiv
+
+# Journal page is only "bronze" (free to read without a licence, could not be
+# confirmed); the arXiv preprint declares this DOI and is reliably free.
+10.1088/1402-4896/acd7b3:
+  free_full_text_url: "https://arxiv.org/pdf/2305.13549"
+  free_full_text_source: arXiv

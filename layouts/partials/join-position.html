@@ -1,0 +1,43 @@
+{{- /* One position: status and summary first, then how to apply, then requirements.
+   Context: dict "p" position, "s" status (position-status.html), "archived" bool. */ -}}
+{{ $copy := site.Data.copy.join_list }}
+{{ $p := .p }}
+{{ $s := .s }}
+<article class="join-position" data-position{{ with $s.end }} data-deadline-end="{{ .Format "2006-01-02T15:04:05Z07:00" }}"{{ end }}>
+{{ if not .archived }}<h3>{{ $p.title }}</h3>{{ end }}
+<p class="position-status">
+<span class="status-badge {{ if $s.open }}is-open{{ else }}is-closed{{ end }}" data-status-badge>{{ if $s.open }}{{ $copy.copy_status_open }}{{ else }}{{ $copy.copy_status_closed }}{{ end }}</span>
+{{ with $s.end }}<span data-status-text>{{ if $s.open }}{{ $copy.copy_apply_by }}{{ else }}{{ $copy.copy_deadline_passed }}{{ end }} {{ .Format "2 January 2006" }}{{ if $s.extended }} ({{ $copy.copy_extended }}){{ end }}</span>{{ end }}
+{{ with $p.type }}<span class="position-meta">{{ . }}</span>{{ end }}
+{{ with $p.location }}<span class="position-meta">{{ . }}</span>{{ end }}
+</p>
+{{ with $p.description }}<p class="position-summary">{{ . | markdownify }}</p>{{ end }}
+{{ if or $p.how_to_apply $p.link }}
+<div class="join-apply">
+<h4>{{ $copy.copy_how_to_apply | markdownify }}</h4>
+{{ with $p.how_to_apply }}
+  {{ with .intro }}<p>{{ . | markdownify }}</p>{{ end }}
+  {{ with .steps }}<ol>{{ range . }}<li>{{ . | markdownify }}</li>{{ end }}</ol>{{ end }}
+  {{ with .notice }}
+  <div class="join-notice">
+    {{ with .title }}<h5>{{ . }}</h5>{{ end }}
+    {{ with .body }}{{ . | markdownify }}{{ end }}
+  </div>
+  {{ end }}
+{{ end }}
+{{ with $p.link }}<p class="position-offer"><a href="{{ . }}" rel="noopener" target="_blank">{{ $copy.copy_official_job_offer | markdownify }}</a></p>{{ end }}
+</div>
+{{ end }}
+{{ if or $p.funding $p.qualifications }}
+<div class="position-details">
+{{ with $p.funding }}<p class="join-funding"><strong>{{ $copy.copy_funding | markdownify }}</strong> {{ . | markdownify }}</p>{{ end }}
+{{ with $p.qualifications }}
+<h4>{{ $copy.copy_expected_qualifications_and_skills | markdownify }}</h4>
+<div class="join-qualifications">
+  {{ with .required }}<div><p>{{ $copy.copy_required | markdownify }}</p><ul>{{ range . }}<li>{{ . | markdownify }}</li>{{ end }}</ul></div>{{ end }}
+  {{ with .desirable }}<div><p>{{ $copy.copy_desirable | markdownify }}</p><ul>{{ range . }}<li>{{ . | markdownify }}</li>{{ end }}</ul></div>{{ end }}
+</div>
+{{ end }}
+</div>
+{{ end }}
+</article>

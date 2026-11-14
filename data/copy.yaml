@@ -131,6 +131,14 @@ join_list:
   copy_desirable: <strong>Desirable</strong>
   copy_how_to_apply: How to apply
   copy_official_job_offer: Official job offer
+  copy_status_open: Open
+  copy_status_closed: Closed
+  copy_apply_by: Apply by
+  copy_deadline_passed: Deadline passed
+  copy_extended: extended
+  copy_archive: Archive
+  copy_closed_positions: Closed positions
+  copy_closed_positions_intro: Earlier openings whose deadlines have passed, kept for reference.
   copy_there_are_no_advertised_openings_at_the_moment_motivated_candidat: There are no advertised openings
     at the moment. Motivated candidates are always welcome to get in touch, and new positions will be
     posted here.
@@ -150,7 +158,6 @@ join_list:
     plan to apply for and its deadline.
   copy_contact: Contact
   copy_email_the_pi: Email the PI
-  deadline: 'Deadline:'
   email: 'Email:'
   research_statement: A short statement of your research interests and how they connect to our
   pi_of: ', PI of'
@@ -169,16 +176,12 @@ _default_list:
   - key: alumni
     label: Alumni
   copy_aria_label_people_filters: People filters
-  copy_aria_label_people_directory: People directory
   copy_aria_label_profile_links: Profile links
   copy_aria_label_personal_website: Personal website
   copy_aria_label_github: GitHub
   copy_aria_label_google_scholar: Google Scholar
   copy_aria_label_orcid: ORCID
   copy_aria_label_researchgate: ResearchGate
-  copy_aria_label_full_publication_list: Full publication list
-  copy_aria_label_map_to_the_inma_office_at_calle_de_pedro_cerbuna_12: Map to the INMA office at Calle
-    de Pedro Cerbuna 12
   copy_title_inma_office_at_calle_de_pedro_cerbuna_12_on_google_maps: INMA office at Calle de Pedro Cerbuna
     12 on Google Maps
   copy_href_https_www_google_com_search_q_weather_zaragoza: https://www.google.com/search?q=weather+Zaragoza
@@ -187,6 +190,8 @@ _default_list:
     and <strong>San Sebastián</strong>. Each current member’s location is highlighted below. Some members
     also belong to <a href="https://cfm.ehu.es/errealab/" rel="noopener" target="_blank">Errea Lab</a>.
   copy_current_members: Current members
+  copy_all: All current
+  copy_alumni: Alumni
   copy_doi: DOI
   copy_full_free_text: Full free text
   copy_publications_will_appear_here_soon: Publications will appear here soon.
@@ -195,14 +200,21 @@ _default_list:
   copy_affiliation: 'Affiliation:'
   copy_address: 'Address:'
   copy_open_address_of_inma_in_google_maps: Open address of INMA in Google Maps
+  copy_email_us: Email us
+  copy_show_map: Show map
+  copy_hide_map: Hide map
   copy_funny_tips: Funny Tips
   copy_sunglasses_check_for_zaragoza: Sunglasses Check for Zaragoza
   copy_full_forecast: Full forecast
   copy_to_check_if_you_need_sunglasses_and_sunscreen_when_you_visit_us_c: To check if you need sunglasses
     and sunscreen when you visit us, check if it is sunny in Zaragoza.
-  copy_loading_live_weather_near_inma: Loading live weather near INMA&#46;&#46;&#46;
   based_in: Based in
-  bibliography_summary: publications imported from the group bibliography.
+  bibliography_summary: publications
+  copy_search_publications: Search titles and authors
+  copy_search_status: '{shown} of {total} publications match'
+  copy_no_matching_publications: No publications match this search.
+  copy_jump_to_year: Jump to year
+  copy_link: Link
   volume: Vol.
   number: No.
   full_text_via: Full free text via
@@ -265,7 +277,6 @@ weather:
     skip the sunscreen today, but this is Zaragoza where the sun usually comes back fast.
   sunglasses_recommended: Sunglasses recommended
   sunglasses_optional: Sunglasses optional
-  unavailable: Live weather is hiding behind a cloud. Try the full forecast link before you visit.
 accessibility:
   skip: Skip to main content
   pause: Pause rotation

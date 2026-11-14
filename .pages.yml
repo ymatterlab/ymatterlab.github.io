@@ -108,6 +108,9 @@ content:
     - name: deadline
       label: Deadline
       type: string
+    - name: extended_deadline
+      label: Extended deadline (only if the call was officially extended)
+      type: string
     - name: description
       label: Description
       type: text
@@ -173,9 +176,9 @@ content:
   - name: draft
     label: Draft
     type: boolean
-  - name: hero_text
-    label: Hero text
-    type: text
+  - name: hero_headline
+    label: Hero headline
+    type: string
   - name: hero_subtext
     label: Hero subtext
     type: text
@@ -221,20 +224,40 @@ content:
       - name: doi2
         label: Doi2
         type: string
+      - name: panel
+        label: Panel image (file name in images/research/panels, without .webp)
+        type: string
+      - name: panel_alt
+        label: Panel alt text
+        type: text
+      - name: credit
+        label: Panel credit (source figure and paper)
+        type: string
+    - name: open_source
+      label: Open-source codes we contribute to
+      type: object
+      list:
+        collapsible:
+          collapsed: true
+          summary: '{name}'
+      fields:
+      - name: name
+        label: Name
+        type: string
+      - name: url
+        label: URL
+        type: string
+      - name: text
+        label: Short description
+        type: text
     - name: path_research
       label: Path research
-      type: string
-    - name: path_people
-      label: Path people
       type: string
     - name: path_publications
       label: Path publications
       type: string
     - name: path_news
       label: Path news
-      type: string
-    - name: path_contact
-      label: Path contact
       type: string
     - name: path_images_sponsors_mciu_csic_png
       label: Path images sponsors mciu csic png
@@ -257,12 +280,9 @@ content:
     - name: copy_aria_label_primary_pages
       label: Aria label primary pages
       type: string
-    - name: copy_aria_label_rotating_cubic_pbtio3_perovskite_structure
-      label: Aria label rotating cubic pbtio3 perovskite structure
-      type: string
-    - name: copy_aria_label_about_the_lab_and_latest_news
-      label: Aria label about the lab and latest news
-      type: string
+    - name: copy_structure_description
+      label: Hero structure description (screen readers)
+      type: text
     - name: copy_href_https_www_csic_es_en
       label: Href https www csic es en
       type: string
@@ -320,16 +340,13 @@ content:
     - name: copy_research
       label: Research
       type: string
-    - name: copy_people
-      label: People
-      type: string
     - name: copy_publications
       label: Publications
       type: string
-    - name: copy_srtio3_perovskite_cubic_abo3_structure
-      label: Srtio3 perovskite cubic abo3 structure
+    - name: copy_structure_caption
+      label: Hero structure caption
       type: text
-      description: Markdown and inline HTML supported. Preserve scientific subscripts and citation markup.
+      description: Markdown and inline HTML supported.
     - name: copy_what_we_do
       label: What we do
       type: string
@@ -338,9 +355,6 @@ content:
       type: string
     - name: copy_explore_our_research
       label: Explore our research
-      type: string
-    - name: copy_learn_more
-      label: Learn more
       type: string
     - name: copy_highlights
       label: Highlights
@@ -369,12 +383,6 @@ content:
     - name: copy_publications_will_appear_here_soon
       label: Publications will appear here soon
       type: string
-    - name: copy_about_the_lab
-      label: About the lab
-      type: string
-    - name: copy_we_develop_computational_approaches_to_understand_and_design_func
-      label: We develop computational approaches to understand and design func
-      type: text
     - name: copy_latest_news
       label: Latest news
       type: string
@@ -384,17 +392,53 @@ content:
     - name: copy_news_will_appear_here_soon
       label: News will appear here soon
       type: string
-    - name: copy_explore
-      label: Explore
+    - name: path_research_methods
+      label: Path to Research methods
       type: string
-    - name: copy_research_directions
-      label: Research directions
+    - name: path_join
+      label: Path to Join Us
       type: string
-    - name: copy_group_members
-      label: Group members
+    - name: copy_how_we_work
+      label: How we work
       type: string
-    - name: copy_contact
-      label: Contact
+    - name: copy_methods_open_science
+      label: Methods & Open Science
+      type: string
+    - name: copy_approaches
+      label: Approaches
+      type: string
+    - name: copy_open_source_codes
+      label: Open-source codes we contribute to
+      type: string
+    - name: copy_methods_and_tools
+      label: Methods & tools link
+      type: string
+    - name: copy_research_context
+      label: Research context link
+      type: string
+    - name: copy_papers
+      label: Papers label
+      type: string
+    - name: copy_opens_publication
+      label: Screen-reader note for paper links
+      type: string
+    - name: copy_news
+      label: News eyebrow
+      type: string
+    - name: copy_opportunities
+      label: Opportunities eyebrow
+      type: string
+    - name: copy_join_us
+      label: Join Us heading
+      type: string
+    - name: copy_open_positions
+      label: Open positions label
+      type: string
+    - name: copy_deadline
+      label: Deadline label
+      type: string
+    - name: copy_see_opportunities
+      label: See all opportunities button
       type: string
     - name: copy_research_sponsors
       label: Research sponsors
@@ -585,6 +629,30 @@ content:
     - name: copy_official_job_offer
       label: Official job offer
       type: string
+    - name: copy_status_open
+      label: Status label (open)
+      type: string
+    - name: copy_status_closed
+      label: Status label (closed)
+      type: string
+    - name: copy_apply_by
+      label: Apply by (shown before the date)
+      type: string
+    - name: copy_deadline_passed
+      label: Deadline passed (shown before the date)
+      type: string
+    - name: copy_extended
+      label: Extended (shown after the date)
+      type: string
+    - name: copy_archive
+      label: Archive eyebrow
+      type: string
+    - name: copy_closed_positions
+      label: Closed positions heading
+      type: string
+    - name: copy_closed_positions_intro
+      label: Closed positions introduction
+      type: string
     - name: copy_there_are_no_advertised_openings_at_the_moment_motivated_candidat
       label: There are no advertised openings at the moment motivated candidat
       type: text
@@ -622,9 +690,6 @@ content:
     - name: copy_email_the_pi
       label: Email the pi
       type: string
-    - name: deadline
-      label: Deadline
-      type: string
     - name: email
       label: Email
       type: string
@@ -655,9 +720,6 @@ content:
     - name: copy_aria_label_people_filters
       label: Aria label people filters
       type: string
-    - name: copy_aria_label_people_directory
-      label: Aria label people directory
-      type: string
     - name: copy_aria_label_profile_links
       label: Aria label profile links
       type: string
@@ -676,12 +738,6 @@ content:
     - name: copy_aria_label_researchgate
       label: Aria label researchgate
       type: string
-    - name: copy_aria_label_full_publication_list
-      label: Aria label full publication list
-      type: string
-    - name: copy_aria_label_map_to_the_inma_office_at_calle_de_pedro_cerbuna_12
-      label: Aria label map to the inma office at calle de pedro cerbuna 12
-      type: string
     - name: copy_title_inma_office_at_calle_de_pedro_cerbuna_12_on_google_maps
       label: Title inma office at calle de pedro cerbuna 12 on google maps
       type: string
@@ -698,6 +754,12 @@ content:
       description: Markdown and inline HTML supported. Preserve scientific subscripts and citation markup.
     - name: copy_current_members
       label: Current members
+      type: string
+    - name: copy_all
+      label: All current (filter button)
+      type: string
+    - name: copy_alumni
+      label: Alumni heading
       type: string
     - name: copy_doi
       label: Doi
@@ -723,6 +785,15 @@ content:
     - name: copy_open_address_of_inma_in_google_maps
       label: Open address of inma in google maps
       type: string
+    - name: copy_email_us
+      label: Email us button
+      type: string
+    - name: copy_show_map
+      label: Show map button
+      type: string
+    - name: copy_hide_map
+      label: Hide map button
+      type: string
     - name: copy_funny_tips
       label: Funny tips
       type: string
@@ -735,14 +806,26 @@ content:
     - name: copy_to_check_if_you_need_sunglasses_and_sunscreen_when_you_visit_us_c
       label: To check if you need sunglasses and sunscreen when you visit us c
       type: text
-    - name: copy_loading_live_weather_near_inma
-      label: Loading live weather near inma
-      type: string
     - name: based_in
       label: Based in
       type: string
     - name: bibliography_summary
       label: Bibliography summary
+      type: string
+    - name: copy_search_publications
+      label: Publications search label
+      type: string
+    - name: copy_search_status
+      label: Search result message ({shown} and {total} are replaced)
+      type: string
+    - name: copy_no_matching_publications
+      label: No search results message
+      type: string
+    - name: copy_jump_to_year
+      label: Jump to year label
+      type: string
+    - name: copy_link
+      label: Link (records without DOI)
       type: string
     - name: volume
       label: Volume
@@ -916,9 +999,6 @@ content:
       type: string
     - name: sunglasses_optional
       label: Sunglasses optional
-      type: string
-    - name: unavailable
-      label: Unavailable
       type: string
   - name: accessibility
     label: Accessibility

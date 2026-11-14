@@ -11,6 +11,7 @@
       <ul>{{ range .questions }}<li>{{ . | markdownify }}</li>{{ end }}</ul>
     </aside>
   </header>
+  <div class="rl-body">
   <div class="rl-themes">
     {{ range .themes }}<section class="rl-theme"><h4>{{ .title }}</h4><p>{{ .text | markdownify }}</p></section>{{ end }}
   </div>
@@ -21,6 +22,7 @@
       <figcaption>{{ .caption | markdownify }}</figcaption>
     </figure>
     {{ end }}
+  </div>
   </div>
   <div class="rl-papers">
     <h4>{{ .papers_title }}</h4>

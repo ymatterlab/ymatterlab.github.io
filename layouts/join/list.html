@@ -2,6 +2,13 @@
 <article class="page-header">
 <h1>{{ .Title }}</h1>
 </article>
+{{ $copy := site.Data.copy.join_list }}
+{{ $open := slice }}
+{{ $closed := slice }}
+{{ range .Params.positions }}
+  {{ $status := partial "position-status.html" . }}
+  {{ if $status.open }}{{ $open = $open | append (dict "p" . "s" $status) }}{{ else }}{{ $closed = $closed | append (dict "p" . "s" $status) }}{{ end }}
+{{ end }}
 <section class="research-page">
 <section aria-labelledby="positions-title" class="research-section">
 <div class="research-section-heading">
@@ -10,61 +17,13 @@
 <p>{{ site.Data.copy.join_list.copy_current_postdoctoral_phd_and_visiting_researcher_opportunities_in | markdownify }}</p>
 </div>
 
-    {{ with .Params.positions }}
-    <div class="research-line-list">
-      {{ range . }}
-      <article class="research-line join-position">
-<div class="research-line-body">
-<h3>{{ .title }}</h3>
-<p class="join-position-meta">
-            {{ with .type }}<span>{{ . }}</span>{{ end }}
-            {{ with .location }}<span>{{ . }}</span>{{ end }}
-            {{ with .deadline }}<span>{{ site.Data.copy.join_list.deadline }} {{ . }}</span>{{ end }}
-          </p>
-          {{ with .description }}<p>{{ . | markdownify }}</p>{{ end }}
-          {{ with .funding }}<p class="join-funding"><strong>{{ site.Data.copy.join_list.copy_funding | markdownify }}</strong> {{ . | markdownify }}</p>{{ end }}
-          {{ with .qualifications }}
-          <div class="join-apply join-qualifications">
-<h4>{{ site.Data.copy.join_list.copy_expected_qualifications_and_skills | markdownify }}</h4>
-            {{ with .required }}
-            <p>{{ site.Data.copy.join_list.copy_required | markdownify }}</p>
-<ul>
-              {{ range . }}<li>{{ . | markdownify }}</li>{{ end }}
-            </ul>
-            {{ end }}
-            {{ with .desirable }}
-            <p>{{ site.Data.copy.join_list.copy_desirable | markdownify }}</p>
-<ul>
-              {{ range . }}<li>{{ . | markdownify }}</li>{{ end }}
-            </ul>
-            {{ end }}
-          </div>
-          {{ end }}
-          {{ with .how_to_apply }}
-          <div class="join-apply">
-<h4>{{ site.Data.copy.join_list.copy_how_to_apply | markdownify }}</h4>
-            {{ with .intro }}<p>{{ . | markdownify }}</p>{{ end }}
-            {{ with .steps }}
-            <ol>
-              {{ range . }}<li>{{ . | markdownify }}</li>{{ end }}
-            </ol>
-            {{ end }}
-            {{ with .notice }}
-            <div class="join-notice">
-              {{ with .title }}<h5>{{ . }}</h5>{{ end }}
-              {{ with .body }}{{ . | markdownify }}{{ end }}
-            </div>
-            {{ end }}
-          </div>
-          {{ end }}
-          {{ with .link }}<a href="{{ . }}" rel="noopener" target="_blank">{{ site.Data.copy.join_list.copy_official_job_offer | markdownify }}</a>{{ end }}
-        </div>
-</article>
-      {{ end }}
+    {{ with $open }}
+    <div class="position-list">
+      {{ range . }}{{ partial "join-position.html" (dict "p" .p "s" .s "archived" false) }}{{ end }}
     </div>
     {{ else }}
     <div class="research-focus-box">
-<p>{{ site.Data.copy.join_list.copy_there_are_no_advertised_openings_at_the_moment_motivated_candidat | markdownify }}</p>
+<p>{{ $copy.copy_there_are_no_advertised_openings_at_the_moment_motivated_candidat | markdownify }}</p>
 </div>
     {{ end }}
   </section>
@@ -93,6 +52,21 @@
 </ul>
 </div>
 </section>
+{{ with $closed }}
+<section aria-labelledby="archive-title" class="research-section position-archive">
+<div class="research-section-heading">
+<p class="eyebrow">{{ $copy.copy_archive | markdownify }}</p>
+<h2 id="archive-title">{{ $copy.copy_closed_positions | markdownify }}</h2>
+<p>{{ $copy.copy_closed_positions_intro | markdownify }}</p>
+</div>
+{{ range . }}
+<details class="position-archived">
+<summary><h3>{{ .p.title }}</h3> <span class="position-archived-status"><span class="status-badge is-closed">{{ $copy.copy_status_closed }}</span>{{ with .s.end }} {{ $copy.copy_deadline_passed }} {{ .Format "2 January 2006" }}{{ end }}</span></summary>
+{{ partial "join-position.html" (dict "p" .p "s" .s "archived" true) }}
+</details>
+{{ end }}
+</section>
+{{ end }}
 <section aria-labelledby="join-contact-title" class="research-student-callout">
 <div>
 <p class="eyebrow">{{ site.Data.copy.join_list.copy_contact | markdownify }}</p>
@@ -102,4 +76,18 @@
 <a class="button" href="mailto:{{ site.Params.email }}?subject={{ "Joining Y-Matter Lab" | urlquery }}">{{ site.Data.copy.join_list.copy_email_the_pi | markdownify }}</a>
 </section>
 </section>
+<script>
+(function () {
+  const labels = {{ $copy | jsonify | safeJS }};
+  document.querySelectorAll("[data-position][data-deadline-end]").forEach(function (item) {
+    const end = Date.parse(item.dataset.deadlineEnd);
+    const badge = item.querySelector("[data-status-badge]");
+    const text = item.querySelector("[data-status-text]");
+    if (!badge || isNaN(end) || Date.now() <= end || badge.classList.contains("is-closed")) return;
+    badge.classList.replace("is-open", "is-closed");
+    badge.textContent = labels.copy_status_closed;
+    if (text) text.textContent = text.textContent.replace(labels.copy_apply_by, labels.copy_deadline_passed);
+  });
+})();
+</script>
 {{ end }}

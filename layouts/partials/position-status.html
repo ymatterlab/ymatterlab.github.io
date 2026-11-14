@@ -1,0 +1,22 @@
+{{- /* Opening status of a position (content/join/_index.md).
+   The deadline (or `extended_deadline`, only when the content sets one) counts until
+   23:59:59 Europe/Madrid on that day. Accepts "2026-Nov-10" or "2026-11-10".
+   Returns dict: open (bool), known (bool), end (time), extended (bool). */ -}}
+{{- $months := dict "jan" "01" "feb" "02" "mar" "03" "apr" "04" "may" "05" "jun" "06" "jul" "07" "aug" "08" "sep" "09" "oct" "10" "nov" "11" "dec" "12" -}}
+{{- $raw := .deadline -}}
+{{- $extended := false -}}
+{{- with .extended_deadline -}}{{- $raw = . -}}{{- $extended = true -}}{{- end -}}
+{{- $result := dict "open" true "known" false "extended" false -}}
+{{- with $raw -}}
+  {{- $parts := split (string .) "-" -}}
+  {{- if eq (len $parts) 3 -}}
+    {{- $month := lower (index $parts 1) -}}
+    {{- with index $months (substr $month 0 3) -}}{{- $month = . -}}{{- end -}}
+    {{- $day := index $parts 2 -}}
+    {{- if eq (len $day) 1 -}}{{- $day = printf "0%s" $day -}}{{- end -}}
+    {{- if eq (len $month) 1 -}}{{- $month = printf "0%s" $month -}}{{- end -}}
+    {{- $end := time.AsTime (printf "%s-%s-%s 23:59:59" (index $parts 0) $month $day) "Europe/Madrid" -}}
+    {{- $result = dict "open" (now.Before $end) "known" true "end" $end "extended" $extended -}}
+  {{- end -}}
+{{- end -}}
+{{- return $result -}}
