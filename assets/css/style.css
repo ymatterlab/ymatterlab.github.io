@@ -371,6 +371,11 @@ a {
   margin: var(--space-5) 0;
 }
 
+/* Grid items must not grow past the column because of long unbreakable content. */
+.research-page > * {
+  min-width: 0;
+}
+
 .research-section {
   border-top: var(--rule);
   padding-top: var(--section-gap);
@@ -1621,10 +1626,10 @@ a {
 }
 
 .position-archived-status {
+  display: inline-block;
   margin-left: var(--space-3);
   color: var(--muted);
   font-size: var(--text-sm);
-  white-space: nowrap;
 }
 
 .position-archived-status .status-badge {
@@ -1919,9 +1924,12 @@ a {
   line-height: var(--leading-body);
 }
 
-/* Figures stack beside the prose; grid (not flex) so inline flex-grow is ignored. */
+/* Figures stack beside the prose; grid (not flex) so inline flex-grow is ignored.
+   The explicit full-width track reserves each image's space (from its width/height
+   attributes) before it loads, so in-page anchors do not land short. */
 .rl-figures {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-5);
   align-content: start;
 }
@@ -1932,6 +1940,9 @@ a {
 
 .research-figure.research-figure-image {
   display: block;
+  /* The placeholder rule's place-items: center would shrink the image link to the
+     not-yet-loaded image (0 px); stretch it so the space is reserved up front. */
+  place-items: normal;
   min-height: 0;
   border: var(--rule);
   background: var(--surface);
@@ -2489,6 +2500,11 @@ a {
     flex-direction: column;
   }
 
+  /* Tablets: one featured item per row so figure panels stay legible. */
+  .featured-grid {
+    grid-template-columns: 1fr;
+  }
+
   .page-subnav-label {
     display: none;
   }
@@ -2551,6 +2567,12 @@ a {
 
   .page-subnav {
     position: static;
+  }
+
+  /* Header and subnav do not stick on phones, so anchors need no extra offset. */
+  .research-page [id],
+  .pub-year h2 {
+    scroll-margin-top: var(--space-4);
   }
 
   .research-section-heading.section-heading,
