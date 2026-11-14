@@ -175,7 +175,6 @@ _default_list:
   copy_aria_label_google_scholar: Google Scholar
   copy_aria_label_orcid: ORCID
   copy_aria_label_researchgate: ResearchGate
-  copy_aria_label_full_publication_list: Full publication list
   copy_aria_label_map_to_the_inma_office_at_calle_de_pedro_cerbuna_12: Map to the INMA office at Calle
     de Pedro Cerbuna 12
   copy_title_inma_office_at_calle_de_pedro_cerbuna_12_on_google_maps: INMA office at Calle de Pedro Cerbuna
@@ -203,7 +202,12 @@ _default_list:
     and sunscreen when you visit us, check if it is sunny in Zaragoza.
   copy_loading_live_weather_near_inma: Loading live weather near INMA&#46;&#46;&#46;
   based_in: Based in
-  bibliography_summary: publications imported from the group bibliography.
+  bibliography_summary: publications
+  copy_search_publications: Search titles and authors
+  copy_search_status: '{shown} of {total} publications match'
+  copy_no_matching_publications: No publications match this search.
+  copy_jump_to_year: Jump to year
+  copy_link: Link
   volume: Vol.
   number: No.
   full_text_via: Full free text via

@@ -71,62 +71,101 @@
 </script>
 
 {{ else if eq .Section "publications" }}
+{{ $copy := site.Data.copy._default_list }}
 {{ $pubs := sort site.Data.publications "sort_date" "desc" }}
+{{ $years := slice }}
+{{ range $pubs }}{{ if not (in $years .year) }}{{ $years = $years | append .year }}{{ end }}{{ end }}
 <section class="publication-overview">
-<p><strong>{{ len $pubs }}</strong> {{ site.Data.copy._default_list.bibliography_summary }}</p>
+<p><strong>{{ len $pubs }}</strong> {{ $copy.bibliography_summary }}{{ with $years }} · {{ index . (sub (len .) 1) }}–{{ index . 0 }}{{ end }}</p>
 </section>
-<section aria-label="{{ site.Data.copy._default_list.copy_aria_label_full_publication_list }}" class="publication-catalog">
-<ol class="publication-list full-publication-list">
-    {{ range $pubs }}
-    <li class="publication-item">
-<article class="publication-entry">
-<div class="publication-year-pill">{{ .year }}</div>
-<div class="publication-body">
-<div class="publication-title-row">
-<h2>{{ .title }}</h2>
 
-            {{ with .doi }}
-            <div class="publication-altmetric">
-<div class="altmetric-embed" data-badge-popover="right" data-doi="{{ . }}">
+<div class="pub-tools">
+{{/* Search needs JavaScript, so it stays hidden until the script runs; year links are plain anchors. */}}
+<div class="pub-search" data-pub-search hidden>
+<label for="pub-search-input">{{ $copy.copy_search_publications }}</label>
+<input id="pub-search-input" type="search" autocomplete="off" spellcheck="false" aria-describedby="pub-search-status"/>
+<p class="pub-search-status" id="pub-search-status" aria-live="polite"></p>
 </div>
+<nav aria-label="{{ $copy.copy_jump_to_year }}" class="pub-years">
+<span class="pub-years-label">{{ $copy.copy_jump_to_year }}</span>
+<ul>{{ range $years }}<li><a href="#year-{{ . }}">{{ . }}</a></li>{{ end }}</ul>
+</nav>
 </div>
-            {{ end }}
-          </div>
-<p class="publication-authors">
-            {{ replace .authors "Yue-Wen Fang" "<strong>Yue-Wen Fang</strong>" | safeHTML }}
-          </p>
-<p class="publication-meta">
-            {{ with .journal }}<span>{{ . }}</span>{{ end }}
-            {{ with .volume }}<span>{{ site.Data.copy._default_list.volume }} {{ . }}</span>{{ end }}
-            {{ with .number }}<span>{{ site.Data.copy._default_list.number }} {{ . }}</span>{{ end }}
-            {{ with .pages }}<span>{{ . }}</span>{{ end }}
-          </p>
 
-          {{ $doiURL := .doi_url }}
-          {{ if and (not $doiURL) .doi }}
-            {{ $doiURL = printf "https://doi.org/%s" .doi }}
-          {{ end }}
-
-          {{ if or $doiURL .free_full_text_url }}
-          <div class="publication-actions">
-            {{ with $doiURL }}
-            <a href="{{ . }}" rel="noopener" target="_blank">{{ site.Data.copy._default_list.copy_doi | markdownify }}</a>
-            {{ end }}
-
-            {{ $freeSource := .free_full_text_source }}
-            {{ with .free_full_text_url }}
-            <a {{ with $freeSource }}title="{{ site.Data.copy._default_list.full_text_via }} {{ . }}"{{ end }} href="{{ . }}" rel="noopener" target="_blank">{{ site.Data.copy._default_list.copy_full_free_text | markdownify }}</a>
-            {{ end }}
-          </div>
-          {{ end }}
-        </div>
-</article>
+<div class="pub-catalog" data-pub-catalog>
+{{ range $years }}
+{{ $year := . }}
+<section aria-labelledby="year-{{ $year }}" class="pub-year" data-pub-year>
+<h2 id="year-{{ $year }}">{{ $year }}</h2>
+<ol class="pub-list">
+{{ range where $pubs "year" $year }}
+<li class="pub-item" data-pub-item>
+<h3 class="pub-title">{{ .title }}</h3>
+<p class="pub-authors">{{ replace .authors "Yue-Wen Fang" "<strong>Yue-Wen Fang</strong>" | safeHTML }}</p>
+<p class="pub-meta">
+{{ with .journal }}<em>{{ . }}</em>{{ end }}
+{{ with .volume }}<span>{{ $copy.volume }} {{ . }}</span>{{ end }}
+{{ with .number }}<span>{{ $copy.number }} {{ . }}</span>{{ end }}
+{{ with .pages }}<span>{{ . }}</span>{{ end }}
+<span>({{ .year }})</span>
+</p>
+{{ $doiURL := .doi_url }}
+{{ if and (not $doiURL) .doi }}{{ $doiURL = printf "https://doi.org/%s" .doi }}{{ end }}
+<div class="pub-links">
+{{ with $doiURL }}<a href="{{ . }}" rel="noopener" target="_blank">{{ $copy.copy_doi | markdownify }}</a>{{ else }}{{ with .link }}<a href="{{ . }}" rel="noopener" target="_blank">{{ $copy.copy_link }}</a>{{ end }}{{ end }}
+{{ $freeSource := .free_full_text_source }}
+{{ with .free_full_text_url }}<a {{ with $freeSource }}title="{{ $copy.full_text_via }} {{ . }}"{{ end }} href="{{ . }}" rel="noopener" target="_blank">{{ $copy.copy_full_free_text | markdownify }}</a>{{ end }}
+{{ with .doi }}<div class="altmetric-embed" data-badge-type="2" data-hide-no-mentions="true" data-doi="{{ . }}"></div>{{ end }}
+</div>
 </li>
-    {{ else }}
-    <li>{{ site.Data.copy._default_list.copy_publications_will_appear_here_soon | markdownify }}</li>
-    {{ end }}
-  </ol>
+{{ end }}
+</ol>
 </section>
+{{ else }}
+<p>{{ $copy.copy_publications_will_appear_here_soon | markdownify }}</p>
+{{ end }}
+<p class="pub-no-matches" data-pub-empty hidden>{{ $copy.copy_no_matching_publications }}</p>
+</div>
+<script>
+(function () {
+  const box = document.querySelector("[data-pub-search]");
+  const catalog = document.querySelector("[data-pub-catalog]");
+  if (!box || !catalog) return;
+  const input = box.querySelector("input");
+  const status = box.querySelector(".pub-search-status");
+  const empty = catalog.querySelector("[data-pub-empty]");
+  const template = {{ $copy.copy_search_status | jsonify | safeJS }};
+  const fold = function (text) {
+    return text.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+  };
+  const items = Array.from(catalog.querySelectorAll("[data-pub-item]")).map(function (item) {
+    return {
+      el: item,
+      text: fold(item.querySelector(".pub-title").textContent + " " + item.querySelector(".pub-authors").textContent)
+    };
+  });
+  const years = Array.from(catalog.querySelectorAll("[data-pub-year]"));
+  box.hidden = false;
+
+  function apply() {
+    const terms = fold(input.value).split(/\s+/).filter(Boolean);
+    let shown = 0;
+    items.forEach(function (item) {
+      const match = terms.every(function (t) { return item.text.includes(t); });
+      item.el.hidden = !match;
+      if (match) shown += 1;
+    });
+    years.forEach(function (section) {
+      section.hidden = !section.querySelector("[data-pub-item]:not([hidden])");
+    });
+    empty.hidden = shown > 0;
+    status.textContent = terms.length
+      ? template.replace("{shown}", shown).replace("{total}", items.length)
+      : "";
+  }
+  input.addEventListener("input", apply);
+})();
+</script>
 <script async="" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>
 
 {{ else if eq .Section "contact" }}

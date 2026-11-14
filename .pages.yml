@@ -714,9 +714,6 @@ content:
     - name: copy_aria_label_researchgate
       label: Aria label researchgate
       type: string
-    - name: copy_aria_label_full_publication_list
-      label: Aria label full publication list
-      type: string
     - name: copy_aria_label_map_to_the_inma_office_at_calle_de_pedro_cerbuna_12
       label: Aria label map to the inma office at calle de pedro cerbuna 12
       type: string
@@ -787,6 +784,21 @@ content:
       type: string
     - name: bibliography_summary
       label: Bibliography summary
+      type: string
+    - name: copy_search_publications
+      label: Publications search label
+      type: string
+    - name: copy_search_status
+      label: Search result message ({shown} and {total} are replaced)
+      type: string
+    - name: copy_no_matching_publications
+      label: No search results message
+      type: string
+    - name: copy_jump_to_year
+      label: Jump to year label
+      type: string
+    - name: copy_link
+      label: Link (records without DOI)
       type: string
     - name: volume
       label: Volume
