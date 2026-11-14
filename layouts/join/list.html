@@ -11,20 +11,37 @@
 {{ end }}
 <section class="research-page">
 <section aria-labelledby="positions-title" class="research-section">
+{{ $hc := site.Home.Params.copy }}
+<div class="join-intro">
+<figure class="photo-figure">
+<img src="{{ "/images/zaragoza/zaragoza-ebro-night-960.webp" | relURL }}" width="960" height="720" decoding="async" alt="{{ $hc.copy_ebro_photo_alt }}"/>
+<figcaption>{{ $hc.copy_ebro_photo_caption }} <span class="photo-credit">{{ $hc.copy_ebro_photo_credit }}</span></figcaption>
+</figure>
+<div class="join-intro-text">
 <div class="research-section-heading">
 <p class="eyebrow">{{ site.Data.copy.join_list.copy_open_positions | markdownify }}</p>
 <h2 id="positions-title">{{ site.Data.copy.join_list.copy_current_opportunities | markdownify }}</h2>
 <p>{{ site.Data.copy.join_list.copy_current_postdoctoral_phd_and_visiting_researcher_opportunities_in | markdownify }}</p>
+</div>
+    {{ with $open }}
+    <ul class="join-open-summary">
+      {{ range . }}
+      <li data-position{{ with .s.end }} data-deadline-end="{{ .Format "2006-01-02T15:04:05Z07:00" }}"{{ end }}><a href="#{{ .p.title | anchorize }}">{{ .p.title }}</a>
+        <span class="status-badge is-open" data-status-badge>{{ $copy.copy_status_open }}</span>{{ with .s.end }} <span class="join-open-date" data-status-text>{{ $copy.copy_apply_by }} {{ .Format "2 January 2006" }}</span>{{ end }}</li>
+      {{ end }}
+    </ul>
+    {{ else }}
+    <div class="research-focus-box">
+<p>{{ $copy.copy_there_are_no_advertised_openings_at_the_moment_motivated_candidat | markdownify }}</p>
+</div>
+    {{ end }}
+</div>
 </div>
 
     {{ with $open }}
     <div class="position-list">
       {{ range . }}{{ partial "join-position.html" (dict "p" .p "s" .s "archived" false) }}{{ end }}
     </div>
-    {{ else }}
-    <div class="research-focus-box">
-<p>{{ $copy.copy_there_are_no_advertised_openings_at_the_moment_motivated_candidat | markdownify }}</p>
-</div>
     {{ end }}
   </section>
 <section aria-labelledby="prospective-title" class="research-section">

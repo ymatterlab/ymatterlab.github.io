@@ -1034,7 +1034,47 @@ a {
 
 .contact-card {
   display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: var(--space-5) var(--space-6);
+  align-items: start;
+}
+
+.contact-main {
+  display: grid;
   gap: var(--space-5);
+}
+
+/* Campus photo beside the contact details; the map (on request) spans both columns. */
+.contact-photo {
+  margin: 0;
+}
+
+.contact-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+}
+
+.contact-photo figcaption {
+  margin-top: var(--space-2);
+  color: var(--muted);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+
+.contact-photo figcaption p {
+  margin: 0;
+}
+
+.contact-map {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 900px) {
+  .contact-card {
+    grid-template-columns: 1fr;
+  }
 }
 
 .contact-details {
@@ -2434,10 +2474,10 @@ a {
 
 /* Home: join us */
 .home-join {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   align-items: center;
-  justify-content: space-between;
-  gap: var(--space-5);
+  gap: var(--space-5) clamp(var(--space-5), 4vw, var(--space-7));
   margin: var(--section-gap) 0 0;
   border: var(--rule);
   border-left: 4px solid var(--accent);
@@ -2468,7 +2508,72 @@ a {
 }
 
 .home-join .button {
-  flex: 0 0 auto;
+  margin-top: var(--space-5);
+}
+
+.photo-figure {
+  margin: 0;
+}
+
+.photo-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+}
+
+.photo-figure figcaption {
+  margin-top: var(--space-2);
+  color: var(--muted);
+  font-size: var(--text-sm);
+  line-height: 1.45;
+}
+
+/* Join Us page: photo beside the opening text and current status. */
+.join-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-5) clamp(var(--space-5), 4vw, var(--space-7));
+}
+
+.join-intro-text {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.join-open-summary {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.join-open-summary a {
+  font-weight: 700;
+}
+
+.join-open-summary .status-badge {
+  margin-left: var(--space-2);
+  font-size: var(--text-sm);
+}
+
+.join-open-date {
+  color: var(--muted);
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+@media (max-width: 900px) {
+  .join-intro {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Discreet photographer credit after the caption. */
+.photo-credit {
+  font-size: var(--text-xs);
 }
 
 .visually-hidden {
@@ -2491,8 +2596,7 @@ a {
   }
 
   .home-join {
-    align-items: flex-start;
-    flex-direction: column;
+    grid-template-columns: 1fr;
   }
 
   /* Tablets: one featured item per row so figure panels stay legible. */
