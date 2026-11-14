@@ -3,7 +3,7 @@
 {{ $copy := site.Data.copy.join_list }}
 {{ $p := .p }}
 {{ $s := .s }}
-<article class="join-position" data-position{{ with $s.end }} data-deadline-end="{{ .Format "2006-01-02T15:04:05Z07:00" }}"{{ end }}>
+<article class="join-position"{{ if not .archived }} id="{{ $p.title | anchorize }}"{{ end }} data-position{{ with $s.end }} data-deadline-end="{{ .Format "2006-01-02T15:04:05Z07:00" }}"{{ end }}>
 {{ if not .archived }}<h3>{{ $p.title }}</h3>{{ end }}
 <p class="position-status">
 <span class="status-badge {{ if $s.open }}is-open{{ else }}is-closed{{ end }}" data-status-badge>{{ if $s.open }}{{ $copy.copy_status_open }}{{ else }}{{ $copy.copy_status_closed }}{{ end }}</span>

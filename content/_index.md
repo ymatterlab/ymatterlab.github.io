@@ -152,6 +152,10 @@ copy:
   copy_open_positions: 'Open positions:'
   copy_deadline: apply by
   copy_see_opportunities: See all opportunities
+  copy_ebro_photo_alt: The Basilica del Pilar lit up at dusk beside the Ebro, its towers and domes reflected
+    in the river under a cloudy evening sky.
+  copy_ebro_photo_caption: The Ebro and Basilica del Pilar, Zaragoza.
+  copy_ebro_photo_credit: Photo by Yue-Wen Fang.
   copy_we_sincerely_acknowledge_the_generous_financial_and_computational: We sincerely acknowledge the
     generous financial and computational support of our present and past sponsors.
   copy_pid2025_173011na_i00_funded_by_miciu_aei_10_13039_501100011033: PID2025-173011NA-I00 funded by

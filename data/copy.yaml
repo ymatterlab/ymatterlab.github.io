@@ -202,6 +202,10 @@ _default_list:
   copy_open_address_of_inma_in_google_maps: Open address of INMA in Google Maps
   copy_email_us: Email us
   copy_show_map: Show map
+  copy_campus_photo_alt: Entrance gate of the Ciudad Universitaria campus of the University of Zaragoza, with
+    the inscription "Ciudad Universitaria" across the arch.
+  copy_campus_photo_caption: Ciudad Universitaria, University of Zaragoza, the campus where INMA is located.
+    Photo by Yue-Wen Fang.
   copy_hide_map: Hide map
   copy_funny_tips: Funny Tips
   copy_sunglasses_check_for_zaragoza: Sunglasses Check for Zaragoza

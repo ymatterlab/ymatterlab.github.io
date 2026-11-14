@@ -440,6 +440,15 @@ content:
     - name: copy_see_opportunities
       label: See all opportunities button
       type: string
+    - name: copy_ebro_photo_alt
+      label: Join Us photo description (alt text)
+      type: text
+    - name: copy_ebro_photo_caption
+      label: Join Us photo caption
+      type: string
+    - name: copy_ebro_photo_credit
+      label: Join Us photo credit
+      type: string
     - name: copy_research_sponsors
       label: Research sponsors
       type: string

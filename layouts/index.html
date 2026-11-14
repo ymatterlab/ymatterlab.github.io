@@ -163,7 +163,11 @@
 {{/* 6. Join us, then sponsors. */}}
 {{ $join := site.GetPage "/join" }}
 <section aria-labelledby="join-heading" class="home-join">
-<div>
+<figure class="home-join-photo photo-figure">
+<img src="{{ "/images/zaragoza/zaragoza-ebro-night-960.webp" | relURL }}" width="960" height="720" loading="lazy" decoding="async" alt="{{ $c.copy_ebro_photo_alt }}"/>
+<figcaption>{{ $c.copy_ebro_photo_caption }} <span class="photo-credit">{{ $c.copy_ebro_photo_credit }}</span></figcaption>
+</figure>
+<div class="home-join-text">
 <p class="eyebrow">{{ $c.copy_opportunities | markdownify }}</p>
 <h2 id="join-heading">{{ $c.copy_join_us | markdownify }}</h2>
 {{ $openPositions := slice }}
@@ -193,8 +197,8 @@
 </script>
 {{ end }}
 <p>{{ site.Data.copy.join_list.copy_researchers_interested_in_joining_the_group_with_their_own_fundin | markdownify }}</p>
-</div>
 <a class="button" href="{{ $c.path_join | relURL }}">{{ $c.copy_see_opportunities | markdownify }}</a>
+</div>
 </section>
 
 <section aria-labelledby="research-sponsors-heading" class="research-sponsors">
