@@ -8,9 +8,9 @@
 {{ $filters := site.Data.copy.news_list.filters }}
 
 <section aria-label="{{ site.Data.copy.news_list.copy_aria_label_news_filters }}" class="news-tools">
-<button class="news-filter is-active" data-news-filter="all" type="button">{{ site.Data.copy.news_list.copy_all | markdownify }}</button>
+<button aria-pressed="true" class="news-filter is-active" data-news-filter="all" type="button">{{ site.Data.copy.news_list.copy_all | markdownify }}</button>
   {{ range $filters }}
-  <button class="news-filter" data-news-filter="{{ .key }}" type="button">{{ .label }}</button>
+  <button aria-pressed="false" class="news-filter" data-news-filter="{{ .key }}" type="button">{{ .label }}</button>
   {{ end }}
 </section>
 <section aria-label="{{ site.Data.copy.news_list.copy_aria_label_news_timeline }}" class="news-timeline">
@@ -39,16 +39,17 @@
 <summary>
 <span class="news-date">{{ $recordDate.Format "January 2006" }}</span>
 <span class="news-title">{{ .Title }}</span>
-<span aria-label="{{ site.Data.copy.news_list.copy_aria_label_news_keywords }}" class="news-keywords">
-            {{ range $categoryKeys }}
-            <button class="news-keyword" data-news-keyword="{{ . }}" type="button">{{ humanize . }}</button>
-            {{ end }}
-          </span>
+
 </summary>
 <div class="news-story">
           {{ .Content }}
         </div>
 </details>
+<span aria-label="{{ site.Data.copy.news_list.copy_aria_label_news_keywords }}" class="news-keywords" role="group">
+            {{ range $categoryKeys }}
+            <button class="news-keyword" data-news-keyword="{{ . }}" type="button">{{ humanize . }}</button>
+            {{ end }}
+          </span>
 </article>
   {{ else }}
     <p class="muted">{{ site.Data.copy.news_list.copy_news_will_appear_here_soon | markdownify }}</p>
@@ -63,6 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function setFilter(filter) {
     filterButtons.forEach(function (button) {
       button.classList.toggle("is-active", button.dataset.newsFilter === filter);
+      button.setAttribute("aria-pressed", String(button.dataset.newsFilter === filter));
     });
 
     items.forEach(function (item) {

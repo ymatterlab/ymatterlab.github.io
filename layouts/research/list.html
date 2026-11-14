@@ -37,9 +37,7 @@
 <p>{{ site.Data.copy.research_list.copy_these_lines_are_connected_to_reveal_design_principles_that_can_gu | markdownify }}</p>
 </div>
 <ol aria-label="{{ site.Data.copy.research_list.copy_aria_label_research_lines }}" class="rl-index">
-<li>{{ site.Data.copy.research_list.copy_01quantum_materialshydride_superconductors_quantum_anharmonicity_ | markdownify }}</li>
-<li>{{ site.Data.copy.research_list.copy_02information_materialsatomic_scale_ferroelectrics_tunnel_junctio | markdownify }}</li>
-<li>{{ site.Data.copy.research_list.copy_03energy_materialsthermal_transport_anomalous_thermal_expansion_c | markdownify }}</li>
+{{ range site.Data.research_lines }}<li><a href="#{{ .id }}"><span class="rl-num">{{ .number }}</span><strong>{{ .title }}</strong><span>{{ .index_summary }}</span></a></li>{{ end }}
 </ol>
 
     {{ range site.Data.research_lines }}

@@ -41,21 +41,6 @@ research_list:
   copy_major_research_lines: Major Research Lines
   copy_these_lines_are_connected_to_reveal_design_principles_that_can_gu: These lines are connected to
     reveal design principles that can guide new experiments and new materials.
-  copy_01quantum_materialshydride_superconductors_quantum_anharmonicity_: <a href="#quantum-materials"><span
-    class="rl-num">01</span><strong>Quantum Materials</strong><span>Hydride superconductors · quantum
-    anharmonicity · polar metals · oxide interfaces</span></a>
-  copy_01: '01'
-  copy_quantum_materials: Quantum Materials
-  copy_02information_materialsatomic_scale_ferroelectrics_tunnel_junctio: <a href="#information-materials"><span
-    class="rl-num">02</span><strong>Information Materials</strong><span>Atomic-scale ferroelectrics ·
-    tunnel junctions · chemical design of ferroic films</span></a>
-  copy_02: '02'
-  copy_information_materials: Information Materials
-  copy_03energy_materialsthermal_transport_anomalous_thermal_expansion_c: <a href="#energy-materials"><span
-    class="rl-num">03</span><strong>Energy Materials</strong><span>Thermal transport · anomalous thermal
-    expansion · catalysis</span></a>
-  copy_03: '03'
-  copy_energy_materials: Energy Materials
   copy_methods: Methods
   copy_how_we_work: How We Work
   copy_methods_tools_2: Methods & Tools
@@ -63,8 +48,6 @@ research_list:
   copy_the_tools_we_use_most_often_grouped_by_task_tools_tagged_we_contr: The tools we use most often,
     grouped by task. Tools tagged <span class="tool-badge">we contribute</span> are codes and methods
     our group has helped develop.
-  copy_computational_workflow: Computational workflow
-  copy_c: c
   copy_publications_2: Publications
   copy_selected_publications: Selected Publications
   copy_full_publication_list: Full publication list
@@ -213,8 +196,6 @@ _default_list:
     and <strong>San Sebastián</strong>. Each current member’s location is highlighted below. Some members
     also belong to <a href="https://cfm.ehu.es/errealab/" rel="noopener" target="_blank">Errea Lab</a>.
   copy_current_members: Current members
-  copy_r: R
-  copy_g: G
   copy_doi: DOI
   copy_full_free_text: Full free text
   copy_publications_will_appear_here_soon: Publications will appear here soon.
@@ -294,3 +275,7 @@ weather:
   sunglasses_recommended: Sunglasses recommended
   sunglasses_optional: Sunglasses optional
   unavailable: Live weather is hiding behind a cloud. Try the full forecast link before you visit.
+accessibility:
+  skip: Skip to main content
+  pause: Pause rotation
+  resume: Resume rotation

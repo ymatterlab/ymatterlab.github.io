@@ -1,4 +1,5 @@
 ---
+description: "Meet Y-Matter Lab members and alumni in Zaragoza and San Sebasti\xE1n."
 title: "People"
 draft: false
 ---

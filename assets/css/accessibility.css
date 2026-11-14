@@ -1,0 +1,37 @@
+/* Keep focus visible against both white cards and dark buttons. */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 3px solid #0b2340;
+  outline-offset: 4px;
+  box-shadow: 0 0 0 3px #fff;
+}
+.skip-link {
+  position: fixed;
+  top: .5rem;
+  left: .5rem;
+  z-index: 100;
+  padding: .65rem 1rem;
+  background: #fff;
+  color: #0b2340;
+  transform: translateY(-200%);
+}
+.skip-link:focus { transform: translateY(0); }
+.tool-list a { text-decoration: underline; text-underline-offset: .15em; }
+.person-contacts { margin-top: .75rem; }
+.person-contacts .person-email { margin-top: 0; }
+[data-rotation-toggle] {
+  margin-top: .5rem;
+  padding: .4rem .8rem;
+  color: #0b2340;
+  background: #fff;
+  border: 1px solid #5b6665;
+  border-radius: .35rem;
+  cursor: pointer;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

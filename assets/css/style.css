@@ -616,8 +616,8 @@ a {
 }
 
 .sponsor-note {
-  font-size: 0.45rem;
-    color: rgba(107, 114, 128, 0.5);
+  font-size: 0.75rem;
+    color: var(--muted);
   text-align: center;
   margin-top: 1rem;
 }
@@ -919,11 +919,11 @@ a {
 }
 
 .orcid-link {
-  color: #a6ce39;
+  color: #5c7918;
 }
 
 .researchgate-link {
-  color: #00a98f;
+  color: #007d69;
 }
 
 .profile-icon {
@@ -1119,7 +1119,7 @@ a {
 }
 
 .weather-now.is-sunny .weather-status {
-  background: #d97706;
+  background: #b45309;
 }
 
 .weather-now strong {

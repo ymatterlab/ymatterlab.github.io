@@ -100,6 +100,7 @@
   - 10.1103/PhysRevB.93.214427
   - 10.1021/acs.jpclett.2c00384
   - 10.20517/microstructures.2024.129
+  index_summary: Hydride superconductors · quantum anharmonicity · polar metals · oxide interfaces
 - id: information-materials
   number: '02'
   title: Information Materials
@@ -187,6 +188,7 @@
   - 10.1039/d0ra09228b
   - 10.1063/5.0191917
   - 10.1063/5.0276143
+  index_summary: Atomic-scale ferroelectrics · tunnel junctions · chemical design of ferroic films
 - id: energy-materials
   number: '03'
   title: Energy Materials
@@ -265,3 +267,4 @@
   - 10.1021/acs.chemmater.1c01619
   - 10.1021/acs.chemmater.2c00076
   - 10.1039/d5mh00251f
+  index_summary: Thermal transport · anomalous thermal expansion · catalysis

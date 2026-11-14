@@ -1,4 +1,5 @@
 ---
+description: "Browse Y-Matter Lab publications, DOIs and open-access full-text links."
 title: "Publications"
 draft: false
 ---

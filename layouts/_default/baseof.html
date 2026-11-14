@@ -11,10 +11,14 @@
 <link href="{{ site.Data.copy._default_baseof.copy_href_images_favicon_site_webmanifest }}" rel="manifest"/>
   {{ $css := resources.Get "css/style.css" | minify | fingerprint }}
   <link href="{{ $css.RelPermalink }}" rel="stylesheet"/>
+  {{ partial "metadata.html" . }}
+  {{ $a11y := resources.Get "css/accessibility.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $a11y.RelPermalink }}">
 </head>
 <body>
+  <a class="skip-link" href="#main">{{ site.Data.copy.accessibility.skip }}</a>
   {{ partial "header.html" . }}
-  <main class="container">
+  <main class="container" id="main" tabindex="-1">
     {{ block "main" . }}{{ end }}
   </main>
   {{ partial "footer.html" . }}

@@ -1,4 +1,6 @@
 ---
+description: "Y-Matter Lab combines first-principles calculations, atomistic simulations and machine\
+  \ learning to understand and design functional materials."
 title: Home
 draft: false
 hero_text: Understanding why matter behaves the way it does and designing the materials we need.
@@ -68,7 +70,7 @@ copy:
   path_images_sponsors_eurohpc_png: /images/sponsors/EuroHPC.png
   path_images_sponsors_miciu_aei_jpg: /images/sponsors/MICIU-AEI.jpg
   copy_aria_label_primary_pages: Primary pages
-  copy_aria_label_rotating_cubic_pbtio3_perovskite_structure: Rotating cubic PbTiO3 perovskite structure
+  copy_aria_label_rotating_cubic_pbtio3_perovskite_structure: Cubic SrTiO3 perovskite structure
   copy_aria_label_about_the_lab_and_latest_news: About the lab and latest news
   copy_href_https_www_csic_es_en: https://www.csic.es/en
   copy_aria_label_visit_csic: Visit CSIC

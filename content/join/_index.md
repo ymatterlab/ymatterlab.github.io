@@ -1,4 +1,6 @@
 ---
+description: "Explore research positions, fellowships and opportunities to join Y-Matter Lab at\
+  \ INMA and CSIC."
 title: "Join Us"
 draft: false
 # Open positions. Use "positions: []" to show the "no openings" message.

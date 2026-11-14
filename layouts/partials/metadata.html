@@ -1,0 +1,21 @@
+{{- $description := .Description | default site.Params.hero_subtext | plainify -}}
+{{- $title := printf "%s | %s" .Title site.Title -}}
+{{- $image := "/images/favicon/android-chrome-192x192.png" | absURL -}}
+<meta name="description" content="{{ $description }}">
+<link rel="canonical" href="{{ .Permalink }}">
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:site_name" content="{{ site.Title }}">
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:description" content="{{ $description }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:image" content="{{ $image }}">
+<meta property="og:image:alt" content="{{ site.Params.lab_name }}">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{{ $title }}">
+<meta name="twitter:description" content="{{ $description }}">
+<meta name="twitter:url" content="{{ .Permalink }}">
+<meta name="twitter:image" content="{{ $image }}">
+<meta name="twitter:image:alt" content="{{ site.Params.lab_name }}">
+{{- $parents := slice (dict "@type" "ResearchOrganization" "name" "Instituto de Nanociencia y Materiales de Aragón (INMA)" "url" "https://inma.unizar-csic.es/") (dict "@type" "ResearchOrganization" "name" "Spanish National Research Council (CSIC)" "url" "https://www.csic.es/en") -}}
+{{- $organization := dict "@context" "https://schema.org" "@type" "ResearchOrganization" "name" site.Params.lab_name "url" site.Home.Permalink "logo" $image "address" (dict "@type" "PostalAddress" "streetAddress" "Calle de Pedro Cerbuna, 12" "postalCode" "50009" "addressLocality" "Zaragoza" "addressCountry" "ES") "parentOrganization" $parents -}}
+<script type="application/ld+json">{{ $organization | jsonify | safeJS }}</script>

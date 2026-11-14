@@ -63,3 +63,39 @@ Work on `develop` or a feature branch; `main` deploys production.
 
 Never stage `my-publicatins/` or other private source material. Keep that directory
 in your checkout's `.git/info/exclude` and check `git status` before committing.
+
+## Validation and accessibility
+
+After building, run `python scripts/check_site.py public`. This offline check covers
+internal links/anchors, image alt attributes, one H1 and heading order, metadata,
+sitemap/robots, and frozen text fingerprints for the Major Research Lines. CI runs it
+as well. External URLs are reported without network requests.
+
+For browser checks, install isolated tools and serve a build:
+
+```bash
+npm install --prefix /tmp/ymatter-a11y playwright-core @axe-core/playwright
+hugo --minify --destination /tmp/ymatter-preview
+python -m http.server 8767 --directory /tmp/ymatter-preview
+# In a second terminal (set CHROME_PATH if Chrome is elsewhere):
+NODE_PATH=/tmp/ymatter-a11y/node_modules AUDIT_BASE=http://127.0.0.1:8767 \
+  AUDIT_OUTPUT=/tmp/ymatter-a11y/results.json node scripts/audit_accessibility.cjs
+```
+
+The eight main pages passed automated axe WCAG 2.1 A/AA checks during this update.
+Keyboard skip/focus, filter states and reduced-motion/pause controls were checked
+in Chrome. The viewer test used a local 3Dmol stub; external widgets were blocked
+in the audit. Check the real 3D viewer, maps and badges manually before production.
+Automated checks alone do not establish full WCAG conformance.
+
+Contrast changes: ORCID icons `#a6ce39` → `#5c7918`; ResearchGate icons `#00a98f`
+→ `#007d69`; sunny weather badges `#d97706` → `#b45309`; sponsor credit now uses
+`--muted` at 0.75rem instead of translucent gray at 0.45rem. New contrast ratios
+are at least 4.86:1. Axe leaves gradient backgrounds for manual review; calculations
+at their color endpoints give at least 4.75:1 for normal text. Tool links are
+underlined, links/buttons have visible keyboard focus, profile links and news
+filters sit outside disclosure summaries, and animation has a pause control and
+respects reduced-motion preferences. Research text and existing anchors are preserved.
+
+Search/social metadata uses each page's description and the existing PNG lab logo.
+Structured data identifies the lab and its INMA/CSIC parent organizations.

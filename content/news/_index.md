@@ -1,4 +1,5 @@
 ---
+description: "Read the latest Y-Matter Lab research news, announcements, honors and group activities."
 title: "News"
 draft: false
 ---

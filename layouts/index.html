@@ -10,14 +10,14 @@
 <p class="lead">
       {{ site.Home.Params.hero_subtext }}
     </p>
-<div aria-label="{{ site.Home.Params.copy.copy_aria_label_primary_pages }}" class="button-row">
+<div aria-label="{{ site.Home.Params.copy.copy_aria_label_primary_pages }}" class="button-row" role="group">
 <a class="button" href="{{ site.Home.Params.copy.path_research | relURL }}">{{ site.Home.Params.copy.copy_research | markdownify }}</a>
 <a class="button button-secondary" href="{{ site.Home.Params.copy.path_people | relURL }}">{{ site.Home.Params.copy.copy_people | markdownify }}</a>
 <a class="button button-secondary" href="{{ site.Home.Params.copy.path_publications | relURL }}">{{ site.Home.Params.copy.copy_publications | markdownify }}</a>
 </div>
 </div>
 <div class="hero-visual">
-<div aria-label="{{ site.Home.Params.copy.copy_aria_label_rotating_cubic_pbtio3_perovskite_structure }}" class="crystal-viewer" id="perovskite-viewer">
+<div aria-label="{{ site.Home.Params.copy.copy_aria_label_rotating_cubic_pbtio3_perovskite_structure }}" class="crystal-viewer" role="img" id="perovskite-viewer">
 <div aria-hidden="true" class="viewer-fallback" data-viewer-fallback="">
 <span class="atom atom-sr atom-corner-1"></span>
 <span class="atom atom-sr atom-corner-2"></span>
@@ -29,6 +29,7 @@
 <span class="atom atom-o atom-face-3"></span>
 </div>
 </div>
+<button type="button" data-rotation-toggle hidden>{{ site.Data.copy.accessibility.pause }}</button>
 <p class="structure-caption">{{ site.Home.Params.copy.copy_srtio3_perovskite_cubic_abo3_structure | markdownify }}</p>
 </div>
 </section>
@@ -263,13 +264,30 @@ document.addEventListener("DOMContentLoaded", function () {
   viewer.rotate(28, "y");
   viewer.render();
 
+  const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const toggle = document.querySelector("[data-rotation-toggle]");
+  const labels = {{ site.Data.copy.accessibility | jsonify | safeJS }};
+  let paused = motion.matches;
+  let frame = null;
+
+  function updateRotation() {
+    if (frame !== null) cancelAnimationFrame(frame);
+    frame = null;
+    toggle.textContent = paused ? labels.resume : labels.pause;
+    if (!paused && !document.hidden) frame = requestAnimationFrame(animate);
+  }
+  toggle.hidden = false;
+  toggle.addEventListener("click", function () { paused = !paused; updateRotation(); });
+  motion.addEventListener("change", function () { paused = motion.matches; updateRotation(); });
+  document.addEventListener("visibilitychange", updateRotation);
+
   function animate() {
     viewer.rotate(0.45, "y");
     viewer.render();
-    requestAnimationFrame(animate);
+    frame = requestAnimationFrame(animate);
   }
 
-  animate();
+  updateRotation();
 });
 </script>
 {{ end }}
