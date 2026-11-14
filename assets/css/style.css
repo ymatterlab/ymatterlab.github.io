@@ -339,16 +339,6 @@ a {
   color: var(--text);
 }
 
-.grid {
-  display: grid;
-  gap: 1rem;
-  margin: 1.5rem 0;
-}
-
-.two-up {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
 .card {
   border: var(--rule);
   border-radius: var(--radius);
@@ -825,44 +815,93 @@ a {
   color: var(--muted);
 }
 
-.person-card h2 {
-  margin-bottom: 0.2rem;
+/* People: sections, then one card per person (photo | identity block, bio below). */
+.people-section + .people-section {
+  margin-top: var(--section-gap);
+  border-top: var(--rule);
+  padding-top: var(--section-gap);
 }
 
-.person-details {
+.people-section-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3) var(--space-5);
+  margin-bottom: var(--space-5);
+}
+
+.people-section-heading h2 {
+  margin: 0;
+  color: var(--brand-navy);
+  font-size: var(--heading-2);
+}
+
+.people-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-5);
+}
+
+.person-card {
+  display: grid;
+  grid-template-columns: 7.5rem minmax(0, 1fr);
+  gap: var(--space-4) var(--space-5);
+  align-content: start;
   border: var(--rule);
   border-radius: var(--radius);
   background: var(--surface);
+  padding: var(--space-5);
+}
+
+.person-main {
+  min-width: 0;
+}
+
+.person-main h3 {
+  margin: 0;
+  color: var(--brand-navy);
+  font-size: var(--heading-3);
+}
+
+.person-role {
+  margin: var(--space-1) 0 0;
+  color: var(--text);
+}
+
+.person-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
+  align-items: center;
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-sm);
 }
 
 .person-location {
-  display: inline-block;
-  margin: 0.35rem 0;
-  padding: 0.3rem 0.65rem;
-  border: 1px solid var(--accent);
-  border-radius: var(--radius);
+  border-radius: var(--radius-pill);
   background: var(--accent-tint);
+  padding: 0.1rem 0.6rem;
   color: var(--accent);
-  font-size: 0.92rem;
   font-weight: 700;
 }
 
 .person-time {
-  margin: 0.25rem 0;
   color: var(--muted);
-  font-size: 0.92rem;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .person-email {
-  margin: 0.25rem 0;
+  margin: var(--space-3) 0 0;
+  font-size: var(--text-sm);
+  overflow-wrap: anywhere;
 }
 
 .person-profile-links {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
-  margin-top: 0.45rem;
+  margin-top: var(--space-2);
 }
 
 .person-icon-link {
@@ -918,36 +957,15 @@ a {
   letter-spacing: 0;
 }
 
-.person-card-header {
-  display: grid;
-  grid-template-columns: 8rem minmax(0, 1fr);
-  gap: 1rem;
-  align-items: center;
-  padding: 1.25rem;
-  cursor: pointer;
-  list-style: none;
-}
-
-.person-card-header::-webkit-details-marker {
-  display: none;
-}
-
-.person-card-header::marker {
-  content: "";
-}
-
-.person-details[open] .person-card-header {
-  border-bottom: var(--rule);
-}
-
+/* Same 3:4 frame for every portrait; cover crops, never stretches; faces sit in the top third. */
 .person-photo {
   display: block;
-  width: 8rem;
+  width: 7.5rem;
+  height: auto;
   aspect-ratio: 3 / 4;
-  border: var(--rule);
   border-radius: var(--radius);
   object-fit: cover;
-  object-position: center top;
+  object-position: 50% 20%;
   background: var(--surface-soft);
 }
 
@@ -961,12 +979,26 @@ a {
 }
 
 .person-bio {
-  padding: 0 1.25rem 1.25rem;
+  grid-column: 1 / -1;
+  margin: 0;
+  border-top: var(--rule);
+  padding-top: var(--space-4);
   color: var(--muted);
+  font-size: 0.95rem;
 }
 
-.person-bio p {
-  margin-bottom: 0;
+.people-alumni .person-card {
+  background: var(--surface-subtle);
+}
+
+.people-maintenance {
+  margin: var(--section-gap) 0 0;
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+.people-maintenance p {
+  margin: 0;
 }
 
 .muted {
@@ -1135,6 +1167,14 @@ a {
   margin: 0.75rem 0 1.25rem;
 }
 
+.people-tools {
+  margin: 0;
+}
+
+.people-tools[hidden] {
+  display: none;
+}
+
 .news-filter,
 .news-keyword,
 .people-filter {
@@ -1281,7 +1321,6 @@ a {
     height: 250px;
   }
 
-  .two-up,
 .research-intro,
 .research-method-grid {
     grid-template-columns: 1fr;
@@ -2306,6 +2345,19 @@ a {
 }
 
 @media (max-width: 700px) {
+  .people-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .person-card {
+    grid-template-columns: 5.5rem minmax(0, 1fr);
+    padding: var(--space-4);
+  }
+
+  .person-photo {
+    width: 5.5rem;
+  }
+
   /* One column: show each panel at its own proportions, full width. */
   .featured-image {
     aspect-ratio: auto;

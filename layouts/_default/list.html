@@ -4,164 +4,70 @@
 </article>
 
 {{ if eq .Section "people" }}
-{{ $filters := site.Data.copy._default_list.filters }}
+{{ $copy := site.Data.copy._default_list }}
+{{ $filters := $copy.filters }}
+{{ $current := slice }}
+{{ $alumni := slice }}
+{{ range site.Data.people }}
+  {{ if eq (partial "person-group.html" .) "alumni" }}{{ $alumni = $alumni | append . }}{{ else }}{{ $current = $current | append . }}{{ end }}
+{{ end }}
 
 <section class="publication-overview people-overview">
-<p>{{ site.Data.copy._default_list.copy_people_member_note | markdownify }}</p>
-<p>{{ site.Data.copy._default_list.copy_our_team_is_based_in_zaragoza_and_san_sebasti_n_each_current_memb | markdownify }}</p>
+<p>{{ $copy.copy_our_team_is_based_in_zaragoza_and_san_sebasti_n_each_current_memb | markdownify }}</p>
 </section>
-<section aria-label="{{ site.Data.copy._default_list.copy_aria_label_people_filters }}" class="people-tools">
-<button aria-pressed="true" class="people-filter is-active" data-people-filter="current" type="button">{{ site.Data.copy._default_list.copy_current_members | markdownify }}</button>
-  {{ range $filters }}
-  <button aria-pressed="false" class="people-filter" data-people-filter="{{ .key }}" type="button">{{ .label }}</button>
-  {{ end }}
-</section>
-<section aria-label="{{ site.Data.copy._default_list.copy_aria_label_people_directory }}" class="grid two-up">
-  {{ range site.Data.people }}
-  {{ $personName := .name }}
-  {{ $personGroup := default "" .group }}
-  {{ if not $personGroup }}
-    {{ $role := lower (default "" .role) }}
-    {{ if in $role "principal investigator" }}
-      {{ $personGroup = "pi" }}
-    {{ else if in $role "postdoc" }}
-      {{ $personGroup = "postdoc" }}
-    {{ else if in $role "visiting" }}
-      {{ if in $role "scholar" }}
-        {{ $personGroup = "visiting-scholar" }}
-      {{ else }}
-        {{ $personGroup = "visiting-student" }}
-      {{ end }}
-    {{ else if in $role "alumni" }}
-      {{ $personGroup = "alumni" }}
-    {{ else if or (in $role "student") (in $role "phd") }}
-      {{ $personGroup = "students" }}
-    {{ else }}
-      {{ $personGroup = "students" }}
-    {{ end }}
-  {{ end }}
-  <article class="person-card" data-person-card="" data-person-group="{{ $personGroup }}" {{ if eq $personGroup "alumni" }} hidden{{ end }}>
-<details class="person-details">
-<summary class="person-card-header">
-        {{ with .photo }}
-        <img alt="{{ $personName }}" class="person-photo" src="{{ . | relURL }}"/>
-        {{ else }}
-        <span aria-hidden="true" class="person-photo person-photo-placeholder">{{ substr $personName 0 1 }}</span>
-        {{ end }}
 
-        <div>
-<h2>{{ $personName }}</h2>
-
-          {{ with .location }}
-          <p class="person-location">{{ site.Data.copy._default_list.based_in }} {{ . }}</p>
-          {{ end }}
-
-
-
-          {{ with .time }}
-          <p class="person-time">{{ . }}</p>
-          {{ end }}
-
-
-        </div>
-</summary>
-
-      {{ with .bio }}
-      <div class="person-bio">
-<p>{{ . }}</p>
+<section aria-labelledby="current-heading" class="people-section">
+<div class="people-section-heading">
+<h2 id="current-heading">{{ $copy.copy_current_members | markdownify }}</h2>
+{{/* Filters only work with JavaScript, so they stay hidden until the script runs. */}}
+<div aria-label="{{ $copy.copy_aria_label_people_filters }}" class="people-tools" role="group" data-people-tools hidden>
+<button aria-pressed="true" class="people-filter is-active" data-people-filter="current" type="button">{{ $copy.copy_all }}</button>
+{{ range $filters }}
+  {{ $key := .key }}
+  {{ $n := 0 }}
+  {{ range $current }}{{ if eq (partial "person-group.html" .) $key }}{{ $n = add $n 1 }}{{ end }}{{ end }}
+  {{ if gt $n 0 }}<button aria-pressed="false" class="people-filter" data-people-filter="{{ .key }}" type="button">{{ .label }}</button>{{ end }}
+{{ end }}
 </div>
-      {{ end }}
-    </details>
-<div class="person-contacts">
-          {{ with .role }}
-          <p class="muted">{{ . | markdownify }}</p>
-          {{ end }}
-          {{ with .email }}
-          <p class="person-email">
-<a href="mailto:{{ . }}">{{ . }}</a>
-</p>
-          {{ end }}
-
-          {{ if or .website .github .scholar .orcid .researchgate }}
-          <div aria-label="{{ site.Data.copy._default_list.copy_aria_label_profile_links }}" class="person-profile-links" role="group">
-            {{ with .website }}
-            <a aria-label="{{ site.Data.copy._default_list.copy_aria_label_personal_website }}" class="person-icon-link" href="{{ . }}" rel="noopener" target="_blank">
-<svg aria-hidden="true" class="profile-icon" focusable="false" viewBox="0 0 24 24">
-<circle cx="12" cy="12" r="9"></circle>
-<path d="M3 12h18"></path>
-<path d="M12 3c2.1 2.5 3.2 5.5 3.2 9S14.1 18.5 12 21"></path>
-<path d="M12 3c-2.1 2.5-3.2 5.5-3.2 9s1.1 6.5 3.2 9"></path>
-</svg>
-</a>
-            {{ end }}
-
-            {{ with .github }}
-            <a aria-label="{{ site.Data.copy._default_list.copy_aria_label_github }}" class="person-icon-link" href="{{ . }}" rel="noopener" target="_blank">
-<svg aria-hidden="true" class="profile-icon" focusable="false" viewBox="0 0 24 24">
-<path d="M9 19c-4.5 1.5-4.5-2.5-6.3-3"></path>
-<path d="M15 22v-3.9a3.4 3.4 0 0 0-1-2.6c3.3-.4 6.8-1.7 6.8-7.5a5.8 5.8 0 0 0-1.6-4 5.4 5.4 0 0 0-.1-4S17.8-.4 15 1.5a13.4 13.4 0 0 0-6 0C6.2-.4 4.9 0 4.9 0a5.4 5.4 0 0 0-.1 4 5.8 5.8 0 0 0-1.6 4c0 5.8 3.5 7.1 6.8 7.5a3.4 3.4 0 0 0-1 2.6V22"></path>
-</svg>
-</a>
-            {{ end }}
-
-            {{ with .scholar }}
-            <a aria-label="{{ site.Data.copy._default_list.copy_aria_label_google_scholar }}" class="person-icon-link" href="{{ . }}" rel="noopener" target="_blank">
-<svg aria-hidden="true" class="profile-icon" focusable="false" viewBox="0 0 24 24">
-<path d="M12 3 2.8 10.1 12 17.2l9.2-7.1L12 3Z"></path>
-<path d="M6.5 12.9v4.2c0 1.5 2.4 2.9 5.5 2.9s5.5-1.4 5.5-2.9v-4.2L12 17.2l-5.5-4.3Z"></path>
-<path d="M19.5 11.4v4.1"></path>
-</svg>
-</a>
-            {{ end }}
-
-            {{ with .orcid }}
-            <a aria-label="{{ site.Data.copy._default_list.copy_aria_label_orcid }}" class="person-icon-link orcid-link" href="{{ . }}" rel="noopener" target="_blank">
-<svg aria-hidden="true" class="profile-icon orcid-icon" focusable="false" viewBox="0 0 24 24">
-<circle cx="12" cy="12" r="9"></circle>
-<path d="M9 8.5v7"></path>
-<path d="M11.4 15.5h1.7c2 0 3.4-1.4 3.4-3.5s-1.4-3.5-3.4-3.5h-1.7v7Z"></path>
-<circle cx="9" cy="6.2" r="0.4"></circle>
-</svg>
-</a>
-            {{ end }}
-
-            {{ with .researchgate }}
-            <a aria-label="{{ site.Data.copy._default_list.copy_aria_label_researchgate }}" class="person-icon-link researchgate-link" href="{{ . }}" rel="noopener" target="_blank">
-<svg aria-hidden="true" class="profile-icon researchgate-icon" focusable="false" viewBox="0 0 24 24">
-<path d="M5 18V7h4a3 3 0 0 1 0 6H5m4 0 4 5M20 5a3 3 0 1 0 0 5V8h-2"></path>
-</svg>
-</a>
-            {{ end }}
-          </div>
-          {{ end }}
 </div>
-</article>
-  {{ end }}
+<div class="people-grid" data-current-grid>
+{{ range $current }}{{ partial "person-card.html" . }}{{ end }}
+</div>
 </section>
+
+{{ with $alumni }}
+<section aria-labelledby="alumni-heading" class="people-section people-alumni">
+<div class="people-section-heading">
+<h2 id="alumni-heading">{{ $copy.copy_alumni | markdownify }}</h2>
+</div>
+<div class="people-grid">
+{{ range . }}{{ partial "person-card.html" . }}{{ end }}
+</div>
+</section>
+{{ end }}
+
+<p class="people-maintenance">{{ $copy.copy_people_member_note | markdownify }}</p>
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-  const filterButtons = Array.from(document.querySelectorAll("[data-people-filter]"));
-  const cards = Array.from(document.querySelectorAll("[data-person-card]"));
-
-  function setFilter(filter) {
-    filterButtons.forEach(function (button) {
-      button.classList.toggle("is-active", button.dataset.peopleFilter === filter);
-      button.setAttribute("aria-pressed", String(button.dataset.peopleFilter === filter));
-    });
-
-    cards.forEach(function (card) {
-      card.hidden = filter === "current"
-        ? card.dataset.personGroup === "alumni"
-        : card.dataset.personGroup !== filter;
-    });
-  }
-
-  filterButtons.forEach(function (button) {
+(function () {
+  const tools = document.querySelector("[data-people-tools]");
+  if (!tools) return;
+  const buttons = Array.from(tools.querySelectorAll("[data-people-filter]"));
+  const cards = Array.from(document.querySelectorAll("[data-current-grid] [data-person-card]"));
+  tools.hidden = false;
+  buttons.forEach(function (button) {
     button.addEventListener("click", function () {
-      setFilter(button.dataset.peopleFilter);
+      const filter = button.dataset.peopleFilter;
+      buttons.forEach(function (b) {
+        const on = b === button;
+        b.classList.toggle("is-active", on);
+        b.setAttribute("aria-pressed", String(on));
+      });
+      cards.forEach(function (card) {
+        card.hidden = filter !== "current" && card.dataset.personGroup !== filter;
+      });
     });
   });
-});
+})();
 </script>
 
 {{ else if eq .Section "publications" }}

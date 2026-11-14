@@ -696,9 +696,6 @@ content:
     - name: copy_aria_label_people_filters
       label: Aria label people filters
       type: string
-    - name: copy_aria_label_people_directory
-      label: Aria label people directory
-      type: string
     - name: copy_aria_label_profile_links
       label: Aria label profile links
       type: string
@@ -739,6 +736,12 @@ content:
       description: Markdown and inline HTML supported. Preserve scientific subscripts and citation markup.
     - name: copy_current_members
       label: Current members
+      type: string
+    - name: copy_all
+      label: All current (filter button)
+      type: string
+    - name: copy_alumni
+      label: Alumni heading
       type: string
     - name: copy_doi
       label: Doi

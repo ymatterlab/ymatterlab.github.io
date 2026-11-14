@@ -1,0 +1,13 @@
+{{- /* Directory group for a person: explicit .group, else inferred from .role. */ -}}
+{{- $group := default "" .group -}}
+{{- if not $group -}}
+  {{- $role := lower (default "" .role) -}}
+  {{- if in $role "principal investigator" -}}{{- $group = "pi" -}}
+  {{- else if in $role "postdoc" -}}{{- $group = "postdoc" -}}
+  {{- else if in $role "visiting" -}}
+    {{- if in $role "scholar" -}}{{- $group = "visiting-scholar" -}}{{- else -}}{{- $group = "visiting-student" -}}{{- end -}}
+  {{- else if in $role "alumni" -}}{{- $group = "alumni" -}}
+  {{- else -}}{{- $group = "students" -}}
+  {{- end -}}
+{{- end -}}
+{{- return $group -}}

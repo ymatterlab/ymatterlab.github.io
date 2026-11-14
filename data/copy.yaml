@@ -169,7 +169,6 @@ _default_list:
   - key: alumni
     label: Alumni
   copy_aria_label_people_filters: People filters
-  copy_aria_label_people_directory: People directory
   copy_aria_label_profile_links: Profile links
   copy_aria_label_personal_website: Personal website
   copy_aria_label_github: GitHub
@@ -187,6 +186,8 @@ _default_list:
     and <strong>San Sebastián</strong>. Each current member’s location is highlighted below. Some members
     also belong to <a href="https://cfm.ehu.es/errealab/" rel="noopener" target="_blank">Errea Lab</a>.
   copy_current_members: Current members
+  copy_all: All current
+  copy_alumni: Alumni
   copy_doi: DOI
   copy_full_free_text: Full free text
   copy_publications_will_appear_here_soon: Publications will appear here soon.
