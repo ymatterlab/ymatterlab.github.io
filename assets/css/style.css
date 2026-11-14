@@ -282,10 +282,6 @@ a {
   margin: 1.5rem 0;
 }
 
-.three-up {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
 .two-up {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -884,14 +880,8 @@ a {
   font-weight: 700;
 }
 
-.person-email,
-.person-link {
+.person-email {
   margin: 0.25rem 0;
-}
-
-.person-link a {
-  font-weight: 700;
-  text-decoration: none;
 }
 
 .person-profile-links {
@@ -952,14 +942,6 @@ a {
 .researchgate-icon text {
   font-weight: 700;
   letter-spacing: 0;
-}
-
-.researchgate-r {
-  font-size: 13px;
-}
-
-.researchgate-g {
-  font-size: 13px;
 }
 
 .person-card-header {
@@ -1325,7 +1307,6 @@ a {
     height: 250px;
   }
 
-  .three-up,
   .two-up,
   .research-topic-grid,
   .research-intro,

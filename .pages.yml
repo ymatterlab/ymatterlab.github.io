@@ -330,9 +330,6 @@ content:
       label: Srtio3 perovskite cubic abo3 structure
       type: text
       description: Markdown and inline HTML supported. Preserve scientific subscripts and citation markup.
-    - name: copy_3
-      label: '3'
-      type: string
     - name: copy_what_we_do
       label: What we do
       type: string
@@ -948,9 +945,6 @@ content:
     fields:
     - name: lab_name
       label: Lab name
-      type: string
-    - name: tagline
-      label: Tagline
       type: string
     - name: pi_name
       label: Pi name

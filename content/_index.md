@@ -97,7 +97,6 @@ copy:
   copy_srtio3_perovskite_cubic_abo3_structure: '<strong>SrTiO<sub>3</sub> perovskite</strong>
 
     <span>Cubic ABO<sub>3</sub> structure.</span>'
-  copy_3: '3'
   copy_what_we_do: What we do
   copy_research_areas: Research Areas
   copy_explore_our_research: Explore our research
