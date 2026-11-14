@@ -691,6 +691,10 @@ content:
     - name: copy_href_https_www_google_com_search_q_weather_zaragoza
       label: Href https www google com search q weather zaragoza
       type: string
+    - name: copy_people_member_note
+      label: People page note for group members
+      type: text
+      description: Markdown and inline HTML supported.
     - name: copy_our_team_is_based_in_zaragoza_and_san_sebasti_n_each_current_memb
       label: Our team is based in zaragoza and san sebasti n each current memb
       type: text

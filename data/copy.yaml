@@ -182,6 +182,7 @@ _default_list:
   copy_title_inma_office_at_calle_de_pedro_cerbuna_12_on_google_maps: INMA office at Calle de Pedro Cerbuna
     12 on Google Maps
   copy_href_https_www_google_com_search_q_weather_zaragoza: https://www.google.com/search?q=weather+Zaragoza
+  copy_people_member_note: '*Group members: to update your profile, see [For group members](https://github.com/ymatterlab/ymatterlab.github.io#for-group-members).*'
   copy_our_team_is_based_in_zaragoza_and_san_sebasti_n_each_current_memb: Our team is based in <strong>Zaragoza</strong>
     and <strong>San Sebastián</strong>. Each current member’s location is highlighted below. Some members
     also belong to <a href="https://cfm.ehu.es/errealab/" rel="noopener" target="_blank">Errea Lab</a>.
