@@ -3,7 +3,10 @@ description: "Explore research positions, fellowships and opportunities to join 
   \ INMA and CSIC."
 title: "Join Us"
 draft: false
-# Open positions. Use "positions: []" to show the "no openings" message.
+# Positions. Each shows as Open until the end of its deadline day (Europe/Madrid),
+# then moves to "Closed positions". Write deadlines as 2026-Nov-10 or 2026-11-10.
+# If a call is officially extended, add `extended_deadline:` (same format) rather
+# than editing `deadline`. Use "positions: []" to show the "no openings" message.
 # funding is optional: one line naming the funding source (Markdown allowed).
 # qualifications is optional: "required" and "desirable" lists (Markdown allowed).
 # how_to_apply is optional: an intro line plus numbered steps (Markdown allowed),

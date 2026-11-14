@@ -108,6 +108,9 @@ content:
     - name: deadline
       label: Deadline
       type: string
+    - name: extended_deadline
+      label: Extended deadline (only if the call was officially extended)
+      type: string
     - name: description
       label: Description
       type: text
@@ -626,6 +629,30 @@ content:
     - name: copy_official_job_offer
       label: Official job offer
       type: string
+    - name: copy_status_open
+      label: Status label (open)
+      type: string
+    - name: copy_status_closed
+      label: Status label (closed)
+      type: string
+    - name: copy_apply_by
+      label: Apply by (shown before the date)
+      type: string
+    - name: copy_deadline_passed
+      label: Deadline passed (shown before the date)
+      type: string
+    - name: copy_extended
+      label: Extended (shown after the date)
+      type: string
+    - name: copy_archive
+      label: Archive eyebrow
+      type: string
+    - name: copy_closed_positions
+      label: Closed positions heading
+      type: string
+    - name: copy_closed_positions_intro
+      label: Closed positions introduction
+      type: string
     - name: copy_there_are_no_advertised_openings_at_the_moment_motivated_candidat
       label: There are no advertised openings at the moment motivated candidat
       type: text
@@ -662,9 +689,6 @@ content:
       type: string
     - name: copy_email_the_pi
       label: Email the pi
-      type: string
-    - name: deadline
-      label: Deadline
       type: string
     - name: email
       label: Email

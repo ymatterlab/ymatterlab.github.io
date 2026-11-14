@@ -166,11 +166,31 @@
 <div>
 <p class="eyebrow">{{ $c.copy_opportunities | markdownify }}</p>
 <h2 id="join-heading">{{ $c.copy_join_us | markdownify }}</h2>
-{{ with $join.Params.positions }}
-<p class="home-join-positions"><strong>{{ $c.copy_open_positions }}</strong>
-{{ range $i, $p := . }}{{ if $i }}; {{ end }}{{ $p.title }}{{ with $p.deadline }} ({{ $c.copy_deadline }} {{ . }}){{ end }}{{ end }}.</p>
-{{ else }}
-<p>{{ site.Data.copy.join_list.copy_there_are_no_advertised_openings_at_the_moment_motivated_candidat | markdownify }}</p>
+{{ $openPositions := slice }}
+{{ range $join.Params.positions }}
+  {{ $status := partial "position-status.html" . }}
+  {{ if $status.open }}{{ $openPositions = $openPositions | append (dict "p" . "s" $status) }}{{ end }}
+{{ end }}
+{{ with $openPositions }}
+<p class="home-join-positions" data-home-positions><strong>{{ $c.copy_open_positions }}</strong>
+{{ range $i, $o := . }}<span data-home-position{{ with $o.s.end }} data-deadline-end="{{ .Format "2006-01-02T15:04:05Z07:00" }}"{{ end }}>{{ if $i }}; {{ end }}{{ $o.p.title }}{{ with $o.s.end }} ({{ $c.copy_deadline }} {{ .Format "2 January 2006" }}){{ end }}</span>{{ end }}.</p>
+{{ end }}
+<p data-home-no-positions{{ if $openPositions }} hidden{{ end }}>{{ site.Data.copy.join_list.copy_there_are_no_advertised_openings_at_the_moment_motivated_candidat | markdownify }}</p>
+{{ if $openPositions }}
+<script>
+/* A build can be older than a deadline: drop positions that have closed since. */
+(function () {
+  const list = document.querySelector("[data-home-positions]");
+  if (!list) return;
+  list.querySelectorAll("[data-home-position][data-deadline-end]").forEach(function (item) {
+    if (Date.now() > Date.parse(item.dataset.deadlineEnd)) item.remove();
+  });
+  if (!list.querySelector("[data-home-position]")) {
+    list.remove();
+    document.querySelector("[data-home-no-positions]").hidden = false;
+  }
+})();
+</script>
 {{ end }}
 <p>{{ site.Data.copy.join_list.copy_researchers_interested_in_joining_the_group_with_their_own_fundin | markdownify }}</p>
 </div>

@@ -131,6 +131,14 @@ join_list:
   copy_desirable: <strong>Desirable</strong>
   copy_how_to_apply: How to apply
   copy_official_job_offer: Official job offer
+  copy_status_open: Open
+  copy_status_closed: Closed
+  copy_apply_by: Apply by
+  copy_deadline_passed: Deadline passed
+  copy_extended: extended
+  copy_archive: Archive
+  copy_closed_positions: Closed positions
+  copy_closed_positions_intro: Earlier openings whose deadlines have passed, kept for reference.
   copy_there_are_no_advertised_openings_at_the_moment_motivated_candidat: There are no advertised openings
     at the moment. Motivated candidates are always welcome to get in touch, and new positions will be
     posted here.
@@ -150,7 +158,6 @@ join_list:
     plan to apply for and its deadline.
   copy_contact: Contact
   copy_email_the_pi: Email the PI
-  deadline: 'Deadline:'
   email: 'Email:'
   research_statement: A short statement of your research interests and how they connect to our
   pi_of: ', PI of'

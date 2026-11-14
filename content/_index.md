@@ -150,7 +150,7 @@ copy:
   copy_opportunities: Opportunities
   copy_join_us: Join Us
   copy_open_positions: 'Open positions:'
-  copy_deadline: deadline
+  copy_deadline: apply by
   copy_see_opportunities: See all opportunities
   copy_we_sincerely_acknowledge_the_generous_financial_and_computational: We sincerely acknowledge the
     generous financial and computational support of our present and past sponsors.
