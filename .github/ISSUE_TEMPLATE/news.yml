@@ -6,7 +6,7 @@ body:
     attributes:
       value: |
         **Title:** use `News: [short headline]`, for example `News: New PhD student joins Y-Matter Lab`.
-        Fill in the required date, category, and news text below. Replace the bracketed text in the news template with your own information.
+        Fill in the required date, category, and news text below. Edit the example news text directly to describe your own news.
         Source links and images are optional; leave those fields empty if they do not apply.
         Yuewen will review and publish the news. This request and any attachments are public.
   - type: input
@@ -33,11 +33,9 @@ body:
     id: text
     attributes:
       label: News text
-      description: Write one to three sentences in plain English. Use full names and replace every bracketed prompt below. Delete any sentence that does not apply.
+      description: Edit the example below to describe your news in one to three sentences. Replace the name, role or achievement, journal or organization, and date as needed.
       value: |
-        [Full name(s)] [what happened: published a paper, received an award, joined the group, or attended an event].
-        [Briefly explain the research, achievement, or event and why it matters].
-        [Optional: name collaborators, the journal, award, or event].
+        Since August 2026, Yue-Wen Fang has served as an Associate Editor of Physica B: Condensed Matter.
     validations:
       required: true
   - type: input
