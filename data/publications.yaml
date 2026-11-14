@@ -17,21 +17,21 @@
   type: article
   volume: '751'
   year: '2027'
-- key: yang_robust_2026
-  type: article
-  title: Robust out-of-plane ferroelectricity in Aurivillius ultrathin films through local chemical antisite
-  authors: Qianqian Yang, Dongxing Zheng, Yue-Wen Fang, Guoqiang Xi, Haiying Li, Chuanrui Huo, Yonghui Wu, Pengfei Song, Jianjun Tian, Linxing Zhang
-  journal: Acta Materialia
-  year: '2026'
-  sort_year: 2026
-  sort_month: 10
-  sort_date: 202610
+- authors: Qianqian Yang, Dongxing Zheng, Yue-Wen Fang, Guoqiang Xi, Haiying Li, Chuanrui Huo, Yonghui Wu, Pengfei Song, Jianjun Tian, Linxing Zhang
   doi: 10.1016/j.actamat.2026.122634
   doi_url: https://doi.org/10.1016/j.actamat.2026.122634
-  month: oct
-  volume: '318'
-  pages: '122634'
+  journal: Acta Materialia
+  key: yang_robust_2026
   link: https://linkinghub.elsevier.com/retrieve/pii/S1359645426007342
+  month: oct
+  pages: '122634'
+  sort_date: 202610
+  sort_month: 10
+  sort_year: 2026
+  title: Robust out-of-plane ferroelectricity in Aurivillius ultrathin films through local chemical antisite
+  type: article
+  volume: '318'
+  year: '2026'
 - key: ye_origin_2026
   type: article
   title: Origin of Tetragonal Distortion In New Lead-Free Perovskite Compounds of Na1/2Bi1/2VO3 and K1/2Bi1/2VO3
