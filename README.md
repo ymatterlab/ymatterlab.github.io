@@ -1,8 +1,18 @@
 # Y-Matter Lab website
 
+[![Deploy](https://github.com/ymatterlab/ymatterlab.github.io/actions/workflows/hugo.yml/badge.svg?branch=main)](https://github.com/ymatterlab/ymatterlab.github.io/actions/workflows/hugo.yml)
+[![Validate develop](https://github.com/ymatterlab/ymatterlab.github.io/actions/workflows/ci.yml/badge.svg?branch=develop)](https://github.com/ymatterlab/ymatterlab.github.io/actions/workflows/ci.yml)
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Fymatterlab.github.io&label=ymatterlab.github.io)](https://ymatterlab.github.io/)
+[![Hugo](https://img.shields.io/badge/Hugo-0.128-FF4088?logo=hugo&logoColor=white)](https://gohugo.io/)
+[![Code: MIT](https://img.shields.io/badge/code-MIT-blue.svg)](LICENSE)
+[![Content: CC BY-NC 4.0](https://img.shields.io/badge/content-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
+[![Last commit](https://img.shields.io/github/last-commit/ymatterlab/ymatterlab.github.io/main)](https://github.com/ymatterlab/ymatterlab.github.io/commits/main)
+
 Source of <https://ymatterlab.github.io/>.
 
 ## For group members
+
+[![Submit news](https://img.shields.io/badge/Submit-news-2ea44f?style=for-the-badge)](https://github.com/ymatterlab/ymatterlab.github.io/issues/new?template=news.yml)
 
 - **Submit news:** [fill in the news form](https://github.com/ymatterlab/ymatterlab.github.io/issues/new?template=news.yml).
   Yuewen reviews submissions and publishes them. [Short guide](docs/adding-news.md).

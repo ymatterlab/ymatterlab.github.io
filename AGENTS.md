@@ -5,6 +5,7 @@
 - Install Hugo (CI uses 0.128.0) and Python/PyYAML. Preview with `make serve`
   (http://localhost:1313); build with `hugo --minify`. Build before each commit.
   Inspect `git status` before committing; stage explicit paths.
+- When upgrading Hugo, update the version in both workflows and the README badge.
 - Home copy is in `content/_index.md` front matter. Research overview, methods,
   tool lists and other page/interface labels are in `data/copy.yaml`, grouped by
   layout. Research lines and figures are in `data/research_lines.yaml`.
