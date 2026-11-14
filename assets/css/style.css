@@ -1627,7 +1627,7 @@ a {
   display: inline-block;
   width: fit-content;
   border-radius: var(--radius-sm);
-  background: rgba(15, 118, 110, 0.1);
+  background: var(--accent-tint);
   padding: 0.05rem 0.45rem;
   color: var(--accent);
   font-size: 0.78rem;
@@ -1637,16 +1637,13 @@ a {
 
 .rl {
   display: grid;
-  gap: 1.1rem;
-  border: var(--rule);
+  gap: var(--space-6);
   border-top: 4px solid var(--accent);
-  border-radius: var(--radius);
-  background: var(--surface);
-  padding: clamp(1.1rem, 2.4vw, 1.75rem);
+  padding-top: var(--space-5);
 }
 
 .rl + .rl {
-  margin-top: var(--space-5);
+  margin-top: var(--section-gap);
 }
 
 .rl h4 {
@@ -1706,33 +1703,41 @@ a {
   line-height: 1.5;
 }
 
+.rl-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: var(--space-6) clamp(var(--space-6), 4vw, 3.5rem);
+  align-items: start;
+}
+
 .rl-themes {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--space-5);
 }
 
 .rl-theme {
-  border-top: 2px solid var(--accent-tint);
-  padding: var(--space-3) 0 0;
+  max-width: var(--measure);
+}
+
+.rl-theme h4 {
+  font-size: var(--heading-4);
 }
 
 .rl-theme p {
   margin: 0;
-  color: var(--muted);
-  font-size: 0.92rem;
-  line-height: 1.55;
+  color: var(--text);
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
 }
 
+/* Figures stack beside the prose; grid (not flex) so inline flex-grow is ignored. */
 .rl-figures {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.85rem;
+  display: grid;
+  gap: var(--space-5);
+  align-content: start;
 }
 
 .rl-figures .research-figure {
-  flex-basis: 0;
-  flex-shrink: 1;
   min-width: 0;
 }
 
@@ -2282,6 +2287,7 @@ a {
 
 @media (max-width: 900px) {
   .rl-head,
+  .rl-body,
   .rl-themes,
   .rl-index,
   .home-split,
@@ -2292,15 +2298,6 @@ a {
   .home-join {
     align-items: flex-start;
     flex-direction: column;
-  }
-
-  .rl-figures {
-    flex-direction: column;
-  }
-
-  .rl-figures .research-figure {
-    flex-basis: auto;
-    width: 100%;
   }
 
   .page-subnav-label {
