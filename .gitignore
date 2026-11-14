@@ -6,3 +6,4 @@ resources/_gen/
 Thumbs.db
 
 __pycache__/
+.hugo_build.lock
