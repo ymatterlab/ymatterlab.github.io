@@ -99,3 +99,44 @@ respects reduced-motion preferences. Research text and existing anchors are pres
 
 Search/social metadata uses each page's description and the existing PNG lab logo.
 Structured data identifies the lab and its INMA/CSIC parent organizations.
+
+## Browser editing with Pages CMS
+
+1. Open [Pages CMS](https://app.pagescms.org/), sign in with GitHub and install or
+   authorize its GitHub App for `ymatterlab/ymatterlab.github.io`. Organization
+   owners may need to approve that installation.
+2. Select this repository, then explicitly select the **develop** branch in the
+   app's branch selector before editing. `.pages.yml` is read per branch; it does
+   not set the destination branch. If offered a new config on `main`, switch to
+   `develop` rather than creating one there. Protect `main` with a GitHub ruleset
+   requiring PRs if you want to enforce this for all editors.
+3. Edit news, people, positions/fellowships, Home, Research or shared copy in the
+   forms. News uses the archetype's title/draft/categories/body fields plus an
+   explicit publication date. Keep existing monthly filenames when editing them;
+   new dated filenames are generated automatically. Upload images through Media;
+   use group-owned figures, WebP ≤1600 px wide, alt text and DOI/source captions.
+4. Save. The CMS creates a commit on the selected branch (`content: update {path}`,
+   with matching add/delete/rename templates). Check its branch CI, preview, and
+   submit a PR to `main` for a separate review and release.
+
+The locked Major Research Lines are **omitted entirely** from the CMS, including
+names, order and detailed wording in `data/research_lines.yaml`. Their heading and
+intro are omitted from the copy form too. `settings.content.merge: true` preserves
+these unmanaged keys and the Home anchor map on save. Home research-area cards are
+separate summaries; editing them does not change the locked Research page.
+
+Publications are deliberately excluded. Add DOIs locally and run `make pubs` so
+new records and `pubcache.json` are committed together. CI and deployment continue
+using the cache offline, avoiding failures caused by DOI-service network outages.
+
+For a branch preview, open GitHub Actions → **Validate branch website**, select a
+successful `develop` run and download **built-website** (available for 14 days).
+Extract it and run `python -m http.server 8000 --directory <extracted-folder>`;
+open http://localhost:8000. Or check out `develop` and run `make serve`.
+CI uploads a preview artifact; it does not publish a branch website.
+
+Configuration references: [Pages CMS setup](https://pagescms.org/docs/quick-start/),
+[content schemas](https://pagescms.org/docs/configuration/content/), and
+[merge/commit settings](https://pagescms.org/docs/configuration/settings/).
+The hosted CMS sign-in/save flow requires a group member's GitHub account and has
+not been exercised from this checkout.

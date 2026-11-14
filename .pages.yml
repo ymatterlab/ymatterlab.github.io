@@ -1,0 +1,1045 @@
+# Select the develop branch in Pages CMS before editing. Branch selection is an
+# application setting, not a .pages.yml option. Protect main in GitHub as well.
+# LOCKED: data/research_lines.yaml is omitted entirely (including names/order).
+# Publications/DOIs/cache are omitted: CI and production builds stay offline.
+# merge:true preserves unmanaged front matter, anchor maps and locked copy fields.
+media:
+  input: static/images
+  output: /images
+  categories:
+  - image
+settings:
+  content:
+    merge: true
+  commit:
+    templates:
+      create: 'content: add {path}'
+      update: 'content: update {path}'
+      delete: 'content: delete {path}'
+      rename: 'content: rename {oldPath} to {newPath}'
+content:
+- name: news
+  label: News
+  type: collection
+  path: content/news
+  format: yaml-frontmatter
+  exclude:
+  - _index.md
+  subfolders: false
+  filename:
+    template: '{year}-{month}-{day}-{primary}.md'
+    field: create
+  view:
+    primary: title
+    sort: date
+    order: desc
+  fields:
+  - name: title
+    type: string
+    required: true
+  - name: date
+    type: date
+    required: true
+  - name: draft
+    type: boolean
+    default: false
+  - name: categories
+    type: select
+    options:
+      values:
+      - announcements
+      - honors
+      - output
+      - life
+      multiple: true
+  - name: body
+    type: rich-text
+- name: people
+  label: People
+  type: file
+  path: data/people.yaml
+  format: yaml
+  fields:
+  - name: name
+    label: Name
+    type: string
+  - name: location
+    label: Location
+    type: string
+  - name: role
+    label: Role
+    type: text
+  - name: group
+    label: Group
+    type: select
+    options:
+      values:
+      - pi
+      - postdoc
+      - students
+      - visiting-scholar
+      - visiting-student
+      - alumni
+  - name: time
+    label: Time
+    type: string
+  - name: email
+    label: Email
+    type: string
+  - name: website
+    label: Website
+    type: string
+  - name: github
+    label: Github
+    type: string
+  - name: scholar
+    label: Scholar
+    type: string
+  - name: orcid
+    label: Orcid
+    type: string
+  - name: photo
+    label: Photo
+    type: image
+  - name: bio
+    label: Bio
+    type: text
+  - name: researchgate
+    label: Researchgate
+    type: string
+  list: true
+- name: join
+  label: 'Join Us: positions and fellowships'
+  type: file
+  path: content/join/_index.md
+  format: yaml-frontmatter
+  fields:
+  - name: description
+    label: Description
+    type: text
+  - name: title
+    label: Title
+    type: string
+  - name: draft
+    label: Draft
+    type: boolean
+  - name: positions
+    label: Positions
+    type: object
+    list:
+      collapsible:
+        collapsed: true
+        summary: '{title}'
+    fields:
+    - name: title
+      label: Title
+      type: string
+    - name: type
+      label: Type
+      type: string
+    - name: location
+      label: Location
+      type: string
+    - name: deadline
+      label: Deadline
+      type: string
+    - name: description
+      label: Description
+      type: text
+    - name: link
+      label: Link
+      type: string
+    - name: funding
+      label: Funding
+      type: string
+    - name: qualifications
+      label: Qualifications
+      type: object
+      fields:
+      - name: required
+        label: Required
+        type: text
+        list: true
+      - name: desirable
+        label: Desirable
+        type: text
+        list: true
+    - name: how_to_apply
+      label: How to apply
+      type: object
+      fields:
+      - name: intro
+        label: Intro
+        type: text
+        description: Markdown and inline HTML supported. Preserve scientific subscripts and citation markup.
+      - name: steps
+        label: Steps
+        type: text
+        list: true
+  - name: fellowships
+    label: Fellowships
+    type: object
+    list:
+      collapsible:
+        collapsed: true
+        summary: '{name}'
+    fields:
+    - name: name
+      label: Name
+      type: string
+    - name: text
+      label: Text
+      type: text
+    - name: link
+      label: Link
+      type: string
+- name: home
+  label: Home
+  type: file
+  path: content/_index.md
+  format: yaml-frontmatter
+  fields:
+  - name: description
+    label: Description
+    type: text
+  - name: title
+    label: Title
+    type: string
+  - name: draft
+    label: Draft
+    type: boolean
+  - name: hero_text
+    label: Hero text
+    type: text
+  - name: hero_subtext
+    label: Hero subtext
+    type: text
+  - name: copy
+    label: Copy
+    type: object
+    fields:
+    - name: featured
+      label: Featured
+      type: object
+      list:
+        collapsible:
+          collapsed: true
+          summary: '{title}'
+      fields:
+      - name: title
+        label: Title
+        type: string
+      - name: text
+        label: Text
+        type: text
+      - name: line
+        label: Line
+        type: string
+      - name: anchor
+        label: Anchor
+        type: string
+      - name: img
+        label: Img
+        type: string
+      - name: alt
+        label: Alt
+        type: string
+      - name: cite
+        label: Cite
+        type: string
+      - name: doi
+        label: Doi
+        type: string
+      - name: cite2
+        label: Cite2
+        type: string
+      - name: doi2
+        label: Doi2
+        type: string
+    - name: path_research
+      label: Path research
+      type: string
+    - name: path_people
+      label: Path people
+      type: string
+    - name: path_publications
+      label: Path publications
+      type: string
+    - name: path_news
+      label: Path news
+      type: string
+    - name: path_contact
+      label: Path contact
+      type: string
+    - name: path_images_sponsors_mciu_csic_png
+      label: Path images sponsors mciu csic png
+      type: string
+    - name: path_images_sponsors_dipc_png
+      label: Path images sponsors dipc png
+      type: string
+    - name: path_images_sponsors_inma_severo_ochoa_png
+      label: Path images sponsors inma severo ochoa png
+      type: string
+    - name: path_images_sponsors_ikur_jpeg
+      label: Path images sponsors ikur jpeg
+      type: string
+    - name: path_images_sponsors_eurohpc_png
+      label: Path images sponsors eurohpc png
+      type: string
+    - name: path_images_sponsors_miciu_aei_jpg
+      label: Path images sponsors miciu aei jpg
+      type: string
+    - name: copy_aria_label_primary_pages
+      label: Aria label primary pages
+      type: string
+    - name: copy_aria_label_rotating_cubic_pbtio3_perovskite_structure
+      label: Aria label rotating cubic pbtio3 perovskite structure
+      type: string
+    - name: copy_aria_label_about_the_lab_and_latest_news
+      label: Aria label about the lab and latest news
+      type: string
+    - name: copy_href_https_www_csic_es_en
+      label: Href https www csic es en
+      type: string
+    - name: copy_aria_label_visit_csic
+      label: Aria label visit csic
+      type: string
+    - name: copy_alt_mciu_csic
+      label: Alt mciu csic
+      type: string
+    - name: copy_href_https_dipc_ehu_eus_es
+      label: Href https dipc ehu eus es
+      type: string
+    - name: copy_aria_label_visit_dipc
+      label: Aria label visit dipc
+      type: string
+    - name: copy_alt_dipc
+      label: Alt dipc
+      type: string
+    - name: copy_href_https_inma_unizar_csic_es
+      label: Href https inma unizar csic es
+      type: string
+    - name: copy_aria_label_visit_inma
+      label: Aria label visit inma
+      type: string
+    - name: copy_alt_inma_instituto_de_nanociencia_y_materiales_de_arag_n_excelencia_s
+      label: Alt inma instituto de nanociencia y materiales de arag n excelencia s
+      type: string
+    - name: copy_href_https_ikur_euskadi_eus_en
+      label: Href https ikur euskadi eus en
+      type: string
+    - name: copy_aria_label_visit_ikur
+      label: Aria label visit ikur
+      type: string
+    - name: copy_alt_ikur
+      label: Alt ikur
+      type: string
+    - name: copy_href_https_www_eurohpc_ju_europa_eu_index_en
+      label: Href https www eurohpc ju europa eu index en
+      type: string
+    - name: copy_aria_label_visit_eurohpc_joint_undertaking
+      label: Aria label visit eurohpc joint undertaking
+      type: string
+    - name: copy_alt_eurohpc_joint_undertaking
+      label: Alt eurohpc joint undertaking
+      type: string
+    - name: copy_href_https_www_aei_gob_es_en
+      label: Href https www aei gob es en
+      type: string
+    - name: copy_aria_label_visit_aei
+      label: Aria label visit aei
+      type: string
+    - name: copy_alt_miciu_aei
+      label: Alt miciu aei
+      type: string
+    - name: copy_research
+      label: Research
+      type: string
+    - name: copy_people
+      label: People
+      type: string
+    - name: copy_publications
+      label: Publications
+      type: string
+    - name: copy_srtio3_perovskite_cubic_abo3_structure
+      label: Srtio3 perovskite cubic abo3 structure
+      type: text
+      description: Markdown and inline HTML supported. Preserve scientific subscripts and citation markup.
+    - name: copy_3
+      label: '3'
+      type: string
+    - name: copy_what_we_do
+      label: What we do
+      type: string
+    - name: copy_research_areas
+      label: Research areas
+      type: string
+    - name: copy_explore_our_research
+      label: Explore our research
+      type: string
+    - name: copy_learn_more
+      label: Learn more
+      type: string
+    - name: copy_highlights
+      label: Highlights
+      type: string
+    - name: copy_featured_work
+      label: Featured work
+      type: string
+    - name: copy_all_research
+      label: All research
+      type: string
+    - name: copy_recent_output
+      label: Recent output
+      type: string
+    - name: copy_latest_publications
+      label: Latest publications
+      type: string
+    - name: copy_view_all
+      label: View all
+      type: string
+    - name: copy_doi
+      label: Doi
+      type: string
+    - name: copy_link
+      label: Link
+      type: string
+    - name: copy_publications_will_appear_here_soon
+      label: Publications will appear here soon
+      type: string
+    - name: copy_about_the_lab
+      label: About the lab
+      type: string
+    - name: copy_we_develop_computational_approaches_to_understand_and_design_func
+      label: We develop computational approaches to understand and design func
+      type: text
+    - name: copy_latest_news
+      label: Latest news
+      type: string
+    - name: copy_all_news
+      label: All news
+      type: string
+    - name: copy_news_will_appear_here_soon
+      label: News will appear here soon
+      type: string
+    - name: copy_explore
+      label: Explore
+      type: string
+    - name: copy_research_directions
+      label: Research directions
+      type: string
+    - name: copy_group_members
+      label: Group members
+      type: string
+    - name: copy_contact
+      label: Contact
+      type: string
+    - name: copy_research_sponsors
+      label: Research sponsors
+      type: string
+    - name: copy_we_sincerely_acknowledge_the_generous_financial_and_computational
+      label: We sincerely acknowledge the generous financial and computational
+      type: text
+    - name: copy_pid2025_173011na_i00_funded_by_miciu_aei_10_13039_501100011033
+      label: Pid2025 173011na i00 funded by miciu aei 10 13039 501100011033
+      type: string
+- name: research
+  label: Research page metadata
+  type: file
+  path: content/research/_index.md
+  format: yaml-frontmatter
+  fields:
+  - name: description
+    label: Description
+    type: text
+  - name: title
+    label: Title
+    type: string
+  - name: draft
+    label: Draft
+    type: boolean
+- name: copy
+  label: Research and other page copy
+  type: file
+  path: data/copy.yaml
+  format: yaml
+  fields:
+  - name: research_list
+    label: Research list
+    type: object
+    fields:
+    - name: papers_0
+      label: Papers 0
+      type: text
+      list: true
+    - name: path_publications
+      label: Path publications
+      type: string
+    - name: path_contact
+      label: Path contact
+      type: string
+    - name: copy_aria_label_on_this_page
+      label: Aria label on this page
+      type: string
+    - name: copy_aria_label_research_focus
+      label: Aria label research focus
+      type: string
+    - name: copy_on_this_page
+      label: On this page
+      type: string
+    - name: copy_overview
+      label: Overview
+      type: text
+      description: Markdown and inline HTML supported. Preserve scientific subscripts and citation markup.
+    - name: copy_quantum
+      label: Quantum
+      type: text
+      description: Markdown and inline HTML supported. Preserve scientific subscripts and citation markup.
+    - name: copy_information
+      label: Information
+      type: text
+      description: Markdown and inline HTML supported. Preserve scientific subscripts and citation markup.
+    - name: copy_energy
+      label: Energy
+      type: text
+      description: Markdown and inline HTML supported. Preserve scientific subscripts and citation markup.
+    - name: copy_methods_tools
+      label: Methods tools
+      type: text
+      description: Markdown and inline HTML supported. Preserve scientific subscripts and citation markup.
+    - name: copy_publications
+      label: Publications
+      type: text
+      description: Markdown and inline HTML supported. Preserve scientific subscripts and citation markup.
+    - name: copy_computational_materials_science
+      label: Computational materials science
+      type: string
+    - name: copy_from_microscopic_mechanisms_to_materials_design
+      label: From microscopic mechanisms to materials design
+      type: string
+    - name: copy_y_matter_lab_studies_how_atomic_structure_electronic_states_magne
+      label: Y matter lab studies how atomic structure electronic states magne
+      type: text
+    - name: copy_we_are_especially_interested_in
+      label: We are especially interested in
+      type: string
+    - name: copy_information_materials_with_ferroelectric_ferromagnetic_or_multife
+      label: Information materials with ferroelectric ferromagnetic or multife
+      type: string
+    - name: copy_energy_materials_for_energy_conversion_energy_recovery_and_storag
+      label: Energy materials for energy conversion energy recovery and storag
+      type: string
+    - name: copy_quantum_materials_with_intriguing_quantum_phenomena_espeically_su
+      label: Quantum materials with intriguing quantum phenomena espeically su
+      type: text
+    - name: copy_computational_workflows_that_connect_theory_data_and_experiment
+      label: Computational workflows that connect theory data and experiment
+      type: string
+    - name: copy_methods
+      label: Methods
+      type: string
+    - name: copy_how_we_work
+      label: How we work
+      type: string
+    - name: copy_methods_tools_2
+      label: Methods tools 2
+      type: string
+    - name: copy_codes_workflows_and_computing
+      label: Codes workflows and computing
+      type: string
+    - name: copy_the_tools_we_use_most_often_grouped_by_task_tools_tagged_we_contr
+      label: The tools we use most often grouped by task tools tagged we contr
+      type: text
+      description: Markdown and inline HTML supported. Preserve scientific subscripts and citation markup.
+    - name: copy_publications_2
+      label: Publications 2
+      type: string
+    - name: copy_selected_publications
+      label: Selected publications
+      type: string
+    - name: copy_full_publication_list
+      label: Full publication list
+      type: string
+    - name: copy_for_prospective_students
+      label: For prospective students
+      type: string
+    - name: copy_what_you_can_learn_here
+      label: What you can learn here
+      type: string
+    - name: copy_students_can_build_skills_in_quantum_mechanical_materials_modelin
+      label: Students can build skills in quantum mechanical materials modelin
+      type: text
+    - name: copy_contact_the_lab
+      label: Contact the lab
+      type: string
+    - name: methods
+      label: Methods
+      type: object
+      list:
+        collapsible:
+          collapsed: true
+          summary: '{title}'
+      fields:
+      - name: title
+        label: Title
+        type: string
+      - name: text
+        label: Text
+        type: text
+    - name: tool_categories
+      label: Tool categories
+      type: object
+      list:
+        collapsible:
+          collapsed: true
+          summary: '{title}'
+      fields:
+      - name: title
+        label: Title
+        type: string
+      - name: text
+        label: Text
+        type: text
+      - name: items
+        label: Items
+        type: text
+        list: true
+  - name: join_list
+    label: Join list
+    type: object
+    fields:
+    - name: path_research
+      label: Path research
+      type: string
+    - name: copy_open_positions
+      label: Open positions
+      type: string
+    - name: copy_current_opportunities
+      label: Current opportunities
+      type: string
+    - name: copy_current_postdoctoral_phd_and_visiting_researcher_opportunities_in
+      label: Current postdoctoral phd and visiting researcher opportunities in
+      type: string
+    - name: copy_funding
+      label: Funding
+      type: string
+    - name: copy_expected_qualifications_and_skills
+      label: Expected qualifications and skills
+      type: string
+    - name: copy_required
+      label: Required
+      type: text
+      description: Markdown and inline HTML supported. Preserve scientific subscripts and citation markup.
+    - name: copy_desirable
+      label: Desirable
+      type: text
+      description: Markdown and inline HTML supported. Preserve scientific subscripts and citation markup.
+    - name: copy_how_to_apply
+      label: How to apply
+      type: string
+    - name: copy_official_job_offer
+      label: Official job offer
+      type: string
+    - name: copy_there_are_no_advertised_openings_at_the_moment_motivated_candidat
+      label: There are no advertised openings at the moment motivated candidat
+      type: text
+    - name: copy_prospective_applicants
+      label: Prospective applicants
+      type: string
+    - name: copy_joining_through_external_fellowships
+      label: Joining through external fellowships
+      type: string
+    - name: copy_researchers_interested_in_joining_the_group_with_their_own_fundin
+      label: Researchers interested in joining the group with their own fundin
+      type: text
+    - name: copy_program_website
+      label: Program website
+      type: string
+    - name: copy_general_enquiries
+      label: General enquiries
+      type: string
+    - name: copy_if_a_specific_call_or_open_position_lists_its_own_application_req
+      label: If a specific call or open position lists its own application req
+      type: text
+      description: Markdown and inline HTML supported. Preserve scientific subscripts and citation markup.
+    - name: copy_a_cv_with_a_publication_list
+      label: A cv with a publication list
+      type: string
+    - name: copy_research_lines
+      label: Research lines
+      type: string
+    - name: copy_the_fellowship_or_program_you_plan_to_apply_for_and_its_deadline
+      label: The fellowship or program you plan to apply for and its deadline
+      type: string
+    - name: copy_contact
+      label: Contact
+      type: string
+    - name: copy_email_the_pi
+      label: Email the pi
+      type: string
+    - name: deadline
+      label: Deadline
+      type: string
+    - name: email
+      label: Email
+      type: string
+    - name: research_statement
+      label: Research statement
+      type: string
+    - name: pi_of
+      label: Pi of
+      type: string
+  - name: _default_list
+    label: ' default list'
+    type: object
+    fields:
+    - name: filters
+      label: Filters
+      type: object
+      list:
+        collapsible:
+          collapsed: true
+          summary: Item {index}
+      fields:
+      - name: key
+        label: Key
+        type: string
+      - name: label
+        label: Label
+        type: string
+    - name: copy_aria_label_people_filters
+      label: Aria label people filters
+      type: string
+    - name: copy_aria_label_people_directory
+      label: Aria label people directory
+      type: string
+    - name: copy_aria_label_profile_links
+      label: Aria label profile links
+      type: string
+    - name: copy_aria_label_personal_website
+      label: Aria label personal website
+      type: string
+    - name: copy_aria_label_github
+      label: Aria label github
+      type: string
+    - name: copy_aria_label_google_scholar
+      label: Aria label google scholar
+      type: string
+    - name: copy_aria_label_orcid
+      label: Aria label orcid
+      type: string
+    - name: copy_aria_label_researchgate
+      label: Aria label researchgate
+      type: string
+    - name: copy_aria_label_full_publication_list
+      label: Aria label full publication list
+      type: string
+    - name: copy_aria_label_map_to_the_inma_office_at_calle_de_pedro_cerbuna_12
+      label: Aria label map to the inma office at calle de pedro cerbuna 12
+      type: string
+    - name: copy_title_inma_office_at_calle_de_pedro_cerbuna_12_on_google_maps
+      label: Title inma office at calle de pedro cerbuna 12 on google maps
+      type: string
+    - name: copy_href_https_www_google_com_search_q_weather_zaragoza
+      label: Href https www google com search q weather zaragoza
+      type: string
+    - name: copy_our_team_is_based_in_zaragoza_and_san_sebasti_n_each_current_memb
+      label: Our team is based in zaragoza and san sebasti n each current memb
+      type: text
+      description: Markdown and inline HTML supported. Preserve scientific subscripts and citation markup.
+    - name: copy_current_members
+      label: Current members
+      type: string
+    - name: copy_doi
+      label: Doi
+      type: string
+    - name: copy_full_free_text
+      label: Full free text
+      type: string
+    - name: copy_publications_will_appear_here_soon
+      label: Publications will appear here soon
+      type: string
+    - name: copy_pi
+      label: Pi
+      type: string
+    - name: copy_email
+      label: Email
+      type: string
+    - name: copy_affiliation
+      label: Affiliation
+      type: string
+    - name: copy_address
+      label: Address
+      type: string
+    - name: copy_open_address_of_inma_in_google_maps
+      label: Open address of inma in google maps
+      type: string
+    - name: copy_funny_tips
+      label: Funny tips
+      type: string
+    - name: copy_sunglasses_check_for_zaragoza
+      label: Sunglasses check for zaragoza
+      type: string
+    - name: copy_full_forecast
+      label: Full forecast
+      type: string
+    - name: copy_to_check_if_you_need_sunglasses_and_sunscreen_when_you_visit_us_c
+      label: To check if you need sunglasses and sunscreen when you visit us c
+      type: text
+    - name: copy_loading_live_weather_near_inma
+      label: Loading live weather near inma
+      type: string
+    - name: based_in
+      label: Based in
+      type: string
+    - name: bibliography_summary
+      label: Bibliography summary
+      type: string
+    - name: volume
+      label: Volume
+      type: string
+    - name: number
+      label: Number
+      type: string
+    - name: full_text_via
+      label: Full text via
+      type: string
+  - name: _default_baseof
+    label: ' default baseof'
+    type: object
+    fields:
+    - name: copy_href_images_favicon_apple_touch_icon_png
+      label: Href images favicon apple touch icon png
+      type: string
+    - name: copy_href_images_favicon_favicon_32x32_png
+      label: Href images favicon favicon 32x32 png
+      type: string
+    - name: copy_href_images_favicon_favicon_16x16_png
+      label: Href images favicon favicon 16x16 png
+      type: string
+    - name: copy_href_images_favicon_site_webmanifest
+      label: Href images favicon site webmanifest
+      type: string
+  - name: news_list
+    label: News list
+    type: object
+    fields:
+    - name: filters
+      label: Filters
+      type: object
+      list:
+        collapsible:
+          collapsed: true
+          summary: Item {index}
+      fields:
+      - name: key
+        label: Key
+        type: string
+      - name: label
+        label: Label
+        type: string
+    - name: copy_aria_label_news_filters
+      label: Aria label news filters
+      type: string
+    - name: copy_aria_label_news_timeline
+      label: Aria label news timeline
+      type: string
+    - name: copy_aria_label_news_keywords
+      label: Aria label news keywords
+      type: string
+    - name: copy_all
+      label: All
+      type: string
+    - name: copy_news_will_appear_here_soon
+      label: News will appear here soon
+      type: string
+  - name: partials_footer
+    label: Partials footer
+    type: object
+    fields:
+    - name: path_disclaimer
+      label: Path disclaimer
+      type: string
+    - name: copy_disclaimer
+      label: Disclaimer
+      type: string
+    - name: copy_visits_loading
+      label: Visits loading
+      type: text
+      description: Markdown and inline HTML supported. Preserve scientific subscripts and citation markup.
+  - name: partials_header
+    label: Partials header
+    type: object
+    fields:
+    - name: path_
+      label: 'Path '
+      type: string
+    - name: path_images_logo_ymatterlab_log_v5_svg
+      label: Path images logo ymatterlab log v5 svg
+      type: string
+  - name: weather
+    label: Weather
+    type: object
+    fields:
+    - name: clear
+      label: Clear
+      type: string
+    - name: mainly_clear
+      label: Mainly clear
+      type: string
+    - name: partly_cloudy
+      label: Partly cloudy
+      type: string
+    - name: cloudy
+      label: Cloudy
+      type: string
+    - name: fog
+      label: Fog
+      type: string
+    - name: light_drizzle
+      label: Light drizzle
+      type: string
+    - name: drizzle
+      label: Drizzle
+      type: string
+    - name: heavy_drizzle
+      label: Heavy drizzle
+      type: string
+    - name: freezing_drizzle
+      label: Freezing drizzle
+      type: string
+    - name: light_rain
+      label: Light rain
+      type: string
+    - name: rain
+      label: Rain
+      type: string
+    - name: heavy_rain
+      label: Heavy rain
+      type: string
+    - name: freezing_rain
+      label: Freezing rain
+      type: string
+    - name: light_snow
+      label: Light snow
+      type: string
+    - name: snow
+      label: Snow
+      type: string
+    - name: heavy_snow
+      label: Heavy snow
+      type: string
+    - name: snow_grains
+      label: Snow grains
+      type: string
+    - name: rain_showers
+      label: Rain showers
+      type: string
+    - name: heavy_showers
+      label: Heavy showers
+      type: string
+    - name: snow_showers
+      label: Snow showers
+      type: string
+    - name: thunderstorm
+      label: Thunderstorm
+      type: string
+    - name: thunderstorm_with_hail
+      label: Thunderstorm with hail
+      type: string
+    - name: weather_update
+      label: Weather update
+      type: string
+    - name: today
+      label: Today
+      type: string
+    - name: weather_request_failed
+      label: Weather request failed
+      type: string
+    - name: grab_your_sunglasses_and_sunscreen_for_your_visit_to_inma
+      label: Grab your sunglasses and sunscreen for your visit to inma
+      type: string
+    - name: you_may_skip_the_sunscreen_today_but_this_is_zaragoza_where_the_sun_usually_comes_back_fast
+      label: You may skip the sunscreen today but this is zaragoza where the sun usually comes back fast
+      type: text
+    - name: sunglasses_recommended
+      label: Sunglasses recommended
+      type: string
+    - name: sunglasses_optional
+      label: Sunglasses optional
+      type: string
+    - name: unavailable
+      label: Unavailable
+      type: string
+  - name: accessibility
+    label: Accessibility
+    type: object
+    fields:
+    - name: skip
+      label: Skip
+      type: string
+    - name: pause
+      label: Pause
+      type: string
+    - name: resume
+      label: Resume
+      type: string
+- name: site
+  label: Shared lab identity and home research-area cards
+  type: file
+  path: config.yaml
+  format: yaml
+  fields:
+  - name: params
+    label: Params
+    type: object
+    fields:
+    - name: lab_name
+      label: Lab name
+      type: string
+    - name: tagline
+      label: Tagline
+      type: string
+    - name: pi_name
+      label: Pi name
+      type: string
+    - name: affiliation
+      label: Affiliation
+      type: string
+    - name: email
+      label: Email
+      type: string
+    - name: address
+      label: Address
+      type: string
+    - name: hero_text
+      label: Hero text
+      type: text
+    - name: hero_subtext
+      label: Hero subtext
+      type: text
+    - name: research_groups
+      label: Research groups
+      type: object
+      list:
+        collapsible:
+          collapsed: true
+          summary: '{title}'
+      fields:
+      - name: title
+        label: Title
+        type: string
+      - name: items
+        label: Items
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: '{title}'
+        fields:
+        - name: title
+          label: Title
+          type: string
+        - name: text
+          label: Text
+          type: text
