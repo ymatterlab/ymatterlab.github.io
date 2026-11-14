@@ -277,9 +277,9 @@ content:
     - name: copy_aria_label_primary_pages
       label: Aria label primary pages
       type: string
-    - name: copy_aria_label_rotating_cubic_pbtio3_perovskite_structure
-      label: Aria label rotating cubic pbtio3 perovskite structure
-      type: string
+    - name: copy_structure_description
+      label: Hero structure description (screen readers)
+      type: text
     - name: copy_href_https_www_csic_es_en
       label: Href https www csic es en
       type: string
@@ -340,10 +340,10 @@ content:
     - name: copy_publications
       label: Publications
       type: string
-    - name: copy_srtio3_perovskite_cubic_abo3_structure
-      label: Srtio3 perovskite cubic abo3 structure
+    - name: copy_structure_caption
+      label: Hero structure caption
       type: text
-      description: Markdown and inline HTML supported. Preserve scientific subscripts and citation markup.
+      description: Markdown and inline HTML supported.
     - name: copy_what_we_do
       label: What we do
       type: string

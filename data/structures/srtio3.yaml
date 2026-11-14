@@ -1,0 +1,29 @@
+# Cubic SrTiO3 perovskite shown in the homepage hero.
+# Read by layouts/index.html (interactive 3Dmol viewer) and by
+# scripts/render_structure_svg.py (static SVG shown before/without WebGL),
+# so both always depict the same structure. After editing, run `make structure`.
+#
+# Supercell construction (same in both): Sr on every lattice point
+# (0..cells inclusive along x, y, z); for each of the cells^3 unit cells,
+# Ti at the body centre and O at the three face centres (0.5,0.5,0),
+# (0.5,0,0.5), (0,0.5,0.5).
+name: SrTiO3 cubic perovskite supercell
+lattice_a: 3.905   # Å
+cells: 2
+elements:
+  Sr: {radius: 0.52, color: "#2f9e44"}
+  Ti: {radius: 0.34, color: "#2563eb"}
+  O:  {radius: 0.28, color: "#dc2626"}
+edge_color: "#94a3b8"
+# Initial view, as passed to 3Dmol: viewer.rotate(rotate_x, "x") then
+# viewer.rotate(rotate_y, "y"). 3Dmol composes these as R = Rx(rotate_x) * Ry(rotate_y)
+# acting on the model (checked against viewer.getView() in a browser).
+view:
+  rotate_x: 18
+  rotate_y: 28
+  # Rendering only: distance (Å) from the 3Dmol perspective camera to the model
+  # centre after zoomTo() for this supercell (camera z 150 minus model z 111.64).
+  # Used so the static SVG matches the viewer's first frame.
+  camera_distance: 38.36
+# Automatic rotation step per animation frame (degrees about the screen y axis).
+spin_step: 0.45

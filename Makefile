@@ -1,6 +1,6 @@
 # 出版物列表的日常操作。不确定该敲什么命令时，先看 pubsrc/README.md。
 
-.PHONY: pubs check serve refresh links
+.PHONY: pubs check serve refresh links structure
 
 pubs:            ## 抓取新 DOI，重新生成 data/publications.yaml
 	python scripts/build_pubs.py
@@ -16,3 +16,6 @@ refresh:         ## 忽略缓存，重新抓取全部条目（卷期页更新后
 
 serve: pubs      ## 本地预览
 	hugo server -D
+
+structure:       ## 修改 data/structures/srtio3.yaml 后，重新生成首页晶体静态图
+	python scripts/render_structure_svg.py

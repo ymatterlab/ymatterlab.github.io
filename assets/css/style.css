@@ -280,8 +280,11 @@ a {
   display: grid;
   justify-items: center;
   min-width: 0;
+  margin: 0;
 }
 
+/* Fixed-size frame: the static SVG and the 3Dmol canvas are stacked layers, so
+   swapping one for the other never changes the layout. */
 .crystal-viewer {
   position: relative;
   overflow: hidden;
@@ -293,94 +296,47 @@ a {
   background: radial-gradient(circle at 30% 30%, rgba(15,118,110,0.13), rgba(246,248,245,0.96));
 }
 
-.viewer-fallback {
+.crystal-static,
+.crystal-canvas {
   position: absolute;
   inset: 0;
-  background: var(--bg);
+  width: 100%;
+  height: 100%;
 }
 
-.atom {
-  position: absolute;
-  display: block;
-  border-radius: 50%;
-  box-shadow: inset -10px -12px 18px rgba(0, 0, 0, 0.16), 0 12px 20px rgba(0, 0, 0, 0.12);
+.crystal-static {
+  padding: var(--space-4);
+  object-fit: contain;
+  transition: opacity 300ms ease;
 }
 
-.atom-sr {
-  width: 3.15rem;
-  height: 3.15rem;
-  background: #2f9e44;
+.crystal-canvas {
+  opacity: 0;
+  transition: opacity 300ms ease;
 }
 
-.atom-ti {
-  width: 2.55rem;
-  height: 2.55rem;
-  background: #2563eb;
+.crystal-viewer[data-state="interactive"] .crystal-canvas {
+  opacity: 1;
 }
 
-.atom-o {
-  width: 2rem;
-  height: 2rem;
-  background: #dc2626;
-}
-
-.atom-corner-1 {
-  left: 18%;
-  top: 23%;
-}
-
-.atom-corner-2 {
-  right: 20%;
-  top: 20%;
-}
-
-.atom-corner-3 {
-  left: 22%;
-  bottom: 19%;
-}
-
-.atom-corner-4 {
-  right: 17%;
-  bottom: 23%;
-}
-
-.atom-center {
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.atom-face-1 {
-  left: 50%;
-  top: 24%;
-  transform: translateX(-50%);
-}
-
-.atom-face-2 {
-  left: 28%;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.atom-face-3 {
-  right: 28%;
-  top: 50%;
-  transform: translateY(-50%);
+.crystal-viewer[data-state="interactive"] .crystal-static {
+  opacity: 0;
 }
 
 .structure-caption {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
   width: 80%;
-  margin: 0.75rem 0 0;
+  margin: var(--space-3) 0 0;
   color: var(--muted);
-  font-size: 0.95rem;
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+
+.structure-caption p {
+  margin: 0;
 }
 
 .structure-caption strong {
   color: var(--text);
-  white-space: nowrap;
 }
 
 .grid {

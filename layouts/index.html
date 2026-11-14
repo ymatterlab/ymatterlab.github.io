@@ -12,22 +12,14 @@
 <a class="button button-secondary" href="{{ $c.path_publications | relURL }}">{{ $c.copy_publications | markdownify }}</a>
 </div>
 </div>
-<div class="hero-visual">
-<div aria-label="{{ $c.copy_aria_label_rotating_cubic_pbtio3_perovskite_structure }}" class="crystal-viewer" role="img" id="perovskite-viewer">
-<div aria-hidden="true" class="viewer-fallback" data-viewer-fallback="">
-<span class="atom atom-sr atom-corner-1"></span>
-<span class="atom atom-sr atom-corner-2"></span>
-<span class="atom atom-sr atom-corner-3"></span>
-<span class="atom atom-sr atom-corner-4"></span>
-<span class="atom atom-ti atom-center"></span>
-<span class="atom atom-o atom-face-1"></span>
-<span class="atom atom-o atom-face-2"></span>
-<span class="atom atom-o atom-face-3"></span>
-</div>
+<figure class="hero-visual">
+<div class="crystal-viewer" data-crystal data-state="static" role="img" aria-label="{{ $c.copy_structure_description }}">
+<img class="crystal-static" src="{{ "/images/structures/srtio3-supercell.svg" | relURL }}" alt="" width="440" height="435" decoding="async"/>
+<div class="crystal-canvas" id="perovskite-viewer" aria-hidden="true"></div>
 </div>
 <button type="button" data-rotation-toggle hidden>{{ site.Data.copy.accessibility.pause }}</button>
-<p class="structure-caption">{{ $c.copy_srtio3_perovskite_cubic_abo3_structure | markdownify }}</p>
-</div>
+<figcaption class="structure-caption">{{ $c.copy_structure_caption | markdownify }}</figcaption>
+</figure>
 </section>
 
 {{/* 2. Research directions. */}}
@@ -210,124 +202,149 @@
 </div>
 <p class="sponsor-note">{{ $c.copy_pid2025_173011na_i00_funded_by_miciu_aei_10_13039_501100011033 | markdownify }}</p>
 </section>
-<script src="https://3Dmol.org/build/3Dmol-min.js"></script>
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-  const viewerElement = document.getElementById("perovskite-viewer");
-  if (!viewerElement || !window.$3Dmol) {
-    return;
-  }
-
-  const fallback = viewerElement.querySelector("[data-viewer-fallback]");
-  if (fallback) {
-    fallback.remove();
-  }
-
-  const viewer = $3Dmol.createViewer("perovskite-viewer", {
-    backgroundColor: "#f6f8f5"
-  });
-
-  const a = 3.905;
-  const cells = 2;
-  const atoms = [];
-  const seen = new Set();
-
-  function addAtom(element, x, y, z) {
-    const key = `${element}:${x.toFixed(3)}:${y.toFixed(3)}:${z.toFixed(3)}`;
-    if (seen.has(key)) {
-      return;
-    }
-    seen.add(key);
-    atoms.push(`${element} ${x.toFixed(3)} ${y.toFixed(3)} ${z.toFixed(3)}`);
-  }
-
-  for (let i = 0; i <= cells; i++) {
-    for (let j = 0; j <= cells; j++) {
-      for (let k = 0; k <= cells; k++) {
-        addAtom("Sr", i * a, j * a, k * a);
-      }
-    }
-  }
-
-  for (let i = 0; i < cells; i++) {
-    for (let j = 0; j < cells; j++) {
-      for (let k = 0; k < cells; k++) {
-        addAtom("Ti", (i + 0.5) * a, (j + 0.5) * a, (k + 0.5) * a);
-        addAtom("O", (i + 0.5) * a, (j + 0.5) * a, k * a);
-        addAtom("O", (i + 0.5) * a, j * a, (k + 0.5) * a);
-        addAtom("O", i * a, (j + 0.5) * a, (k + 0.5) * a);
-      }
-    }
-  }
-
-  const xyz = [atoms.length, "SrTiO3 cubic perovskite supercell", ...atoms].join("\n");
-
-  viewer.addModel(xyz, "xyz");
-
-  viewer.setStyle({elem: "Sr"}, {
-    sphere: {radius: 0.52, color: "#2f9e44"}
-  });
-
-  viewer.setStyle({elem: "Ti"}, {
-    sphere: {radius: 0.34, color: "#2563eb"}
-  });
-
-  viewer.setStyle({elem: "O"}, {
-    sphere: {radius: 0.28, color: "#dc2626"}
-  });
-
-  const length = a * cells;
-  const edgeColor = "#94a3b8";
-  const corners = [
-    [0, 0, 0], [length, 0, 0], [0, length, 0], [0, 0, length],
-    [length, length, 0], [length, 0, length], [0, length, length],
-    [length, length, length]
-  ];
-  const edges = [
-    [0, 1], [0, 2], [0, 3], [1, 4], [1, 5], [2, 4],
-    [2, 6], [3, 5], [3, 6], [4, 7], [5, 7], [6, 7]
-  ];
-
-  edges.forEach(function ([startIndex, endIndex]) {
-    const start = corners[startIndex];
-    const end = corners[endIndex];
-    viewer.addLine({
-      start: {x: start[0], y: start[1], z: start[2]},
-      end: {x: end[0], y: end[1], z: end[2]},
-      color: edgeColor,
-      linewidth: 2
-    });
-  });
-
-  viewer.zoomTo();
-  viewer.rotate(18, "x");
-  viewer.rotate(28, "y");
-  viewer.render();
-
-  const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+/* SrTiO3 hero viewer.
+   The static SVG (rendered from the same data/structures/srtio3.yaml) is shown first.
+   3Dmol is only loaded when WebGL is available, and the canvas only replaces the SVG
+   after a successful first render. Any failure leaves the SVG in place. */
+(function () {
+  const root = document.querySelector("[data-crystal]");
+  if (!root) return;
+  const host = root.querySelector(".crystal-canvas");
   const toggle = document.querySelector("[data-rotation-toggle]");
+  const structure = {{ site.Data.structures.srtio3 | jsonify | safeJS }};
   const labels = {{ site.Data.copy.accessibility | jsonify | safeJS }};
-  let paused = motion.matches;
+  const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let viewer = null;
   let frame = null;
+  let paused = motion.matches;
 
-  function updateRotation() {
+  function stop() {
     if (frame !== null) cancelAnimationFrame(frame);
     frame = null;
+  }
+
+  function useStatic(reason, error) {
+    stop();
+    viewer = null;
+    host.replaceChildren();
+    root.dataset.state = "static";
+    root.dataset.fallback = reason;
+    toggle.hidden = true;
+    if (error) console.info("Crystal viewer: showing static image (" + reason + ").", error);
+  }
+
+  function webglAvailable() {
+    try {
+      const canvas = document.createElement("canvas");
+      return Boolean(window.WebGLRenderingContext &&
+        (canvas.getContext("webgl2") || canvas.getContext("webgl")));
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function buildXYZ() {
+    const a = structure.lattice_a;
+    const cells = structure.cells;
+    const atoms = [];
+    const seen = new Set();
+    function add(element, x, y, z) {
+      const key = element + ":" + x.toFixed(3) + ":" + y.toFixed(3) + ":" + z.toFixed(3);
+      if (seen.has(key)) return;
+      seen.add(key);
+      atoms.push(element + " " + x.toFixed(3) + " " + y.toFixed(3) + " " + z.toFixed(3));
+    }
+    for (let i = 0; i <= cells; i++)
+      for (let j = 0; j <= cells; j++)
+        for (let k = 0; k <= cells; k++) add("Sr", i * a, j * a, k * a);
+    for (let i = 0; i < cells; i++)
+      for (let j = 0; j < cells; j++)
+        for (let k = 0; k < cells; k++) {
+          add("Ti", (i + 0.5) * a, (j + 0.5) * a, (k + 0.5) * a);
+          add("O", (i + 0.5) * a, (j + 0.5) * a, k * a);
+          add("O", (i + 0.5) * a, j * a, (k + 0.5) * a);
+          add("O", i * a, (j + 0.5) * a, (k + 0.5) * a);
+        }
+    return [atoms.length, structure.name].concat(atoms).join("\n");
+  }
+
+  function updateRotation() {
+    stop();
+    if (!viewer) return;
     toggle.textContent = paused ? labels.resume : labels.pause;
     if (!paused && !document.hidden) frame = requestAnimationFrame(animate);
   }
-  toggle.hidden = false;
-  toggle.addEventListener("click", function () { paused = !paused; updateRotation(); });
-  motion.addEventListener("change", function () { paused = motion.matches; updateRotation(); });
-  document.addEventListener("visibilitychange", updateRotation);
 
   function animate() {
-    viewer.rotate(0.45, "y");
+    viewer.rotate(structure.spin_step, "y");
     viewer.render();
     frame = requestAnimationFrame(animate);
   }
 
-  updateRotation();
-});
+  function init() {
+    try {
+      if (!window.$3Dmol) throw new Error("3Dmol did not load");
+      viewer = $3Dmol.createViewer(host, { backgroundColor: "white", backgroundAlpha: 0 });
+      if (!viewer) throw new Error("createViewer returned nothing");
+
+      viewer.addModel(buildXYZ(), "xyz");
+      Object.keys(structure.elements).forEach(function (element) {
+        const spec = structure.elements[element];
+        viewer.setStyle({ elem: element }, { sphere: { radius: spec.radius, color: spec.color } });
+      });
+
+      const L = structure.lattice_a * structure.cells;
+      const corners = [[0, 0, 0], [L, 0, 0], [0, L, 0], [0, 0, L],
+        [L, L, 0], [L, 0, L], [0, L, L], [L, L, L]];
+      [[0, 1], [0, 2], [0, 3], [1, 4], [1, 5], [2, 4],
+        [2, 6], [3, 5], [3, 6], [4, 7], [5, 7], [6, 7]].forEach(function (edge) {
+        const s = corners[edge[0]], e = corners[edge[1]];
+        viewer.addLine({ start: { x: s[0], y: s[1], z: s[2] }, end: { x: e[0], y: e[1], z: e[2] },
+          color: structure.edge_color, linewidth: 2 });
+      });
+
+      viewer.zoomTo();
+      viewer.rotate(structure.view.rotate_x, "x");
+      viewer.rotate(structure.view.rotate_y, "y");
+      viewer.render();
+
+      const canvas = host.querySelector("canvas");
+      if (!canvas || !canvas.width || !canvas.height) throw new Error("no canvas after render");
+      canvas.addEventListener("webglcontextlost", function (event) {
+        event.preventDefault();
+        useStatic("context-lost");
+      });
+    } catch (error) {
+      useStatic("init-error", error);
+      return;
+    }
+
+    root.dataset.state = "interactive";
+    delete root.dataset.fallback;
+    toggle.hidden = false;
+    toggle.addEventListener("click", function () { paused = !paused; updateRotation(); });
+    motion.addEventListener("change", function () { paused = motion.matches; updateRotation(); });
+    document.addEventListener("visibilitychange", updateRotation);
+    updateRotation();
+  }
+
+  if (!webglAvailable()) {
+    root.dataset.fallback = "no-webgl";
+    return;
+  }
+
+  function load() {
+    const script = document.createElement("script");
+    script.src = "https://3Dmol.org/build/3Dmol-min.js";
+    script.async = true;
+    script.onload = init;
+    script.onerror = function () { useStatic("script-error", new Error("3Dmol script failed to load")); };
+    document.head.appendChild(script);
+  }
+
+  if (document.readyState === "complete") load();
+  else window.addEventListener("load", load, { once: true });
+})();
 </script>
 {{ end }}

@@ -97,7 +97,8 @@ copy:
   path_images_sponsors_eurohpc_png: /images/sponsors/EuroHPC.png
   path_images_sponsors_miciu_aei_jpg: /images/sponsors/MICIU-AEI.jpg
   copy_aria_label_primary_pages: Primary pages
-  copy_aria_label_rotating_cubic_pbtio3_perovskite_structure: Cubic SrTiO3 perovskite structure
+  copy_structure_description: 'Ball model of cubic SrTiO3 perovskite, a block of 2 × 2 × 2 unit cells: strontium
+    (green) on the cell corners, titanium (blue) at the cell centres and oxygen (red) at the face centres.'
   copy_href_https_www_csic_es_en: https://www.csic.es/en
   copy_aria_label_visit_csic: Visit CSIC
   copy_alt_mciu_csic: MCIU CSIC
@@ -119,9 +120,8 @@ copy:
   copy_alt_miciu_aei: MICIU AEI
   copy_research: Research
   copy_publications: Publications
-  copy_srtio3_perovskite_cubic_abo3_structure: '<strong>SrTiO<sub>3</sub> perovskite</strong>
-
-    <span>Cubic ABO<sub>3</sub> structure.</span>'
+  copy_structure_caption: '<strong>SrTiO<sub>3</sub></strong>, cubic perovskite (2 × 2 × 2 cells): Sr green,
+    Ti blue, O red.'
   copy_what_we_do: What we do
   copy_research_areas: Research Areas
   copy_explore_our_research: Explore our research
