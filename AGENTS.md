@@ -8,7 +8,8 @@
 - Home copy is in `content/_index.md` front matter. Research overview, methods,
   tool lists and other page/interface labels are in `data/copy.yaml`, grouped by
   layout. Research lines and figures are in `data/research_lines.yaml`.
-  News is in `content/news/`, people in `data/people.yaml`, Join Us opportunities
+  News is in `content/news/` (member guide: `docs/adding-news.md`; new files
+  `YYYY-MM-DD-slug.md`, categories announcements/honors/output/life), people in `data/people.yaml`, Join Us opportunities
   and fellowships in `content/join/_index.md`, other prose in page Markdown.
   Shared identity/navigation/research-area cards are in `config.yaml`.
 - **Locked content:** the Research page's Major Research Lines must keep exactly

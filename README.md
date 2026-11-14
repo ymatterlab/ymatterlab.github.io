@@ -1,3 +1,14 @@
+# Y-Matter Lab website
+
+Source of <https://ymatterlab.github.io/>.
+
+## For group members
+
+- **Add news:** follow [docs/adding-news.md](docs/adding-news.md). Use the web editor or
+  GitHub.com (no Git needed), or open a
+  [News item request](https://github.com/ymatterlab/ymatterlab.github.io/issues/new/choose).
+- All edits go to the **`develop`** branch. Yuewen reviews them and merges into `main` to publish.
+
 
 ## License
 

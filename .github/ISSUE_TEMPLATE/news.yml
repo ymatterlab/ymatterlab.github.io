@@ -1,0 +1,63 @@
+name: News item request
+description: Ask for a news item to be posted on the Y-Matter Lab website.
+title: "News: "
+labels: ["news"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Fill in the fields below and a lab member will post the news item.
+        Guidelines: see docs/adding-news.md in this repository.
+  - type: input
+    id: title
+    attributes:
+      label: Title
+      description: Short and specific, sentence case.
+      placeholder: "Jincheng's paper on negative thermal expansion published in PRB"
+    validations:
+      required: true
+  - type: input
+    id: date
+    attributes:
+      label: Date (YYYY-MM-DD)
+      placeholder: "2026-11-20"
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      multiple: true
+      options:
+        - announcements (positions, new members, events, talks, visits)
+        - honors (awards, editorial roles, grants, fellowships)
+        - output (papers, preprints, software, datasets)
+        - life (PhD defenses, group outings, celebrations)
+    validations:
+      required: true
+  - type: textarea
+    id: text
+    attributes:
+      label: Text
+      description: One to three sentences.
+    validations:
+      required: true
+  - type: input
+    id: link
+    attributes:
+      label: Link
+      description: The paper's DOI, award page or event page.
+      placeholder: "https://doi.org/..."
+  - type: textarea
+    id: image
+    attributes:
+      label: Image (optional)
+      description: Drag an image here and add a short description for screen readers.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: The results are published or public (no embargo, nothing confidential).
+          required: true
+        - label: Everyone recognizable in any photo has agreed to its use.
