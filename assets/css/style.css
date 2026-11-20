@@ -236,6 +236,10 @@ a {
   margin-top: var(--space-2);
 }
 
+.hero-tagline {
+  font-size: calc(var(--text-lead) * 0.88);
+}
+
 .button-row {
   display: flex;
   flex-wrap: wrap;

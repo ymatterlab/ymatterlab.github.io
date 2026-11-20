@@ -6,7 +6,8 @@
 <div class="hero-copy">
 <p class="hero-kicker"><strong>{{ site.Params.lab_name }}</strong> <span>{{ site.Params.affiliation }}</span></p>
 <h1>{{ site.Home.Params.hero_headline }}</h1>
-<p class="lead">{{ site.Home.Params.hero_subtext }}</p>
+<p class="lead">{{ site.Home.Params.hero_subtext | markdownify }}</p>
+{{ with site.Home.Params.hero_tagline }}<p class="lead hero-tagline">{{ . | markdownify }}</p>{{ end }}
 <div aria-label="{{ $c.copy_aria_label_primary_pages }}" class="button-row" role="group">
 <a class="button" href="{{ $c.path_research | relURL }}">{{ $c.copy_research | markdownify }}</a>
 <a class="button button-secondary" href="{{ $c.path_publications | relURL }}">{{ $c.copy_publications | markdownify }}</a>

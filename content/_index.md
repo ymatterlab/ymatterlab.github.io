@@ -5,7 +5,9 @@ title: Home
 draft: false
 hero_headline: From microscopic mechanisms to materials design
 hero_subtext: We combine first-principles calculations, atomistic simulations, and machine learning to
-  understand and design functional materials.
+  understand **why matter behaves the way it does**, with the ultimate goal of designing **materials
+  that matter**.
+hero_tagline: That's why we're called Y-Matter Lab.
 copy:
   topicAnchors:
     Quantum Materials: quantum-materials
