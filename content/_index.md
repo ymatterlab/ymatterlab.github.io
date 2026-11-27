@@ -94,9 +94,12 @@ copy:
   path_news: /news/
   path_images_sponsors_mciu_csic_png: /images/sponsors/MCIU-CSIC.png
   path_images_sponsors_dipc_png: /images/sponsors/DIPC.png
+  path_images_sponsors_cfm_webp: /images/sponsors/CFM.webp
+  path_images_sponsors_mpc_webp: /images/sponsors/MPC.webp
   path_images_sponsors_inma_severo_ochoa_png: /images/sponsors/INMA-severo-ochoa.png
   path_images_sponsors_ikur_jpeg: /images/sponsors/IKUR.jpeg
   path_images_sponsors_eurohpc_png: /images/sponsors/EuroHPC.png
+  path_images_sponsors_res_webp: /images/sponsors/RES.webp
   path_images_sponsors_miciu_aei_jpg: /images/sponsors/MICIU-AEI.jpg
   copy_aria_label_primary_pages: Primary pages
   copy_structure_description: 'Ball model of cubic SrTiO3 perovskite, a block of 2 × 2 × 2 unit cells: strontium
@@ -107,6 +110,10 @@ copy:
   copy_href_https_dipc_ehu_eus_es: https://dipc.ehu.eus/es
   copy_aria_label_visit_dipc: Visit DIPC
   copy_alt_dipc: DIPC
+  copy_href_https_cfm_ehu_es: https://cfm.ehu.es/
+  copy_aria_label_visit_cfm_mpc: Visit CFM–MPC (CSIC–UPV/EHU)
+  copy_alt_cfm: CFM — Centro de Física de Materiales (CSIC–UPV/EHU)
+  copy_alt_mpc: MPC — Materials Physics Center
   copy_href_https_inma_unizar_csic_es: https://inma.unizar-csic.es/
   copy_aria_label_visit_inma: Visit INMA
   copy_alt_inma_instituto_de_nanociencia_y_materiales_de_arag_n_excelencia_s: INMA — Instituto de Nanociencia
@@ -117,6 +124,9 @@ copy:
   copy_href_https_www_eurohpc_ju_europa_eu_index_en: https://www.eurohpc-ju.europa.eu/index_en
   copy_aria_label_visit_eurohpc_joint_undertaking: Visit EuroHPC Joint Undertaking
   copy_alt_eurohpc_joint_undertaking: EuroHPC Joint Undertaking
+  copy_href_https_www_res_es: https://www.res.es/
+  copy_aria_label_visit_res: Visit RES — Red Española de Supercomputación
+  copy_alt_res: RES — Red Española de Supercomputación
   copy_href_https_www_aei_gob_es_en: https://www.aei.gob.es/en
   copy_aria_label_visit_aei: Visit AEI
   copy_alt_miciu_aei: MICIU AEI
@@ -160,6 +170,4 @@ copy:
   copy_ebro_photo_credit: Photo by Yue-Wen Fang.
   copy_we_sincerely_acknowledge_the_generous_financial_and_computational: We sincerely acknowledge the
     generous financial and computational support of our present and past sponsors.
-  copy_pid2025_173011na_i00_funded_by_miciu_aei_10_13039_501100011033: PID2025-173011NA-I00 funded by
-    MICIU/AEI/10.13039/501100011033
 ---

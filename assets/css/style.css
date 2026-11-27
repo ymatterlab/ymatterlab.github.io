@@ -561,17 +561,12 @@ a {
   margin: var(--space-2) 0;
 }
 
-.sponsor-note {
-  color: var(--muted);
-  font-size: 0.75rem;
-  text-align: center;
-}
-
-/* Logos keep their official colours and proportions; only their height is set. */
+/* Logos keep their official colours and proportions within responsive size limits. */
 .sponsor-logo {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  max-width: 100%;
   border: 1px solid transparent;
   border-radius: var(--radius-sm);
   padding: var(--space-1);
@@ -586,14 +581,19 @@ a {
 .sponsor-logo img {
   display: block;
   width: auto;
-  max-width: 9rem;
+  max-width: min(11rem, 100%);
   height: auto;
-  max-height: 3.25rem;
+  max-height: 4rem;
 }
 
 .sponsor-logo-wide img {
-  max-width: 13rem;
-  max-height: 2.75rem;
+  max-width: min(15.5rem, 100%);
+  max-height: 3.5rem;
+}
+
+.sponsor-logo-group {
+  flex-wrap: wrap;
+  gap: var(--space-3);
 }
 
 .section-heading {
