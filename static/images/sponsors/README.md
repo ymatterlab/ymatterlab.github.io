@@ -1,5 +1,25 @@
 # Sponsor logos
 
+## CFM–MPC (CSIC–UPV/EHU)
+
+The CFM and MPC logos are displayed together and link to https://cfm.ehu.es/.
+Both are stored as lossless WebP with their original colours and proportions.
+
+- `CFM.webp`: https://research.science.eus/img/uploaded/1B94CE412E8211D3FEDE0E881ED97628.png
+  (CFM's entry in the Basque research system).
+- `MPC.webp`: https://bercmpc.org/wp-content/uploads/2024/03/cropped-logo_mpcsvg2.png
+  (the official MPC website).
+
+## RES — Red Española de Supercomputación
+
+`RES.webp` is the logo from the official RES profile, https://x.com/RES_HPC.
+Source image: https://pbs.twimg.com/profile_images/867314366391226368/-jSbrHJH.jpg
+
+The institutional download page is https://www.res.es/es/imagen-institucional.
+Its logo archive was unavailable when this asset was added. Only blank outer
+margins were trimmed; the full logo, colours and proportions are preserved.
+The image is stored as lossless WebP and links to https://www.res.es/.
+
 ## MICIU / AEI
 
 Official downloads (horizontal, colour; the required combination differs per
@@ -13,35 +33,10 @@ applies to each grant type and call year.
 
 | File | Use for | Status |
 |---|---|---|
-| `MICIU-AEI.jpg` | Grants funded from the national budget only | Not yet displayed |
+| `MICIU-AEI.jpg` | Grants funded from the national budget only | Displayed |
 | `MICIU-Cofinanciado-AEI.jpg` | Grants co-financed by ERDF / the European Union | Unused |
 
 Originals are ~12000x3000 px and 2.7-3.4 MB. Both files here were scaled
 proportionally to 600 px wide (q85, ~17 KB), which is enough for the 288 px
 display width at 2x. Proportional scaling is permitted; cropping, recolouring
 and rearranging the logos are not.
-
-## Pending: adding PID2025 to the site
-
-Project PID2025-173011NA-I00 (CSIC / Centro de Fisica de Materiales, 3 years,
-0 predoctoral contracts). The provisional resolution of 2026-07-15 shows no
-ERDF and no ESF+ co-financing, so `MICIU-AEI.jpg` is the correct file. The
-project cannot start before 1 September 2026.
-
-Once the final *resolucion de concesion* arrives:
-
-1. Confirm the grant reference, and search the document for "FEDER" once more
-   to verify there is still no co-financing.
-2. Add `MICIU-AEI.jpg` to the `sponsor-logo-grid` in `layouts/index.html`.
-3. Add the grant reference at the same time - the rules require the reference
-   to always appear together with the MICIU and AEI logos:
-   `Project PID2025-173011NA-I00 funded by MICIU/AEI/10.13039/501100011033`
-   Do not translate the MICIU and AEI names or the text inside the logos, even
-   on an English page.
-4. The rules ask for this notice on every page of the site, visible on the
-   home page without scrolling. A footer line is the practical way to cover
-   every page; check with the CSIC research management office how strictly
-   they interpret the home-page requirement.
-
-Until step 2 and 3 are done together, do not display the logos on their own:
-a logo without its grant reference is worse than no logo at all.
